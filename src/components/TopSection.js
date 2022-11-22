@@ -83,7 +83,7 @@ function TopSection() {
             <div className='flex flex-col items-center w-full banner bg-dark_text pt-[127px] lg:pt-0 lg:pb-[50px] opacity-[0.9] h-[100vh] lg:h-[fit]'>
                 <h1 className='lg:font-bold font-semibold lg:text-6xl text-[28px] lg:leading-[72px] lg:w-[1156px] text-center lg:mb-[21px] mb-[18px] lg:mt-[150px]'>BIKEE Smart Eco-friendly Last-Mile Electric Delivery Service.</h1>
                 <p className='font-medium text-xl mb-8 lg:mb-[65px]'>The future of mobility is electric.</p>
-                <div className='px-6 lg:mx-0 w-full'>
+                <div className='px-6 lg:mx-0 w-full lg:flex lg:justify-center'>
                     <button className='bg-red lg:w-fit w-full font-medium text-lg text-btn_text 
                     px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>Request a Demo</button>
                 </div>

@@ -25,6 +25,11 @@ import arrow from '../images/home/arrow.png'
 import up from '../images/home/up.png'
 import down from '../images/home/down.png'
 import macMobile from '../images/home/mac-mobile.png'
+import mjiggle from '../images/home/Mjiggle.png'
+import mresecurb from '../images/home/Mresecurb.png'
+import Msymtric from '../images/home/Msymtric.png'
+import Mwelytics from '../images/home/Mwelytics.png'
+import Mwishelp from '../images/home/Mwishelp.png'
 
 function TopSection() {
     const [open, setOpen] = useState(true)
@@ -75,11 +80,14 @@ function TopSection() {
   return (
     <Section className='flex flex-col'>
         <div className='text-white lg:bg-bikees bg-no-repeat bg-center'>
-            <div className='flex flex-col items-center w-full banner bg-dark_text lg:pb-[50px] opacity-[0.9]'>
-                <h1 className='font-bold lg:text-6xl leading-[72px] lg:w-[1156px] text-center lg:mb-[21px] lg:mt-[150px]'>BIKEE Smart Eco-friendly Last-Mile Electric Delivery Service.</h1>
-                <p className='font-medium text-xl lg:mb-[65px]'>The future of mobility is electric.</p>
-                <button className='bg-red font-medium text-lg text-btn_text lg:py-[14px] lg:px-7 rounded-md'>Request a Demo</button>
-                <div className='text-white flex lg:mt-[120px] justify-start lg:w-full lg:gap-[38px] lg:pl-[350px]'>
+            <div className='flex flex-col items-center w-full banner bg-dark_text pt-[127px] lg:pt-0 lg:pb-[50px] opacity-[0.9] h-[100vh] lg:h-[fit]'>
+                <h1 className='lg:font-bold font-semibold lg:text-6xl text-[28px] lg:leading-[72px] lg:w-[1156px] text-center lg:mb-[21px] mb-[18px] lg:mt-[150px]'>BIKEE Smart Eco-friendly Last-Mile Electric Delivery Service.</h1>
+                <p className='font-medium text-xl mb-8 lg:mb-[65px]'>The future of mobility is electric.</p>
+                <div className='px-6 lg:mx-0 w-full'>
+                    <button className='bg-red lg:w-fit w-full font-medium text-lg text-btn_text 
+                    px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>Request a Demo</button>
+                </div>
+                <div className='text-white flex lg:mt-[120px] mt-8 justify-start lg:w-full gap-7 lg:gap-[38px] lg:pl-[350px]'>
                     <div className='flex flex-col lg:gap-[10px] font-normal'>
                         <h4 className='text-sm'>Bike Speed</h4>
                         <p className='text-lg'>40KM/h</p>
@@ -91,7 +99,7 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className='w-full flex lg:justify-center lg:pt-[113px] lg:pb-[113px] order'>
+        <div className='w-full flex lg:justify-center lg:pt-[113px] py-6 lg:pb-[113px] order'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row lg:gap-[123px]'>
                 <div className=''>
                     <img src={handbook} alt='order' className='hidden lg:block'/>
@@ -109,14 +117,21 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className='flex flex-col items-center bg-white lg:pt-[83px] lg:pb-[83px]'>
-            <h4 className='text-gray font-medium text-base lg:mb-[30px]'> Trusted by the top restaurants in Africa</h4>
-            <div className='flex flex-wrap lg:gap-[61.5px]'>
+        <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[83px] lg:pb-[83px] px-[50px] lg:px-0'>
+            <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by the top restaurants in Africa</h4>
+            <div className='lg:flex hidden flex-wrap lg:gap-[61.5px]'>
                 <img src={jiggle} alt='jiggle'/>
                 <img src={symtric} alt='symtric'/>
                 <img src={wishelp} alt='wishelp'/>
                 <img src={resecurb} alt='resecurb'/>
                 <img src={welytics} alt='welytics'/>
+            </div>
+            <div className='flex lg:hidden flex-wrap gap-6 lg:gap-[61.5px]'>
+                <img src={mjiggle} alt='jiggle'/>
+                <img src={Msymtric} alt='symtric'/>
+                <img src={Mwishelp} alt='wishelp'/>
+                <img src={mresecurb} alt='resecurb'/>
+                <img src={Mwelytics} alt='welytics'/>
             </div>
 
         </div>

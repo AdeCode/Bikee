@@ -214,38 +214,38 @@ function TopSection() {
         <div className='flex justify-center'>
 
         </div>
-        <div className='flex save flex-col lg:flex-row lg:gap-[130px] justify-center mt-6 lg:mt-0 lg:py-[120px]'>
+        <div className='flex save flex-col lg:flex-row lg:gap-[130px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
             <div className='flex justify-center lg:justify-start'>
                 <img src={lapDesk} alt='laptop' className='hidden lg:flex lg:h-[395px]'/>
                 <img src={lapMob} alt='laptop' className='lg:hidden'/>
             </div>
             <div className='flex flex-col px-[42px]'>
                 <h2 className='lg:font-bold lg:w-[650px] text-2xl font-semibold lg:text-[46px] lg:leading-[57px] text-dark_text'>Goodbye to unsustainable  fuel prices & scarcity, Say HELLOBIKEE.</h2>
-                <ul className='list-none lg:mt-[30px] mt-6'>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                <ul className='list-none lg:mt-[30px] mt-6 flex flex-col gap-6'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-base text-light_blue'>Save Petrol Cost</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>No more worries on fuel scarcity</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>High Performance Swappable Battery</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>24/7 Support</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>90 - 100km Range</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>Available delivery app</span>
                     </li>
-                    <li className='flex lg:gap-3 lg:mb-[14.6px]'>
+                    <li className='flex gap-3 lg:mb-[14.6px]'>
                         <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>8 Hour battery</span>
                     </li>
                 </ul>
-                <div className='flex lg:gap-[11px] font-medium text-lg lg:mt-[35px]'>
-                    <button className='text-btn lg:w-fit demo bg-white font-medium text-lg py-[13px] px-[26px] rounded-md'>Request demo</button>
+                <div className='flex flex-col lg:flex-row lg:gap-[11px] font-medium text-lg lg:mt-[35px] mt-6'>
+                    <button className='text-btn lg:w-fit demo mb-5 lg:mb-0 bg-white font-medium text-lg py-[13px] px-[26px] rounded-md'>Request demo</button>
                     <button className='bg-red text-btn_text py-[13px] px-7 lg:w-fit rounded-md'>Sign up</button>
                 </div>
                 
@@ -351,7 +351,7 @@ function TopSection() {
         <div className='flex flex-col items-center px-[30px] lg:px-0 lg:flex-row news pt-4 pb-11 lg:py-[83px] lg:gap-[165px] lg:justify-center bg-dark_blue'>
             <div className='flex flex-col items-center lg:items-start lg:gap-[15px] mb-[18px]'>
                 <h2 className='text-white lg:font-bold font-semibold text-[21px] lg:text-[34px] lg:leading-10 lg:mb-[15px]'>Sign up for our newsletter</h2>
-                <p className='font-medium text-secondary_text text-xs text-center w-[278px] lg:text-lg'>Stay in the loop with everything you need to know.</p>
+                <p className='font-medium text-secondary_text text-xs text-center lg:text-left w-[278px] lg:w-full lg:text-lg'>Stay in the loop with everything you need to know.</p>
             </div>
             <div>
                 <form className='flex flex-col lg:flex-row lg:gap-[23px] lg:mb-[8px]'>

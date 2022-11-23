@@ -20,7 +20,7 @@ import batteries from '../images/home/batteries.png'
 import speed from '../images/home/speed.png'
 import lock from '../images/home/lock.png'
 import payload from '../images/home/payload.png'
-import Hero from '../images/home/Hero.png'
+import Hero from '../images/home/Hero-full.png'
 import arrow from '../images/home/arrow.png'
 import up from '../images/home/up.png'
 import down from '../images/home/down.png'
@@ -304,7 +304,7 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] px-[26px]'>
+        <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] lg:px-0 px-[26px]'>
             <div className='flex flex-col justify-center'>
                 <h1 className='lg:font-bold font-semibold text-white text-2xl lg:text-[56px] mt-[51.3px] lg:mt-0 lg:leading-[68px] mb-[14px] lg:mb-[22px] w-[296px] lg:w-[486px]'>Lorem ipsum dolor sit amet. </h1>
                 <p className='mb-[23px] font-medium lg:text-lg text-sm text-secondary_text lg:w-[486px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
@@ -313,7 +313,7 @@ function TopSection() {
             <div className='relative flex flex-col justify-center'>
                 <img src={Hero} alt='hero' className='hidden lg:flex'/>
                 <img src={macMobile} alt='hero' className='lg:hidden'/>
-                <button className='btn lg:absolute lg:right-[15%] lg:bottom-[-5%] bg-dark_gray flex w-fit items-center gap-3 lg:py-[11.5px] px-[9.3px] py-[10px] lg:px-[15.2px]'>SIgn-up now<img src={arrow} alt="arrow"/></button>
+                <button className='btn lg:absolute lg:right-[40%] lg:bottom-[-5%] bg-dark_gray flex w-fit items-center gap-3 lg:py-[11.5px] px-[9.3px] py-[10px] lg:px-[15.2px]'>SIgn-up now<img src={arrow} alt="arrow"/></button>
             </div>
 
         </div>

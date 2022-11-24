@@ -37,7 +37,7 @@ function Footer() {
                         </li>
                     </div> 
                 </ul>
-                <p className='text-secondary_text text-center font-medium text-sm pt-[30px]'>© 2022 Bikee. All rights reserved.</p>
+                <p className='text-secondary_text text-center font-medium text-sm pt-[30px]'>© 2022 Motion Mobility Limited. All rights reserved.</p>
             </div>
         </footer> 
     </Section>

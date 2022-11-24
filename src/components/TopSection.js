@@ -223,25 +223,46 @@ function TopSection() {
                 <h2 className='lg:font-bold lg:w-[650px] text-2xl font-semibold lg:text-[46px] lg:leading-[57px] text-dark_text'>Goodbye to unsustainable  fuel prices & scarcity, Say HELLOBIKEE.</h2>
                 <ul className='list-none lg:mt-[30px] mt-6 flex flex-col gap-6'>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-base text-light_blue'>Save Petrol Cost</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div>
+                        <span className='font-medium lg:text-lg text-base text-light_blue'>Save Petrol Cost</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>No more worries on fuel scarcity</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div>                        
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>No more worries on fuel scarcity</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>High Performance Swappable Battery</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div> 
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>High Performance Swappable Battery</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>24/7 Support</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div> 
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>24/7 Support</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>90 - 100km Range</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div> 
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>90 - 100km Range</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>Available delivery app</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div> 
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>Available delivery app</span>
                     </li>
                     <li className='flex gap-3 lg:mb-[14.6px]'>
-                        <img src={Checkbox} alt='checkbox'/> <span className='font-medium lg:text-lg text-light_blue text-base'>8 Hour battery</span>
+                        <div className=''>
+                            <img src={Checkbox} alt='checkbox'/> 
+                        </div> 
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>8 Hour battery</span>
                     </li>
                 </ul>
                 <div className='flex flex-col lg:flex-row lg:gap-[11px] font-medium text-lg lg:mt-[35px] mt-6'>

@@ -4,23 +4,27 @@ import HomePage from "./pages/HomePage";
 import Service from "./pages/Service";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Restaurant from "./pages/Restaurant";
 
 function App() {
   return (
-    // <Router>
-    //   <Routes>
-    //       <Route element={<Layout/>}>
-    //         <Route index element={<HomePage/>}></Route>
-    //         <Route path='/' element={<HomePage/>}></Route>
-    //         <Route path='/service' element={<Service/>}></Route>
-    //       </Route>
-    //     </Routes>
-    // </Router>
-    <div className="App font-poppings">
+    <Router>
       <Nav/>
-      <HomePage/>
-      <Footer/>
-    </div>
+      <Routes>
+          {/* <Route element={<Layout/>}> */}
+            <Route index element={<HomePage/>}></Route>
+            <Route path='/' element={<HomePage/>}></Route>
+            <Route path='/service' element={<Service/>}></Route>
+            <Route path='/restaurant' element={<Restaurant/>}></Route>
+          {/* </Route> */}
+        </Routes>
+        <Footer/>
+    </Router>
+    // <div className="App font-poppings">
+    //   <Nav/>
+    //   <HomePage/>
+    //   <Footer/>
+    // </div>
   );
 }
 

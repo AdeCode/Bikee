@@ -19,6 +19,7 @@ module.exports = {
         'dark_blue' : '#1C232D',
         'input' : '#667085',
         'black' : '#220202',
+        'sub_menu_text' : '#54595E',
       },
       backgroundImage:{
         'bikeBg': "url('./images/home/bike.png')",
@@ -29,6 +30,7 @@ module.exports = {
     },
     fontFamily:{
       'poppings': ['Poppins', 'sans-serif'],
+      'mulish': ['Mulish', 'sans-serif'],
     }
   },
   plugins: [],

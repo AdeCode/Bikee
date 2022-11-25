@@ -1,0 +1,60 @@
+.menu{
+
+}
+
+.nav-menu ul li:hover .sub-menu{
+    display: block;
+}
+
+.sub-menu{
+    display: none;
+    padding: 20px 0;
+
+}
+
+.sub-menu li{
+    height: 40px;
+    color: #001533;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.sub-menu li:hover{
+    background: #F8F9FA;
+}
+
+.sub-menu li .sub-menu1{
+    display: none;
+    min-width: 200px;
+}
+
+.sub-menu li:hover .sub-menu1{
+    display: block;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 100px;
+    padding: 20px 0;
+
+}
+
+.sub-menu1 li{
+    height: 40px;
+    color: #607288;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+    font-family: 'Arial';
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}

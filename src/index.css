@@ -11,7 +11,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+@layer components {
+    
+  .mobile{
+    @apply flex flex-col absolute top-0 left-0 w-full bg-white px-5 py-[0.75rem] transition ease-in-out h-[100vh];
+  }
+ 
+/* 
+  .desktop{
+    @apply  bg-orange-300 block
+  } */
 }
+

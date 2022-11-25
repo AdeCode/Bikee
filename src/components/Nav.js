@@ -27,7 +27,9 @@ function Nav() {
                 <div className='logo'>
                     {
                         !mobileMenu &&
-                        <img src={Logo} alt='Bikee' />
+                        <Link to='/' className=''>
+                            <img src={Logo} alt='Bikee' />
+                        </Link>
                     }
                 </div>
                 <ul className={`${mobileMenu ? 'mobile' : 'hidden'} lg:flex lg:flex-row lg:gap-[48px] z-10 font-medium text-base opacity-100 font-mulish lg:font-poppings`}>
@@ -35,7 +37,9 @@ function Nav() {
                         <img src={close} alt='close' />
                     </div>
                     <li className='mb-9 lg:mb-0'>
-                        Home
+                        <Link to='/'>
+                            Home
+                        </Link>
                     </li>
                     <li className='mb-9 lg:mb-0'>
                         <span className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>

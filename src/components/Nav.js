@@ -5,6 +5,7 @@ import menu from '../images/home/menu.png'
 import close from '../images/nav/close.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './nav.css'
+import {Link} from 'react-router-dom'
 
 
 function Nav() {
@@ -42,7 +43,10 @@ function Nav() {
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm text-red'><span className='text-red'>Restaurants</span></li>
+                            <li className='lg:text-sm text-red'><span className='text-red'>
+                                <Link to='/restaurant'>Restaurants</Link>
+                                </span>
+                            </li>
                             <li className='lg:text-sm'>QSRs - <span className='text-red'> coming soon</span></li>
                             <li className='lg:text-sm'>SMEs - <span className='text-red'> coming soon</span></li>
                             <li className='lg:text-sm'>Retailers - <span className='text-red'> coming soon</span></li>

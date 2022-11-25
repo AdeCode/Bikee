@@ -23,7 +23,7 @@ function Nav() {
 
     return (
         <Navbar>
-            <nav className='lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center bg-dark_text opacity-[0.9] font-poppings lg:text-white nav-menu'>
+            <nav className='lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center bg-dark_text opacity-[0.9] font-poppings lg:text-white nav-menu z-30'>
                 <div className='logo'>
                     {
                         !mobileMenu &&

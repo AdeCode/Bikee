@@ -7,7 +7,7 @@ import mapMob from '../images/SME/mapMob.png'
 
 function SME() {
   return (
-    <Section>
+    <Section className='lg:pt-[100px]'>
         <div className='lg:px-[150px]'>
             <div className='lg:bg-Radial bg-RadialMb lg:rounded-[22px] bg-no-repeat lg:bg-cover bg-center mb-5 lg:mb-0'>
                 <div className='bg-dark_text opacity-[0.8] text-center flex flex-col lg:h-fit h-fit lg:py-[160px] 

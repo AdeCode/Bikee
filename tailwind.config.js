@@ -20,12 +20,14 @@ module.exports = {
         'input' : '#667085',
         'black' : '#220202',
         'sub_menu_text' : '#54595E',
+        'nav_text' : '#333F51',
       },
       backgroundImage:{
         'bikeBg': "url('./images/home/bike.png')",
         'bikees': "url('./images/home/bikees.png')",
         'Radial': "url('./images/restaurants/Radial.png')",
         'RadialMb': "url('./images/restaurants/Radial-mb.png')",
+        'rider' : "url('./images/preorder/rider.png')",
       }
     },
     fontFamily:{

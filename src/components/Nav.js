@@ -1,15 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/home/Logo.png'
 import menu from '../images/home/menu.png'
 import close from '../images/nav/close.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './nav.css'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 
 function Nav() {
     const [mobileMenu, setMobileMenu] = useState(false)
+    const [bg, setBg] = useState('')
+    const [navText, setNavText] = useState('')
+    const location = useLocation()
+    const currLocation = location.pathname
+    console.log(location.pathname)
+
+    const navBg = () => {
+        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') ){
+            setBg('bg-white')
+            setNavText('nav_text')
+        }else{
+            setBg('bg-dark_text')
+            setNavText('text-white')
+        }
+    }
+
+    useEffect(() => {
+      navBg()
+    }, [currLocation])
+    
 
     const toggleMobileMenu = () => {
         setMobileMenu(!mobileMenu)
@@ -22,8 +42,8 @@ function Nav() {
     }
 
     return (
-        <Navbar>
-            <nav className='lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center bg-dark_text opacity-[0.9] font-poppings lg:text-white nav-menu z-30'>
+        <Navbar className='z-50 w-full lg:mb-[50px] fixed'>
+            <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center ${bg} opacity-1 font-poppings lg:${navText} nav-menu z-30`}>
                 <div className='logo'>
                     {
                         !mobileMenu &&

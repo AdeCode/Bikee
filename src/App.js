@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Restaurant from "./pages/Restaurant";
 import SME from "./pages/SME";
+import PreOrder from "./pages/PreOrder";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/service' element={<Service/>}></Route>
             <Route path='/restaurant' element={<Restaurant/>}></Route>
             <Route path='/sme' element={<SME/>}></Route>
+            <Route path='/pre-order' element={<PreOrder/>}></Route>
           {/* </Route> */}
         </Routes>
         <Footer/>

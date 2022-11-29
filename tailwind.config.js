@@ -21,6 +21,12 @@ module.exports = {
         'black' : '#220202',
         'sub_menu_text' : '#54595E',
         'nav_text' : '#333F51',
+        'brown' : '#4B5563',
+        'black_text' : '#1F2937',
+        'bg_brown' : '#F7F8F9',
+        'pre_brown' : '#374151',
+        'accessory_text' : '#425466',
+        'accessory_price' : '#27272E',
       },
       backgroundImage:{
         'bikeBg': "url('./images/home/bike.png')",

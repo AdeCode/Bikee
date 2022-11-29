@@ -17,7 +17,7 @@ function Nav() {
     console.log(location.pathname)
 
     const navBg = () => {
-        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') ){
+        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') ){
             setBg('bg-white')
             setNavText('nav_text')
         }else{

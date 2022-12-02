@@ -11,6 +11,13 @@ import inventory from '../components/@shared/inventory'
 function PreOrder() {
     return (
         <Section>
+            <div className='lg:pt-[90px] lg:pb-[42px] lg:pl-[140px]'>
+                <ul className='flex lg:gap-11 font-normal text-[13px] lg:leading-[22px] text-nav_text'>
+                    <li className=''>E-bike</li>
+                    <li className=''>Accessories </li>
+                    <li className=''>Maintanance and Insuransce</li>
+                </ul>
+            </div>
             <div className='bg-rider bg-cover bg-center'>
                 <div className='lg:py-[161px] lg:px-[130px] text-white font-mulish'>
                     <h2 className='lg:mb-[15px] lg:font-semibold lg:text-[53px] lg:leading-[67px]'>Ride all classy</h2>

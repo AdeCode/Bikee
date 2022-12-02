@@ -66,14 +66,14 @@ function Nav() {
                             Solutions
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
-                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm text-red'><span className='text-red'>
+                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                            <li className='lg:text-sm'><span className='hover:text-red'>
                                 <Link to='/restaurant'>Restaurants</Link>
                                 </span>
                             </li>
-                            <li className='lg:text-sm'>QSRs - <span className='text-red'> coming soon</span></li>
-                            <li className='lg:text-sm'>SMEs - <span className='text-red'> coming soon</span></li>
-                            <li className='lg:text-sm'>Retailers - <span className='text-red'> coming soon</span></li>
+                            <li className='lg:text-sm hover:text-red'>QSRs - <span className='text-red'> coming soon</span></li>
+                            <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
+                            <li className='lg:text-sm hover:text-red'>Retailers - <span className='text-red'> coming soon</span></li>
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>
@@ -82,14 +82,16 @@ function Nav() {
                             <h3 className='flex new font-normal text-sm py-1 px-3 rounded-2xl lg:hidden'>New</h3>
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
-                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm text-red'><span className='text-red'>Last-mile</span></li>
-                            <li className='lg:text-sm'>APIs</li>
-                            <li className='lg:text-sm'>Rider App</li>
+                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                            <li className='lg:text-sm hover:text-red'>Last-mile</li>
+                            <li className='lg:text-sm hover:text-red'>APIs</li>
+                            <li className='lg:text-sm hover:text-red'>Rider App</li>
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>
-                        E-bikes
+                        <Link to='/pre-order'>
+                            E-bikes
+                        </Link>
                     </li>
                 </ul>
                 <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>

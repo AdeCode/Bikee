@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Restaurant from "./pages/Restaurant";
 import SME from "./pages/SME";
 import PreOrder from "./pages/PreOrder";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/restaurant' element={<Restaurant/>}></Route>
             <Route path='/sme' element={<SME/>}></Route>
             <Route path='/pre-order' element={<PreOrder/>}></Route>
+            {/* <Route path='/login' element={<SignIn/>}></Route> */}
           {/* </Route> */}
         </Routes>
         <Footer/>

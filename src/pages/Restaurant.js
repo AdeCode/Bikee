@@ -67,20 +67,6 @@ function Restaurant() {
                 <img src={mapmob} alt='laptop' className='lg:hidden'/>
             </div>
         </div>
-        <div className='flex flex-col items-center px-[30px] lg:px-0 lg:flex-row news pt-4 pb-11 lg:py-[83px] lg:gap-[165px] lg:justify-center bg-dark_blue'>
-            <div className='flex flex-col items-center lg:items-start lg:gap-[15px] mb-[18px]'>
-                <h2 className='text-white lg:font-bold font-semibold text-[21px] lg:text-[34px] lg:leading-10 lg:mb-[15px]'>Sign up for our newsletter</h2>
-                <p className='font-medium text-secondary_text text-xs text-center lg:text-left w-[278px] lg:w-full lg:text-lg'>Stay in the loop with everything you need to know.</p>
-            </div>
-            <div>
-                <form className='flex flex-col lg:flex-row lg:gap-[23px] lg:mb-[8px]'>
-                    <input type='email' placeholder='Enter your email' className='h-[44px] lg:w-[280px] mb-2 bg-white text-input py-[10px] px-[13px] rounded-lg'/>
-                    <p className='text-secondary_text lg:hidden mb-6 font-medium text-[11.4px]'>We care about your data in our <span className='text-red'>privacy policy</span></p>
-                    <button className='bg-red text-btn_text lg:py-[10px] lg:px-[17px] py-[11px] text-center lg:w-fit rounded-md font-medium text-base'>Subscribe</button>
-                </form>
-                <p className='text-secondary_text hidden lg:flex lg:text-[11px] lg:leading-[17px] font-medium text-[11.4px]'>We care about your data in our <span className='text-red'>privacy policy</span></p>
-            </div>
-        </div>
     </Section>
   )
 }

@@ -6,11 +6,14 @@ import styled from 'styled-components'
 
 function Layout() {
   return (
+    <>
     <Container className="h-auto">
         <Nav/>
-        <Outlet/>
+          <Outlet/>
         <Footer/>
     </Container>
+    </>
+    
   )
 }
 

@@ -30,6 +30,8 @@ import mresecurb from '../images/home/Mresecurb.png'
 import Msymtric from '../images/home/Msymtric.png'
 import Mwelytics from '../images/home/Mwelytics.png'
 import Mwishelp from '../images/home/Mwishelp.png'
+import mapbg from '../images/home/mapbg.png'
+import charge from '../images/home/charge.png'
 
 function TopSection() {
     const [open, setOpen] = useState(true)
@@ -37,31 +39,31 @@ function TopSection() {
     const [FAQ, setFAQ] = useState([
         {
             id:0,
-            title:'How long does it take to delivery an order?',
-            content:'Orders are usually picked up by riders upon confirmation that it ready ',
+            title:'How long does it take to deliver an order?',
+            content:'Each order is usually delivered to close proximities within 5km and 10km, which is around 7-13mins, and can do about 40-50 orders daily at a stretch. ',
             open:true
         },
         {
             id:1,
-            title:'What payment methods do you accept?',
+            title:'What type of business do you work with?',
             content:'2 Orders are usually picked up by riders upon confirmation that it ready ',
             open:false
         },
         {
             id:2,
-            title:'Whats the payments disbursemnet plan',
+            title:'How strong are your e-bikes?',
             content:'3 Orders are usually picked up by riders upon confirmation that it ready ',
             open:false
         },
         {
             id:3,
-            title:'Whats the payments disbursemnet plan?',
+            title:'What makes you e-bike smart?',
             content:'Orders are usually picked up by riders upon confirmation that it ready ',
             open:false
         },
         {
             id:4,
-            title:'When will a customer order be notified ',
+            title:'Do you offer training before riding?',
             content:'Orders are usually picked up by riders upon confirmation that it ready ',
             open:false
         }
@@ -113,7 +115,8 @@ function TopSection() {
                 <p className='font-medium text-xl mb-8 lg:mb-[65px]'>The future of mobility is electric.</p>
                 <div className='px-6 lg:mx-0 w-full lg:flex lg:justify-center'>
                     <button className='bg-red lg:w-fit w-full font-medium text-lg text-btn_text 
-                    px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>Request a Demo</button>
+                    px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>
+                        <a href='https://calendly.com/bikee' target='blank'>Request a Demo</a> </button>
                 </div>
                 <div className='text-white flex lg:mt-[120px] mt-8 justify-start lg:w-full gap-7 lg:gap-[38px] lg:pl-[350px]'>
                     <div className='flex flex-col lg:gap-[10px] font-normal'>
@@ -130,7 +133,7 @@ function TopSection() {
         <div className='w-full flex lg:justify-center lg:pt-[113px] py-6 lg:pb-[113px] order'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row lg:gap-[123px]'>
                 <div className=''>
-                    <img src={handbook} alt='order' className='hidden lg:block'/>
+                    <img src={mapbg} alt='order' className='hidden lg:block'/>
                     <img src={order} alt='order' className='lg:hidden'/>
                 </div>
                 <div className='flex items-center mt-[41px] lg:mt-0'>
@@ -242,9 +245,9 @@ function TopSection() {
         <div className='flex justify-center'>
 
         </div>
-        <div className='flex save flex-col lg:flex-row lg:gap-[130px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
+        <div className='flex save flex-col lg:flex-row lg:gap-[100px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
             <div className='flex justify-center lg:justify-start'>
-                <img src={lapDesk} alt='laptop' className='hidden lg:flex lg:h-[395px]'/>
+                <img src={charge} alt='charge bike' className='hidden lg:flex lg:h-[395px]'/>
                 <img src={lapMob} alt='laptop' className='lg:hidden'/>
             </div>
             <div className='flex flex-col px-[42px]'>
@@ -312,21 +315,21 @@ function TopSection() {
                         <img src={batteries} alt='batteries'/>
                     </div>
                     <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Swappable batteries</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>High Performance Swaappable Battery</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>
                     <div className='lg:mb-7'>
                         <img src={lock} alt='lock'/>
                     </div>
                     <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>In-built light & smart lock</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>App Operated Smart Lock</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>
                     <div className='lg:mb-7'>
                         <img src={speed} alt='speed'/>
                     </div>
                     <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Max speed 40 km/h</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>Maximum Speed of 40Km/h</p>
                 </div>
             </div>
             <div className='flex flex-col lg:flex-row gap-[82px] justify-center'>
@@ -334,30 +337,32 @@ function TopSection() {
                     <div className='lg:mb-7'>
                         <img src={cargo} alt='cargo'/>
                     </div>
-                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Cargo volume (standard)</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>No Fuel Required</h2>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>Save Petrol Cost</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>
                     <div className='lg:mb-7'>
                         <img src={payload} alt='payload'/>
                     </div>
                     <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Payload (standard) 120 kg</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>It’ll carry loads of upto 120kg with a smooth ride.</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>
                     <div className='lg:mb-7'>
                         <img src={iot} alt='iot'/>
                     </div>
-                    <h2 className='text-[22px] text-center font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Powerful motor, IoT & App control</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
+                    <h2 className='text-[22px] text-center font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>IoT & App control</h2>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>All Connected Irrespective of Location.</p>
                 </div>
             </div>
         </div>
         <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] lg:px-0 px-[26px]'>
             <div className='flex flex-col justify-center'>
-                <h1 className='lg:font-bold font-semibold text-white text-2xl lg:text-[56px] mt-[51.3px] lg:mt-0 lg:leading-[68px] mb-[14px] lg:mb-[22px] w-[296px] lg:w-[486px]'>Lorem ipsum dolor sit amet. </h1>
-                <p className='mb-[23px] font-medium lg:text-lg text-sm text-secondary_text lg:w-[486px]'>We are building a full stack asset light, tech enabled Electric Mobility as a service .</p>
-                <button className='bg-red text-lg font-medium text-btn_text py-[13px] px-[27px] lg:w-fit rounded-md'>Request a Demo</button>
+                <h1 className='lg:font-bold font-semibold text-white text-2xl lg:text-[56px] mt-[51.3px] lg:mt-0 lg:leading-[68px] mb-[14px] lg:mb-[22px] w-[296px] lg:w-[486px]'>Manage Delivery Effortlessly.</h1>
+                <p className='mb-[23px] font-medium lg:text-lg text-sm text-secondary_text lg:w-[486px]'>Time to review, own your present, past, and predict the future orders & delivery data.</p>
+                <button className='bg-red text-lg font-medium text-btn_text py-[13px] px-[27px] lg:w-fit rounded-md'>
+                    <a href='https://calendly.com/bikee' target='blank'> Request a Demo</a>
+                </button>
             </div>
             <div className='relative flex flex-col justify-center'>
                 <img src={Hero} alt='hero' className='hidden lg:flex'/>
@@ -396,22 +401,7 @@ function TopSection() {
                     <li></li>
                 </ul>
             </div>
-        </div>
-        <div className='flex flex-col items-center px-[30px] lg:px-0 lg:flex-row news pt-4 pb-11 lg:py-[83px] lg:gap-[165px] lg:justify-center bg-dark_blue'>
-            <div className='flex flex-col items-center lg:items-start lg:gap-[15px] mb-[18px]'>
-                <h2 className='text-white lg:font-bold font-semibold text-[21px] lg:text-[34px] lg:leading-10 lg:mb-[15px]'>Sign up for our newsletter</h2>
-                <p className='font-medium text-secondary_text text-xs text-center lg:text-left w-[278px] lg:w-full lg:text-lg'>Stay in the loop with everything you need to know.</p>
-            </div>
-            <div>
-                <form className='flex flex-col lg:flex-row lg:gap-[23px] lg:mb-[8px]'>
-                    <input type='email' placeholder='Enter your email' className='h-[44px] lg:w-[280px] mb-2 bg-white text-input py-[10px] px-[13px] rounded-lg'/>
-                    <p className='text-secondary_text lg:hidden mb-6 font-medium text-[11.4px]'>We care about your data in our <span className='text-red'>privacy policy</span></p>
-                    <button className='bg-red text-btn_text lg:py-[10px] lg:px-[17px] py-[11px] text-center lg:w-fit rounded-md font-medium text-base'>Subscribe</button>
-                </form>
-                <p className='text-secondary_text hidden lg:flex lg:text-[11px] lg:leading-[17px] font-medium text-[11.4px]'>We care about your data in our <span className='text-red'>privacy policy</span></p>
-            </div>
-        </div>
-        
+        </div> 
     </Section>
   )
 }

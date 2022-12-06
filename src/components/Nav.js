@@ -14,10 +14,10 @@ function Nav() {
     const [navText, setNavText] = useState('')
     const location = useLocation()
     const currLocation = location.pathname
-    console.log(location.pathname)
+    // console.log(location.pathname)
 
     const navBg = () => {
-        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') ){
+        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') || currLocation.includes('/checkout') ){
             setBg('bg-white')
             setNavText('nav_text')
         }else{
@@ -68,12 +68,14 @@ function Nav() {
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
                             <li className='lg:text-sm'><span className='hover:text-red'>
-                                <Link to='/restaurant'>Restaurants</Link>
+                                <Link to='/restaurant'>QSRs (Quality Service Restaurants)</Link>
                                 </span>
                             </li>
-                            <li className='lg:text-sm hover:text-red'>QSRs - <span className='text-red'> coming soon</span></li>
-                            <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
-                            <li className='lg:text-sm hover:text-red'>Retailers - <span className='text-red'> coming soon</span></li>
+                            <li className='lg:text-sm hover:text-red'>
+                                <Link to='/new-home'>eBike Sharing</Link> 
+                            </li>
+                            {/* <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
+                            <li className='lg:text-sm hover:text-red'>Retailers - <span className='text-red'> coming soon</span></li> */}
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>
@@ -89,13 +91,24 @@ function Nav() {
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>
-                        <Link to='/pre-order'>
+                        {/* <Link to='/pre-order'>
                             E-bikes
-                        </Link>
+                        </Link> */}
+                        <span className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>
+                            E-bikes
+                            <MdOutlineKeyboardArrowRight className='lg:hidden' />
+                        </span>
+                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                            <li className='lg:text-sm hover:text-red'>Businesses</li>
+                            <li className='lg:text-sm hover:text-red'>Gig Workers</li>
+                            <li className='lg:text-sm hover:text-red'>
+                                <Link to='/pre-order'>Pre-Order</Link>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
-                    <h2 className='text-base'>Login</h2>
+                    <h2 className={`text-base lg:text-${navText}`}>Login</h2>
                     <button className='bg-red py-2 px-4 text-sm rounded-md'>Sign up</button>
                 </div>
                 <button className='lg:hidden flex' onClick={toggleMobileMenu}>

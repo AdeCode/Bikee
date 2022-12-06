@@ -28,6 +28,8 @@ module.exports = {
         'accessory_text' : '#425466',
         'accessory_price' : '#27272E',
         'gray_background' : '#F5F6F8',
+        'line' : '#EBEBEB',
+        'blue' : '#1071FF',
       },
       backgroundImage:{
         'bikeBg': "url('./images/home/bike.png')",
@@ -35,6 +37,9 @@ module.exports = {
         'Radial': "url('./images/restaurants/Radial.png')",
         'RadialMb': "url('./images/restaurants/Radial-mb.png')",
         'rider' : "url('./images/preorder/rider.png')",
+        'landBg' : "url('./images/landing/Bikeee.png')",
+        'mobileLandBg' : "url('./images/landing/mobileBike.png')",
+        'mobileRider' : "url('./images/preorder/bg-mobile-rider.png')",
       }
     },
     fontFamily:{

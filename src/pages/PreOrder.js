@@ -18,7 +18,7 @@ function PreOrder() {
                     <li className=''>Maintanance and Insuransce</li>
                 </ul>
             </div>
-            <div className='bg-rider bg-cover bg-center'>
+            <div className='lg:bg-rider bg-mobileRider bg-cover bg-center h-[477px] lg:h-auto'>
                 <div className='lg:py-[161px] lg:px-[130px] text-white font-mulish'>
                     <h2 className='lg:mb-[15px] lg:font-semibold lg:text-[53px] lg:leading-[67px]'>Ride all classy</h2>
                     <h1 className='lg:mb-[15px] lg:font-bold lg:text-[54px] lg:leading-[67px]'>With HELLOBIKEE!</h1>

@@ -32,6 +32,7 @@ import Mwelytics from '../images/home/Mwelytics.png'
 import Mwishelp from '../images/home/Mwishelp.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
+import chicken from '../images/home/chicken-republic.png'
 
 function TopSection() {
     const [open, setOpen] = useState(true)
@@ -156,6 +157,9 @@ function TopSection() {
                 <img src={wishelp} alt='wishelp'/>
                 <img src={resecurb} alt='resecurb'/>
                 <img src={welytics} alt='welytics'/>
+                <div className='h-[45px] w-[100px]'>
+                    <img src={chicken} alt='chicken-republic'/>
+                </div>
             </div>
             <div className='flex lg:hidden flex-wrap gap-6 lg:gap-[61.5px]'>
                 <img src={mjiggle} alt='jiggle'/>

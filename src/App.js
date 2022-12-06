@@ -37,7 +37,7 @@ function App() {
               <Route path="payment" element={<Payment />} />
               <Route path="summary" element={<Payment />} />
             </Route>
-            <Route path='/new-home' element={<BlackLayout/>}>
+            <Route path='/bike-sharing' element={<BlackLayout/>}>
               <Route index element={<NewHome />} />
             </Route>
         </Routes>

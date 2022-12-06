@@ -72,7 +72,7 @@ function Nav() {
                                 </span>
                             </li>
                             <li className='lg:text-sm hover:text-red'>
-                                <Link to='/new-home'>eBike Sharing</Link> 
+                                <Link to='/bike-sharing'>eBike Sharing</Link> 
                             </li>
                             {/* <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
                             <li className='lg:text-sm hover:text-red'>Retailers - <span className='text-red'> coming soon</span></li> */}

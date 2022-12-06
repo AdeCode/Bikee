@@ -12,7 +12,6 @@ import redC from '../images/home/redC.png'
 import blueC from '../images/home/blueC.png'
 import blackC from '../images/home/blackC.png'
 import Checkbox from '../images/home/Checkbox.png'
-import lapDesk from '../images/home/lap-desk.png'
 import lapMob from '../images/home/lap-mobile.png'
 import iot from '../images/home/iot.png'
 import cargo from '../images/home/cargo.png'
@@ -22,8 +21,7 @@ import lock from '../images/home/lock.png'
 import payload from '../images/home/payload.png'
 import Hero from '../images/home/Hero-full.png'
 import arrow from '../images/home/arrow.png'
-import up from '../images/home/up.png'
-import down from '../images/home/down.png'
+import meter from '../images/home/meter.png'
 import macMobile from '../images/home/mac-mobile.png'
 import mjiggle from '../images/home/Mjiggle.png'
 import mresecurb from '../images/home/Mresecurb.png'
@@ -33,53 +31,11 @@ import Mwishelp from '../images/home/Mwishelp.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
 import chicken from '../images/home/chicken-republic.png'
+import Accordion from './@shared/Accordion'
+import FaqData from './@shared/FaqData'
 
 function TopSection() {
-    const [open, setOpen] = useState(true)
-    const [selectedId, setSelectedId] = useState(1)
-    const [FAQ, setFAQ] = useState([
-        {
-            id:0,
-            title:'How long does it take to deliver an order?',
-            content:'Each order is usually delivered to close proximities within 5km and 10km, which is around 7-13mins, and can do about 40-50 orders daily at a stretch. ',
-            open:true
-        },
-        {
-            id:1,
-            title:'What type of business do you work with?',
-            content:'2 Orders are usually picked up by riders upon confirmation that it ready ',
-            open:false
-        },
-        {
-            id:2,
-            title:'How strong are your e-bikes?',
-            content:'3 Orders are usually picked up by riders upon confirmation that it ready ',
-            open:false
-        },
-        {
-            id:3,
-            title:'What makes you e-bike smart?',
-            content:'Orders are usually picked up by riders upon confirmation that it ready ',
-            open:false
-        },
-        {
-            id:4,
-            title:'Do you offer training before riding?',
-            content:'Orders are usually picked up by riders upon confirmation that it ready ',
-            open:false
-        }
-    ])
-
-    const toggle = id => {
-        setSelectedId(id)
-        let selected = FAQ.filter(question => question.id === id)
-        // let update = {...selected, open: open ? 'yes' : 'no' }
-        let val = selected.open
-        let updatedVal = val ? false : true
-        // setFAQ({...FAQ, selected.open : !selected.open})
-        console.log(setFAQ[id])
-    }
-
+    
   return (
     <Section className='flex flex-col z-10 static'>
         {/* <div className='text-white bg-no-repeat bg-center z-[-1]'>
@@ -173,14 +129,14 @@ function TopSection() {
         <div className='w-full flex lg:justify-center lg:pt-[113px] lg:pb-[113px] pb-6 order'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[123px]'>
                 <div className=''>
-                    <img src={handbook} alt='order' className='hidden lg:block'/>
+                    <img src={meter} alt='order' className='hidden lg:block'/>
                     <img src={order} alt='order' className='lg:hidden'/>
                 </div>
                 <div className='flex items-center mt-[41px] lg:mt-0'>
                     <div className='flex flex-col'>
                         <span className='odm text-red font-medium text-xs py-[1.4px] px-[7.6px] w-fit mb-[15px]'>eMaaS</span>
                         <h1 className='text-dark_text font-bold text-2xl lg:text-[45px] leading-[36px] lg:leading-[57px] 
-                        w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Nigeria’s First Tech Enabled EM-as-a-Service Platform.</h1>
+                        w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Nigeria’s First Tech Enabled eMaas Service Platform.</h1>
                         <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
                         We are building a full stack asset light, tech enabled Electric Mobility as a service (eMaaS), which makes last mile logistics sustainable and emission free.   </p>
                         <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button>
@@ -256,44 +212,44 @@ function TopSection() {
             </div>
             <div className='flex flex-col px-[42px]'>
                 <h2 className='lg:font-bold lg:w-[650px] text-2xl font-semibold lg:text-[46px] lg:leading-[57px] text-dark_text'>Goodbye to unsustainable  fuel prices & scarcity, Say HELLOBIKEE.</h2>
-                <ul className='list-none lg:mt-[30px] mt-6 flex flex-col gap-6'>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                <ul className='list-none lg:mt-[30px] mt-6 flex flex-col gap-3'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div>
                         <span className='font-medium lg:text-lg text-base text-light_blue'>Save Petrol Cost</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div>                        
                         <span className='font-medium lg:text-lg text-light_blue text-base'>No more worries on fuel scarcity</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
                         <span className='font-medium lg:text-lg text-light_blue text-base'>High Performance Swappable Battery</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
                         <span className='font-medium lg:text-lg text-light_blue text-base'>24/7 Support</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
                         <span className='font-medium lg:text-lg text-light_blue text-base'>90 - 100km Range</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
                         <span className='font-medium lg:text-lg text-light_blue text-base'>Available delivery app</span>
                     </li>
-                    <li className='flex gap-3 lg:mb-[14.6px]'>
+                    <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
@@ -301,7 +257,9 @@ function TopSection() {
                     </li>
                 </ul>
                 <div className='flex flex-col lg:flex-row lg:gap-[11px] font-medium text-lg lg:mt-[35px] mt-6'>
-                    <button className='text-btn lg:w-fit demo mb-5 lg:mb-0 bg-white font-medium text-lg py-[13px] px-[26px] rounded-md'>Request demo</button>
+                    <button className='text-btn lg:w-fit demo mb-5 lg:mb-0 bg-white font-medium text-lg py-[13px] px-[26px] rounded-md'>
+                        <a href='https://calendly.com/bikee' target='blank'> Request demo</a>
+                    </button>
                     <button className='bg-red text-btn_text py-[13px] px-7 lg:w-fit rounded-md'>Sign up</button>
                 </div>
                 
@@ -384,21 +342,14 @@ function TopSection() {
             <div className=''>
                 <ul className='list-none lg:w-[500px]'>
                     {
-                        FAQ.map(question => {
+                        FaqData.map(question => {
                             return (
-                                <li className='lg:mb-[37px] mb-[18px]' key={question.id} onClick={()=>toggle(question.id)}>
-                                    <h2 className='flex lg:justify-between lg:items-center font-semibold lg:font-bold text-base lg:text-lg text-dark_text mb-[9px] lg:mb-[14px]'>
-                                        {question.title}
-                                        <span className=''>
-                                            {open ?
-                                                <img src={down} alt='opened'/>
-                                                :
-                                                <img src={up} alt='closed'/>
-                                            }
-                                        </span>
-                                    </h2>
-                                    <p className='font-normal text-sm lg:text-base text-light_blue lg:w-[442px]'>{question.content}</p>
-                                </li>
+                                    <Accordion
+                                        id={question.id}
+                                        title={question.title}
+                                        content={question.content}
+                                        key={question.id}
+                                    />                                
                             )
                         })
                     }

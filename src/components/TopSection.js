@@ -107,7 +107,7 @@ function TopSection() {
             </div>
         </div>
         <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[40px] lg:pb-[23px] px-[50px] lg:px-0'>
-            <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by the top restaurants in Africa</h4>
+            <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by great businesses in Africa</h4>
             <div className='lg:flex hidden flex-wrap lg:gap-[61.5px]'>
                 {/* <img src={jiggle} alt='jiggle'/>
                 <img src={symtric} alt='symtric'/>

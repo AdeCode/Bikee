@@ -31,6 +31,7 @@ import Mwishelp from '../images/home/Mwishelp.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
 import chicken from '../images/home/chicken-republic.png'
+import jise from '../images/home/jise.png'
 import Accordion from './@shared/Accordion'
 import FaqData from './@shared/FaqData'
 
@@ -99,34 +100,43 @@ function TopSection() {
                         <h1 className='text-dark_text font-bold text-2xl lg:text-[45px] leading-[36px] lg:leading-[57px] 
                         w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Order Delivery Mangement System & Delivery App.</h1>
                         <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
-                            We currently fulfil last mile deliveries for groceries, medicines, food, e-commerce packages from point A to point B through our fully automated IoT delivery e-bikes.</p>
-                        <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button>
+                        We currently fulfil last mile deliveries for quality service restaurants from stores to customer’s homes or offices through our fully automated IoT delivery e-bikes.</p>
+                        {/* <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button> */}
                     </div>
                 </div>
             </div>
         </div>
-        <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[83px] lg:pb-[83px] px-[50px] lg:px-0'>
+        <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[40px] lg:pb-[23px] px-[50px] lg:px-0'>
             <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by the top restaurants in Africa</h4>
             <div className='lg:flex hidden flex-wrap lg:gap-[61.5px]'>
-                <img src={jiggle} alt='jiggle'/>
+                {/* <img src={jiggle} alt='jiggle'/>
                 <img src={symtric} alt='symtric'/>
                 <img src={wishelp} alt='wishelp'/>
                 <img src={resecurb} alt='resecurb'/>
-                <img src={welytics} alt='welytics'/>
-                <div className='h-[45px] w-[100px]'>
+                <img src={welytics} alt='welytics'/> */}
+                <div className='w-[100px]'>
                     <img src={chicken} alt='chicken-republic'/>
                 </div>
+                <div className='w-[100px] flex items-center'>
+                    <img src={jise} alt='jise'/>
+                </div>
             </div>
-            <div className='flex lg:hidden flex-wrap gap-6 lg:gap-[61.5px]'>
-                <img src={mjiggle} alt='jiggle'/>
+            <div className='flex lg:hidden  justify-center items-center flex-wrap gap-6 lg:gap-[61.5px]'>
+                {/* <img src={mjiggle} alt='jiggle'/>
                 <img src={Msymtric} alt='symtric'/>
                 <img src={Mwishelp} alt='wishelp'/>
                 <img src={mresecurb} alt='resecurb'/>
-                <img src={Mwelytics} alt='welytics'/>
+                <img src={Mwelytics} alt='welytics'/> */}
+                <div className='w-[100px]'>
+                    <img src={chicken} alt='chicken-republic'/>
+                </div>
+                <div className='w-[100px] flex items-center'>
+                    <img src={jise} alt='jise'/>
+                </div>
             </div>
 
         </div>
-        <div className='w-full flex lg:justify-center lg:pt-[113px] lg:pb-[113px] pb-6 order'>
+        <div className='w-full flex lg:justify-center lg:pt-[113px] pt-7 lg:pb-[113px] pb-6 order mt-8 lg:mt-0'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[123px]'>
                 <div className=''>
                     <img src={meter} alt='order' className='hidden lg:block'/>

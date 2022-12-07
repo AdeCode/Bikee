@@ -18,7 +18,7 @@ function NewHome() {
       <div className="text-white lg:bg-landBg bg-mobileLandBg bg-center flex flex-col items-center lg:pb-[135px] h-[460px] lg:h-auto">
         <div className='flex flex-col items-center lg:mt-[55px] mt-[170px]'>
           <h1 className='lg:pt-[300px] font-semibold lg:text-[39px] text-2xl w-[300px] lg:w-auto text-center mb-[21px]'>Your First & Last Mile Mobility Solution</h1>
-          <div className='flex justify-center gap-[15px]'>
+          {/* <div className='flex justify-center gap-[15px]'>
             <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>
                 <img src={apple} alt='apple'/>
@@ -37,7 +37,7 @@ function NewHome() {
                 <h3 className='font-bold lg:text-xl text-xs text-black'>Google Play</h3>
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='flex flex-col items-center lg:mt-12 px-[25px] lg:px-0 pt-[26px] lg:pt-0'>
@@ -75,7 +75,7 @@ function NewHome() {
             </div>
             <div className='py-7 px-4 lg:gap-7 flex justify-between'>
               <h3 className='font-medium text-base text-red'>Locate</h3>
-              <h4 className='font-norml text-sm lg:w-[160px] w-[180px]'>Download the Bikee app find an e-bike</h4>
+              <h4 className='font-norml text-sm lg:w-[160px] w-[180px]'>Download the Bikee app find an e-bike nearby.</h4>
             </div>
           </div>
           <div className='flex flex-col bg-white rounded-lg how'>
@@ -93,7 +93,7 @@ function NewHome() {
             </div>
             <div className='py-7 px-4 lg:gap-7 flex justify-between'>
               <h3 className='font-medium text-base text-red'>Ride</h3>
-              <h4 className='font-norml text-sm lg:w-[160px] w-[180px]'>Follow all traffic rules, stick to the streets and bike lanes where legally permitted.</h4>
+              <h4 className='font-norml text-sm lg:w-[160px] w-[180px]'>Follow all traffic rules, stick to the streets and far end lanes on main roads.</h4>
             </div>
           </div>
           
@@ -107,9 +107,9 @@ function NewHome() {
           <div className='mb-10'>
             <img src={map} alt='map'/>
           </div>
-          <h2 className='font-medium text-3xl text-white lg:mt-[70px] lg:mb-6 mb-[18px]'>Download the App</h2>
+          {/* <h2 className='font-medium text-3xl text-white lg:mt-[70px] lg:mb-6 mb-[18px]'>Download the App</h2>
           <div className='flex gap-4'>
-          <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
+            <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>
                 <img src={apple} alt='apple'/>
               </div>
@@ -127,7 +127,7 @@ function NewHome() {
                 <h3 className='font-bold lg:text-xl text-xs text-black'>Google Play</h3>
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </Container>

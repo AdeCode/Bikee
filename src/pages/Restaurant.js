@@ -16,8 +16,8 @@ function Restaurant() {
                 <div className='bg-dark_text opacity-[0.8] text-center flex flex-col lg:h-fit h-fit lg:py-[160px] 
                     items-center pt-[80px] lg:pt-[51px] pb-[100px] lg:rounded-[22px] lg:px-[150px]'>
                     <span className='text-white bg-red rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-9 lg:mb-7'>Restaurants</span>
-                    <h1 className='text-white lg:w-[803px] lg:font-bold font-medium text-[27px] leading-10 lg:leading-[68px] text-center lg:text-[57px] lg:mb-[22.3px] mb-[14px]'>Powering last mile deliveries for RESTAURANTS</h1>
-                    <p className='text-light_gray font-normal lg:font-medium text-base lg:text-[18.9px] lg:leading-7 lg:w-[678px] px-[38px] lg:px-0'>Take time to take Control of Your Daily Deliveries. BIKEE is powering last mile deliveries for businesses across the country.</p>
+                    <h1 className='text-white lg:w-[803px] lg:font-bold font-medium text-[27px] leading-10 lg:leading-[68px] text-center lg:text-[57px] lg:mb-[22.3px] mb-[14px]'>Powering last mile deliveries for QSRs</h1>
+                    <p className='text-light_gray font-normal lg:font-medium text-base lg:text-[18.9px] lg:leading-7 lg:w-[678px] px-[38px] lg:px-0'>It’s time to take control of your customers, daily deliveries and data. BIKEE will power all your daily deliveries and  provide your business with required data.</p>
                 </div>
             </div>
         </div>

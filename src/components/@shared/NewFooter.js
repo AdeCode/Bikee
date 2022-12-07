@@ -11,7 +11,7 @@ function NewFooter() {
                 <img src={Logo} alt="bikee" />
             </div>
             <div className='flex flex-col lg:items-center text-lg'>
-                <ul className='font-medium text-light_blue flex lg:w-full flex-col lg:flex-row 
+                {/* <ul className='font-medium text-light_blue flex lg:w-full flex-col lg:flex-row 
                     lg:mb-16 px-8 mb-12 text-sm lg:text-[19px] lg:px-[200px]'>
                     <div className='flex w-full mb-3'>
                         <li>
@@ -35,7 +35,7 @@ function NewFooter() {
                             <a href='/'>Privacy</a>
                         </li>
                     </div> 
-                </ul>
+                </ul> */}
             </div>
             <hr className=''/>
             <p className='text-secondary_text text-center font-medium text-sm pt-[30px]'>© 2022 Bikee. All rights reserved.</p>

@@ -18,10 +18,10 @@ function Nav() {
 
     const navBg = () => {
         if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') || currLocation.includes('/checkout') ){
-            setBg('bg-white')
+            setBg('lg:bg-white')
             setNavText('nav_text')
         }else{
-            setBg('bg-dark_text')
+            setBg('lg:bg-dark_text')
             setNavText('text-white')
         }
     }
@@ -42,8 +42,8 @@ function Nav() {
     }
 
     return (
-        <Navbar className='z-50 w-full lg:mb-[50px] fixed'>
-            <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center ${bg} opacity-1 font-poppings lg:${navText} nav-menu z-30`}>
+        <Navbar className='z-50 w-full lg:mb-[50px] absolute'>
+            <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[25px] lg:pt-0 flex justify-between items-center ${bg} opacity-1 font-poppings lg:${navText} nav-menu z-30`}>
                 <div className='logo'>
                     {
                         !mobileMenu &&
@@ -72,7 +72,7 @@ function Nav() {
                                 </span>
                             </li>
                             <li className='lg:text-sm hover:text-red'>
-                                <Link to='/bike-sharing'>eBike Sharing</Link> 
+                                <Link to='/bike-sharing'>E-Bike Ride Sharing</Link> 
                             </li>
                             {/* <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
                             <li className='lg:text-sm hover:text-red'>Retailers - <span className='text-red'> coming soon</span></li> */}
@@ -107,10 +107,19 @@ function Nav() {
                         </ul>
                     </li>
                 </ul>
-                <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
-                    <h2 className={`text-base lg:text-${navText}`}>Login</h2>
+                {/* <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
+                    <div className='mb-9 lg:mb-0'>
+                        <span className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>
+                            Login
+                        </span>
+                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                            <li className='lg:text-sm hover:text-red'>Last-mile</li>
+                            <li className='lg:text-sm hover:text-red'>APIs</li>
+                            <li className='lg:text-sm hover:text-red'>Rider App</li>
+                        </ul>
+                    </div>
                     <button className='bg-red py-2 px-4 text-sm rounded-md'>Sign up</button>
-                </div>
+                </div> */}
                 <button className='lg:hidden flex' onClick={toggleMobileMenu}>
                     <img src={menu} alt='menu' />
                 </button>

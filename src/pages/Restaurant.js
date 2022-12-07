@@ -5,14 +5,16 @@ import mile from '../images/restaurants/mile.png'
 import map from '../images/restaurants/map.png'
 import mapmob from '../images/restaurants/mapmob.png'
 import milemob from '../images/restaurants/milemob.png'
+import control from '../images/restaurants/control.png'
+import lastmile from '../images/restaurants/lastmile.png'
 
 function Restaurant() {
   return (
     <Section className='lg:pt-[100px]'>
         <div className='lg:px-[150px]'>
-            <div className='lg:bg-Radial bg-RadialMb lg:rounded-[22px] bg-no-repeat lg:bg-cover bg-center mb-5 lg:mb-0'>
+            <div className='lg:bg-restBg bg-RadialMb lg:rounded-[22px] bg-no-repeat lg:bg-cover bg-center mb-5 lg:mb-0'>
                 <div className='bg-dark_text opacity-[0.8] text-center flex flex-col lg:h-fit h-fit lg:py-[160px] 
-                items-center pt-[51px] pb-[100px] lg:rounded-[22px] lg:px-[150px]'>
+                    items-center pt-[80px] lg:pt-[51px] pb-[100px] lg:rounded-[22px] lg:px-[150px]'>
                     <span className='text-white bg-red rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-9 lg:mb-7'>Restaurants</span>
                     <h1 className='text-white lg:w-[803px] lg:font-bold font-medium text-[27px] leading-10 lg:leading-[68px] text-center lg:text-[57px] lg:mb-[22.3px] mb-[14px]'>Powering last mile deliveries for RESTAURANTS</h1>
                     <p className='text-light_gray font-normal lg:font-medium text-base lg:text-[18.9px] lg:leading-7 lg:w-[678px] px-[38px] lg:px-0'>Take time to take Control of Your Daily Deliveries. BIKEE is powering last mile deliveries for businesses across the country.</p>
@@ -32,12 +34,13 @@ function Restaurant() {
                 <button className='lg:w-fit font-medium text-btn_text text-base py-3 lg:py-[10.3px] lg:px-[17.8px] bg-red rounded-md'>Get Started</button>
             </div>
             <div className='mb-[10px] lg:mb-0'>
-                <img src={delivery} alt='deliveries'/>
+                <img src={control} alt='deliveries' className='hidden lg:flex'/>
+                <img src={delivery} alt='deliveries' className='lg:hidden'/>
             </div>
         </div>
         <div className='flex mile lg:flex-row flex-col lg:gap-[94px] lg:justify-center lg:pt-[125px] lg:pb-[174px] px-7 lg:px-0'>
             <div className='flex justify-center'>
-                <img src={mile} alt='miles' className='hidden lg:flex'/>
+                <img src={lastmile} alt='miles' className='hidden lg:flex'/>
                 <img src={milemob} alt='laptop' className='lg:hidden'/>
             </div>
             <div className='flex flex-col lg:justify-center'>

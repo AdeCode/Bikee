@@ -36,6 +36,7 @@ module.exports = {
         'bikees': "url('./images/home/bikees.png')",
         'Radial': "url('./images/restaurants/Radial.png')",
         'RadialMb': "url('./images/restaurants/Radial-mb.png')",
+        'restBg': "url('./images/restaurants/restBg.png')",
         'rider' : "url('./images/preorder/rider.png')",
         'landBg' : "url('./images/landing/Bikeee.png')",
         'mobileLandBg' : "url('./images/landing/mobileBike.png')",

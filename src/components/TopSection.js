@@ -23,11 +23,6 @@ import Hero from '../images/home/Hero-full.png'
 import arrow from '../images/home/arrow.png'
 import meter from '../images/home/meter.png'
 import macMobile from '../images/home/mac-mobile.png'
-import mjiggle from '../images/home/Mjiggle.png'
-import mresecurb from '../images/home/Mresecurb.png'
-import Msymtric from '../images/home/Msymtric.png'
-import Mwelytics from '../images/home/Mwelytics.png'
-import Mwishelp from '../images/home/Mwishelp.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
 import bikee from '../images/home/bikee.mp4'
@@ -94,7 +89,7 @@ function TopSection() {
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row lg:gap-[123px]'>
                 <div className=''>
                     <img src={mapbg} alt='order' className='hidden lg:block'/>
-                    <img src={order} alt='order' className='lg:hidden'/>
+                    <img src={mapbg} alt='order' className='lg:hidden'/>
                 </div>
                 <div className='flex items-center mt-[41px] lg:mt-0'>
                     <div className='flex flex-col'>
@@ -142,7 +137,7 @@ function TopSection() {
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[123px]'>
                 <div className=''>
                     <img src={meter} alt='order' className='hidden lg:block'/>
-                    <img src={order} alt='order' className='lg:hidden'/>
+                    <img src={meter} alt='order' className='lg:hidden'/>
                 </div>
                 <div className='flex items-center mt-[41px] lg:mt-0'>
                     <div className='flex flex-col'>
@@ -218,9 +213,9 @@ function TopSection() {
 
         </div>
         <div className='flex save flex-col lg:flex-row lg:gap-[100px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
-            <div className='flex justify-center lg:justify-start'>
+            <div className='flex justify-center lg:justify-start px-[42px] lg:px-0'>
                 <img src={charge} alt='charge bike' className='hidden lg:flex lg:h-[395px]'/>
-                <img src={lapMob} alt='laptop' className='lg:hidden'/>
+                <img src={charge} alt='laptop' className='lg:hidden'/>
             </div>
             <div className='flex flex-col px-[42px]'>
                 <h2 className='lg:font-bold lg:w-[650px] text-2xl font-semibold lg:text-[46px] lg:leading-[57px] text-dark_text'>Goodbye to unsustainable  fuel prices & scarcity, Say HELLOBIKEE.</h2>
@@ -341,7 +336,7 @@ function TopSection() {
             <div className='relative flex flex-col justify-center'>
                 <img src={Hero} alt='hero' className='hidden lg:flex'/>
                 <img src={macMobile} alt='hero' className='lg:hidden'/>
-                <button className='btn lg:absolute lg:right-[40%] lg:bottom-[-5%] bg-dark_gray flex w-fit items-center gap-3 lg:py-[11.5px] px-[9.3px] py-[10px] lg:px-[15.2px]'>SIgn-up now<img src={arrow} alt="arrow"/></button>
+                {/* <button className='btn lg:absolute lg:right-[40%] lg:bottom-[-5%] bg-dark_gray flex w-fit items-center gap-3 lg:py-[11.5px] px-[9.3px] py-[10px] lg:px-[15.2px]'>SIgn-up now<img src={arrow} alt="arrow"/></button> */}
             </div>
 
         </div>

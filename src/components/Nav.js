@@ -85,9 +85,10 @@ function Nav() {
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm hover:text-red'>Last-mile</li>
+                            <li className='lg:text-sm hover:text-red'>First & Last Mile</li>
                             <li className='lg:text-sm hover:text-red'>APIs</li>
                             <li className='lg:text-sm hover:text-red'>Rider App</li>
+                            <li className='lg:text-sm hover:text-red'>Banking-as-a-Service</li>
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>

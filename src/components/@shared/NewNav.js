@@ -36,7 +36,7 @@ function NewNav() {
 
     return (
         <Navbar className='z-50 w-full'>
-            <nav className={`lg:h-[90px] lg:bg-[#0F0000] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center opacity-1 font-poppings nav-menu z-30 lg:text-white absolute w-full`}>
+            <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[35px] lg:pt-0 flex justify-between items-center opacity-1 font-poppings nav-menu z-30 lg:text-white absolute w-full`}>
                 <div className='logo'>
                     {
                         !mobileMenu &&

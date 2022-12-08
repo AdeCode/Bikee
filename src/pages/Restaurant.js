@@ -45,7 +45,7 @@ function Restaurant() {
             </div>
             <div className='flex flex-col lg:justify-center'>
                 <span className='text-red pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>FEATURES</span>
-                <h1 className='lg:font-bold font-medium text-2xl leading-9 w-[288px] lg:text-[46px] lg:leading-[57px] lg:w-[456px] text-dark_text'>Your Last Mile Fulfillment for all customer deliveries</h1>
+                <h1 className='lg:font-bold font-medium text-2xl leading-9 w-[288px] lg:text-[46px] lg:leading-[57px] lg:w-[456px] text-dark_text lg:mb-[30px]'>Your Last Mile Fulfillment for all customer deliveries</h1>
                 <h3 className='lg:font-medium lg:text-[19px] lg:leading-7 lg:w-[420px] text-light_blue pb-5 lg:pb-0'>
                     <p className='mb-4'>
                         BIKEE digitizes and optimizes your daily delivery operations for end-to-end visibility and control.

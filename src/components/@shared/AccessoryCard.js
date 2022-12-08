@@ -10,10 +10,10 @@ function AccessoryCard({image, title, price}) {
         <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[7px]'>
                 <h3 className='text-accessory_text font-semibold text-xs'>{title}</h3>
-                <h3 className='text-accessory_price font-semibold text-base'>N{price}</h3>
+                {/* <h3 className='text-accessory_price font-semibold text-base'>N{price}</h3> */}
             </div>
             <div className='flex items-center'>
-              <button className='text-white bg-red py-[4px] px-[11px] rounded-[18px] font-normal text-[9px] leading-[15px]'>Add to cart</button>
+              {/* <button className='text-white bg-red py-[4px] px-[11px] rounded-[18px] font-normal text-[9px] leading-[15px]'>Add to cart</button> */}
             </div>
         </div>
     </Card>

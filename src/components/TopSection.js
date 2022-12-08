@@ -109,7 +109,7 @@ function TopSection() {
             </div>
         </div>
         <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[40px] lg:pb-[23px] px-[50px] lg:px-0'>
-            <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by great businesses in Africa</h4>
+            <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by great businesses...</h4>
             <div className='lg:flex hidden flex-wrap lg:gap-[61.5px]'>
                 {/* <img src={jiggle} alt='jiggle'/>
                 <img src={symtric} alt='symtric'/>
@@ -151,7 +151,7 @@ function TopSection() {
                         w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Nigeria’s First Tech Enabled eMaas Service Platform.</h1>
                         <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
                         We are building a full stack asset light, tech enabled Electric Mobility as a service (eMaaS), which makes last mile logistics sustainable and emission free.   </p>
-                        <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button>
+                        {/* <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button> */}
                     </div>
                 </div>
             </div>
@@ -272,7 +272,7 @@ function TopSection() {
                     <button className='text-btn lg:w-fit demo mb-5 lg:mb-0 bg-white font-medium text-lg py-[13px] px-[26px] rounded-md'>
                         <a href='https://calendly.com/bikee' target='blank'> Request demo</a>
                     </button>
-                    <button className='bg-red text-btn_text py-[13px] px-7 lg:w-fit rounded-md'>Sign up</button>
+                    {/* <button className='bg-red text-btn_text py-[13px] px-7 lg:w-fit rounded-md'>Sign up</button> */}
                 </div>
                 
             </div>

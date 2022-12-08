@@ -17,7 +17,7 @@ function NewHome() {
     <Container>
       <div className="text-white lg:bg-landBg bg-mobileLandBg bg-center flex flex-col items-center lg:pb-[135px] h-[460px] lg:h-auto">
         <div className='flex flex-col items-center lg:mt-[55px] mt-[170px] lg:h-[60vh]'>
-          <h1 className='lg:pt-[300px] font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-auto text-center mb-[21px]'>Making Your First & Last Mile Daily Mobility Electric</h1>
+          <h1 className='lg:pt-[300px] font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-[1026px] text-center mb-[21px]'>Making Your First & Last Mile Daily Mobility Electric</h1>
           {/* <div className='flex justify-center gap-[15px]'>
             <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>

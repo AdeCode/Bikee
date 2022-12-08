@@ -67,15 +67,16 @@ function TopSection() {
         <div className='lg:h-[100vh] h-[70vh] w-full relative overflow-hidden'>
             <video src={bikee}
                 autoPlay loop muted
-                className="absolute z-10 w-full object-cover lg:h-[100vh]">
+                className="absolute z-10 w-full object-cover lg:h-[100vh] h-[70vh]">
             </video>
-            <div className='flex flex-col relative bg-dark_text bg-opacity-60 justify-center items-center text-white w-full lg:h-[100vh] z-10'>
+            <div className='flex flex-col relative bg-dark_text bg-opacity-60 justify-center items-center text-white w-full lg:h-[100vh] h-[70vh] z-10'>
                 <h1 className='lg:font-bold font-semibold lg:text-6xl text-[28px] lg:leading-[72px] lg:w-[1156px] text-center lg:mb-[21px] mb-[18px] lg:mt-[150px]'>BIKEE Smart Eco-friendly Last-Mile Electric Delivery Service.</h1>
                 <p className='font-medium text-xl mb-8 lg:mb-[65px]'>The future of mobility is electric.</p>
                 <div className='px-6 lg:mx-0 w-full lg:flex lg:justify-center'>
                     <button className='bg-red lg:w-fit w-full font-medium text-lg text-btn_text 
-                    px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>
-                        <a href='https://calendly.com/bikee' target='blank'>Request a Demo</a> </button>
+                        px-[89px] lg:py-[14px] lg:px-7 py-[9px] rounded-md'>
+                        <a href='https://calendly.com/bikee' target='blank'>Request a Demo</a> 
+                    </button>
                 </div>
                 <div className='text-white flex lg:mt-[120px] mt-8 justify-start lg:w-full gap-7 lg:gap-[38px] lg:pl-[350px]'>
                     <div className='flex flex-col lg:gap-[10px] font-normal'>

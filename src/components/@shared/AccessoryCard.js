@@ -4,7 +4,7 @@ import styled from 'styled-components'
 function AccessoryCard({image, title, price}) {
   return (
     <Card className='flex flex-col font-inter lg:gap-5 lg:p-2 rounded-xl lg:w-auto w-full'>
-        <div className='w-full'>
+        <div className='lg:w-full w-[200px] mb-[15px]'>
             <img src={image} alt={title}/>
         </div>
         <div className='flex justify-between w-full'>

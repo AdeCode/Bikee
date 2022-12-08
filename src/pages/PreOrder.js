@@ -117,11 +117,11 @@ function PreOrder() {
                 
                 
             </div>
-            <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px]'>
-                <div className='flex justify-start lg:w-[1220px] w-full px-2'>
+            <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px] pt-4'>
+                <div className='flex justify-start lg:w-[1220px] w-full lg:px-2 px-8'>
                     <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>Accessories</span>
                 </div>
-                <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 lg:px-[auto]">
+                <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
                         inventory.map(accessory => {
                             return (

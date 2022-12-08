@@ -11,15 +11,14 @@ import screens from '../images/landing/screens.png'
 import map from '../images/landing/map.png'
 import lifestyleBike from '../images/landing/lifestyleBike.png'
 import mobileDelivery from '../images/landing/mobileDelivery.png'
-import bikee from '../images/landing/bikee.mp4'
 
 function NewHome() {
   return (
     <Container>
-      {/* <div className="text-white lg:bg-landBg bg-mobileLandBg bg-center flex flex-col items-center lg:pb-[135px] h-[460px] lg:h-auto">
-        <div className='flex flex-col items-center lg:mt-[55px] mt-[170px]'>
-          <h1 className='lg:pt-[300px] font-semibold lg:text-[39px] text-2xl w-[300px] lg:w-auto text-center mb-[21px]'>Your First & Last Mile Mobility Solution</h1>
-          <div className='flex justify-center gap-[15px]'>
+      <div className="text-white lg:bg-landBg bg-mobileLandBg bg-center flex flex-col items-center lg:pb-[135px] h-[460px] lg:h-auto">
+        <div className='flex flex-col items-center lg:mt-[55px] mt-[170px] lg:h-[60vh]'>
+          <h1 className='lg:pt-[300px] font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-auto text-center mb-[21px]'>Making Your First & Last Mile Daily Mobility Electric</h1>
+          {/* <div className='flex justify-center gap-[15px]'>
             <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>
                 <img src={apple} alt='apple'/>
@@ -38,49 +37,9 @@ function NewHome() {
                 <h3 className='font-bold lg:text-xl text-xs text-black'>Google Play</h3>
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
-      </div> */}
-
-      {/* <div className="text-white lg:bg-landBg bg-mobileLandBg bg-center flex flex-col items-center lg:pb-[135px] h-[460px] lg:h-auto">
-        <video src={bikee}
-          autoPlay loop muted
-          className="absolute z-10 w-full object-cover h-[80vh]">
-        </video>
-        <div className='flex flex-col items-center lg:mt-[55px] mt-[170px]'>
-          <h1 className='lg:pt-[300px] font-semibold lg:text-[39px] text-2xl w-[300px] lg:w-auto text-center mb-[21px]'>Your First & Last Mile Mobility Solution</h1>
-          <div className='flex justify-center gap-[15px]'>
-            <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
-              <div className=''>
-                <img src={apple} alt='apple'/>
-              </div>
-              <div className='flex flex-col items-start'>
-                <h4 className='font-medium lg:text-sm text-[8px] font-poppings'>Download on the</h4>
-                <h3 className='font-bold lg:text-xl text-xs'>App Store</h3>
-              </div>
-            </button>
-            <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-white rounded-[4px] items-center'>
-              <div className=''>
-                <img src={play} alt='Google play'/>
-              </div>
-              <div className='flex flex-col items-start'>
-                <h4 className='font-medium text-[#7C8087] lg:text-sm text-[8px] font-poppings'>Get it on</h4>
-                <h3 className='font-bold lg:text-xl text-xs text-black'>Google Play</h3>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div> */}
-
-      <div className='h-[100vh] w-full'>
-          <video src={bikee}
-            autoPlay loop muted
-            className="absolute z-10 w-full object-cover h-[100vh]">
-          </video>
-          <div className='flex absolute justify-center items-center text-white w-full h-[100vh] z-10'>
-            <h1 className='font-semibold lg:text-[39px] text-2xl w-[300px] lg:w-auto text-center mb-[21px]'>Your First & Last Mile Mobility Solution</h1>
-          </div>
-        </div>
+      </div>
       <div className='flex flex-col items-center lg:mt-12 px-[25px] lg:px-0 pt-[26px] lg:pt-0'>
         <h2 className='text-red font-normal lg:text-2xl text-sm'>Our Fleet</h2>
         <p className='font-normal lg:text-[27px] text-xs lg:leading-[40px] mt-1 mb-[26px]'>Time to improve first & last mile mobility for good.</p>

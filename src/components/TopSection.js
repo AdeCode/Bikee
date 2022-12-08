@@ -30,6 +30,7 @@ import Mwelytics from '../images/home/Mwelytics.png'
 import Mwishelp from '../images/home/Mwishelp.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
+import bikee from '../images/home/bikee.mp4'
 import chicken from '../images/home/chicken-republic.png'
 import jise from '../images/home/jise.png'
 import Accordion from './@shared/Accordion'
@@ -64,7 +65,11 @@ function TopSection() {
             </div>
         </div> */}
         <div className='h-[100vh] w-full'>
-            <video src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
+            {/* <video src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
+                autoPlay loop muted
+                className="absolute z-10 w-full object-cover h-[100vh]">
+            </video> */}
+            <video src={bikee}
                 autoPlay loop muted
                 className="absolute z-10 w-full object-cover h-[100vh]">
             </video>

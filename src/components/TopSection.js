@@ -283,7 +283,7 @@ function TopSection() {
             <h2 className='text-dark_text lg:font-bold text-[21px] text-center lg:text-4xl mb-[15px]'>Features of the smartest and most reliable electric bike.</h2>
             <p className='text-light_blue text-[13px] text-lg lg:w-[871px] text-center'>We are building a full stack asset light, tech enabled Electric Mobility as a service (eMaaS), 
                 which makes last mile logistics sustainable and emission free.</p>
-            <div className='flex flex-col lg:flex-row mt-[54px] lg:mt-[76px] gap-[60px] lg:gap-[82px] justify-center lg:mb-[60px]'>
+            <div className='flex flex-col lg:flex-row mt-[54px] lg:mt-[76px] gap-[60px] lg:gap-[82px] justify-center mb-[60px]'>
                 <div className='flex flex-col items-center lg:w-[390px]'>
                     <div className='lg:mb-7'>
                         <img src={batteries} alt='batteries'/>

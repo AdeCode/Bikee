@@ -64,16 +64,12 @@ function TopSection() {
                 </video>
             </div>
         </div> */}
-        <div className='h-[100vh] w-full'>
-            {/* <video src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
-                autoPlay loop muted
-                className="absolute z-10 w-full object-cover h-[100vh]">
-            </video> */}
+        <div className='lg:h-[100vh] h-[70vh] w-full relative overflow-hidden'>
             <video src={bikee}
                 autoPlay loop muted
-                className="absolute z-10 w-full object-cover h-[100vh]">
+                className="absolute z-10 w-full object-cover lg:h-[100vh]">
             </video>
-            <div className='flex flex-col absolute justify-center items-center text-white w-full h-[100vh] z-10'>
+            <div className='flex flex-col relative bg-dark_text bg-opacity-60 justify-center items-center text-white w-full lg:h-[100vh] z-10'>
                 <h1 className='lg:font-bold font-semibold lg:text-6xl text-[28px] lg:leading-[72px] lg:w-[1156px] text-center lg:mb-[21px] mb-[18px] lg:mt-[150px]'>BIKEE Smart Eco-friendly Last-Mile Electric Delivery Service.</h1>
                 <p className='font-medium text-xl mb-8 lg:mb-[65px]'>The future of mobility is electric.</p>
                 <div className='px-6 lg:mx-0 w-full lg:flex lg:justify-center'>

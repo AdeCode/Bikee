@@ -94,9 +94,10 @@ function NewNav() {
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm hover:text-red'>Last-mile</li>
+                            <li className='lg:text-sm hover:text-red'>First & Last-Mile</li>
                             <li className='lg:text-sm hover:text-red'>APIs</li>
                             <li className='lg:text-sm hover:text-red'>Rider App</li>
+                            <li className='lg:text-sm hover:text-red'>Banking-as-a-Service</li>
                         </ul>
                     </li>
                     <li className='mb-9 lg:mb-0'>
@@ -108,8 +109,8 @@ function NewNav() {
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm hover:text-red'>Businesses</li>
-                            <li className='lg:text-sm hover:text-red'>Gig Workers</li>
+                            {/* <li className='lg:text-sm hover:text-red'>Businesses</li>
+                            <li className='lg:text-sm hover:text-red'>Gig Workers</li> */}
                             <li className='lg:text-sm hover:text-red'>
                                 <Link to='/pre-order'>Pre-Order</Link>
                             </li>

@@ -55,7 +55,7 @@ function PreOrder() {
                 <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
                     <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>Bikee</h2>
                     <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
-                    <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N600,000.00</h3>
+                    <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N1,200,000.00</h3>
                     <button className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
                     <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
                         <div className=''>
@@ -117,11 +117,11 @@ function PreOrder() {
                 
                 
             </div>
-            <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px]'>
-                <div className='flex justify-start lg:w-[1220px] w-full px-2'>
+            <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px] pt-4'>
+                <div className='flex justify-start lg:w-[1220px] w-full lg:px-2 px-8'>
                     <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>Accessories</span>
                 </div>
-                <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 lg:px-[auto]">
+                <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
                         inventory.map(accessory => {
                             return (
@@ -168,7 +168,7 @@ function PreOrder() {
                             <h2 className='mb-[17px] font-medium text-[22px] text-[#0B0B0B]'>Bike value</h2>
                             <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>Your e-bike value should remain just what you paid for it. </p>
                         </div>
-                        <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
+                        {/* <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
                             <h3 className='mb-5 font-semibold text-base text-black'>Insurance package</h3>
                             <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                 <div className='flex flex-col'>
@@ -190,7 +190,7 @@ function PreOrder() {
                                     <button className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='lg:w-[1200px] flex-col lg:mt-[100px] mx-7 lg:mx-0 mt-5'>
                         {/* <h3 className='font-medium text-base text-nav_text lg:mb-8 mb-4'>Maintanance</h3> */}
@@ -203,7 +203,7 @@ function PreOrder() {
                                 <h2 className='mb-[17px] font-medium text-[22px] text-[#0B0B0B]'>Assistance</h2>
                                 <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>In case of weekly or monthly services, we'll always assist you any time.</p>
                             </div>
-                            <div className='flex items-center h-full mt-8 lg:mt-0'>
+                            {/* <div className='flex items-center h-full mt-8 lg:mt-0'>
                                 <div className='flex flex-col item p-6 card rounded-2xl h-fit'>
                                     <h3 className='mb-5 font-semibold text-base text-black'>Maintanance package</h3>
                                     <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
@@ -216,7 +216,7 @@ function PreOrder() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

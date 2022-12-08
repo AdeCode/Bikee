@@ -56,7 +56,7 @@ function Restaurant() {
                     <p className='mb-4'>
                         BIKEE’s end-to-end delivery and management solutions will help you fulfil your daily order deliveries with our e-bike, strategise with you and scale fast with our unified operational model across all locations.
                     </p>
-                    Our platform connects your order data from OMS systems to our riders who makes the last mile deliveries, while you monitor your deliveries in rea-time.
+                    Our platform connects your order data from OMS systems to our riders who makes the last mile deliveries, while you monitor your deliveries in real-time.
                 </h3>
                 <button className='lg:w-fit font-medium text-btn_text text-base py-3 lg:py-[10.3px] lg:px-[17.8px] bg-red rounded-md lg:hidden'>Sign up</button>
             </div>
@@ -64,7 +64,7 @@ function Restaurant() {
         <div className='flex flex-col items-center lg:pt-[83px] px-7 lg:px-0 pb-10 lg:pb-0'>
             <span className='text-white bg-red rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-9 lg:mb-7 mt-[25px] lg:mt-0'>OMS</span>
             <h1 className='lg:font-bold text-2xl text-center font-medium lg:text-[35px] lg:leading-[42px] text-dark_text mb-3 lg:mb-4'>End-to-end delivery and management solutions</h1>
-            <p className='font-medium lg:text-lg lg:w-[871px] text-center text-light_blue mb-[18px] lg:mb-0'>Our platform connects your order data from OMS systems to our riders who makes the last mile deliveries, while you monitor your deliveries in rea-time.</p>
+            <p className='font-medium lg:text-lg lg:w-[871px] text-center text-light_blue mb-[18px] lg:mb-20'>Our platform connects your order data from OMS systems to our riders who makes the last mile deliveries, while you monitor your deliveries in real-time.</p>
             <div>
                 <img src={map} alt='laptop' className='hidden lg:flex'/>
                 <img src={mapmob} alt='laptop' className='lg:hidden'/>

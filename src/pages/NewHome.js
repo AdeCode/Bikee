@@ -10,6 +10,7 @@ import lady from '../images/landing/lady.png'
 import screens from '../images/landing/screens.png'
 import map from '../images/landing/map.png'
 import bikee from '../images/landing/bikee-ride.mp4'
+import bike from '../images/landing/bike.mp4'
 import lifestyleBike from '../images/landing/lifestyleBike.png'
 import mobileDelivery from '../images/landing/mobileDelivery.png'
 
@@ -17,7 +18,7 @@ function NewHome() {
   return (
     <Container>
       <div className="text-white bg-center flex flex-col items-center h-[460px] lg:h-[100vh] relative overflow-hidden">
-        <video src={bikee}
+        <video src={bike}
             autoPlay loop muted
             className="absolute z-10 w-full object-cover lg:h-[100vh] h-[70vh]">
         </video>

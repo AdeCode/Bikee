@@ -4,16 +4,16 @@ import styled from 'styled-components'
 function AccessoryCard({image, title, price}) {
   return (
     <Card className='flex flex-col font-inter lg:gap-5 lg:p-2 rounded-xl lg:w-auto w-full'>
-        <div className='w-full'>
+        <div className='lg:w-full w-[200px] mb-[15px]'>
             <img src={image} alt={title}/>
         </div>
         <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[7px]'>
                 <h3 className='text-accessory_text font-semibold text-xs'>{title}</h3>
-                <h3 className='text-accessory_price font-semibold text-base'>N{price}</h3>
+                {/* <h3 className='text-accessory_price font-semibold text-base'>N{price}</h3> */}
             </div>
             <div className='flex items-center'>
-              <button className='text-white bg-red py-[4px] px-[11px] rounded-[18px] font-normal text-[9px] leading-[15px]'>Add to cart</button>
+              {/* <button className='text-white bg-red py-[4px] px-[11px] rounded-[18px] font-normal text-[9px] leading-[15px]'>Add to cart</button> */}
             </div>
         </div>
     </Card>

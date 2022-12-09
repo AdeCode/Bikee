@@ -6,7 +6,9 @@ import assist from '../images/preorder/assist.png'
 import ellipse from '../images/preorder/Ellipse.png'
 import bike from '../images/preorder/bike.png'
 import arrow from '../images/preorder/right-arrow.png'
-import redBike from '../images/preorder/redBike.png'
+// import redBike from '../images/preorder/redBike.png'
+import redBike from '../images/preorder/redBike.jpeg'
+import bikeRed from '../images/preorder/bike-red.jpeg'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
 
@@ -21,9 +23,9 @@ function PreOrder() {
         if(bikeColor === 'red'){
             return redBike
         }else if(bikeColor === 'yellow'){
-            return bikeYellow
+            return bikeRed
         }else{
-            return bikeYellow
+            return bikeRed
         }
     }
 

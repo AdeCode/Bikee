@@ -9,7 +9,6 @@ import man from '../images/landing/man.png'
 import lady from '../images/landing/lady.png'
 import screens from '../images/landing/screens.png'
 import map from '../images/landing/map.png'
-import bikee from '../images/landing/bikee-ride.mp4'
 import bike from '../images/landing/bike.mp4'
 import lifestyleBike from '../images/landing/lifestyleBike.png'
 import mobileDelivery from '../images/landing/mobileDelivery.png'
@@ -23,7 +22,7 @@ function NewHome() {
             className="absolute z-10 w-full object-cover lg:h-[100vh] h-[70vh]">
         </video>
         <div className='flex flex-col relative bg-dark_text bg-opacity-60 items-center justify-center lg:h-[100vh] h-full z-10 w-full'>
-          <h1 className='font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-[1026px] text-center mb-[21px]'>Making Your First & Last Mile Daily Mobility Electric</h1>
+          <h1 className='font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-[1026px] text-center mb-[21px]'>Making Your First & Last Mile Daily Journey Electric.</h1>
           {/* <div className='flex justify-center gap-[15px]'>
             <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>
@@ -58,14 +57,14 @@ function NewHome() {
           </div>
           <div className='lg:hidden lg:py-[57px] py-[50px] card lg:px-[54px] px-3 flex h-[188px] lg:h-auto items-center flex-row lg:flex-col bg-[#FFFCFC] rounded-lg lg:w-[420px]'>
             <div className='mr-5 lg:mr-0'>
-              <img src={lifestyleBike} alt='lifestyle bike'/>
+              <img src={bikeSharing} alt='lifestyle bike'/>
             </div>
             <h3 className='font-normal lg:text-2xl text-sm lg:text-center lg:mt-[60px]'>E-Bike for lifestyle</h3>
           </div>
           <div className='lg:py-[57px] py-[50px] card lg:px-[54px] px-3 flex items-center h-[188px] lg:h-auto flex-row lg:flex-col lg:justify-between bg-[#FFFCFC] rounded-lg lg:w-[420px]'>
             <div className='mr-5 lg:mr-0 lg:mt-14'>
               <img src={bikeDelivery} alt='bike delivery'  className='hidden lg:flex'/>
-              <img src={mobileDelivery} alt='bike sharing' className='lg:hidden'/>
+              <img src={bikeDelivery} alt='bike sharing' className='lg:hidden'/>
             </div>
             <h3 className='font-normal lg:text-2xl text-sm lg:text-center lg:mt-[60px]'>E-Bike for deliveries</h3>
           </div>

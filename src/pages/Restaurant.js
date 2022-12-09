@@ -35,13 +35,13 @@ function Restaurant() {
             </div>
             <div className='mb-[10px] lg:mb-0'>
                 <img src={control} alt='deliveries' className='hidden lg:flex'/>
-                <img src={delivery} alt='deliveries' className='lg:hidden'/>
+                <img src={control} alt='deliveries' className='lg:hidden'/>
             </div>
         </div>
         <div className='flex mile lg:flex-row flex-col lg:gap-[94px] lg:justify-center lg:pt-[125px] lg:pb-[174px] px-7 lg:px-0'>
             <div className='flex justify-center'>
-                <img src={lastmile} alt='miles' className='hidden lg:flex'/>
-                <img src={milemob} alt='laptop' className='lg:hidden'/>
+                <img src={lastmile} alt='miles' className=''/>
+                {/* <img src={milemob} alt='laptop' className='lg:hidden'/> */}
             </div>
             <div className='flex flex-col lg:justify-center'>
                 <span className='text-red pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>FEATURES</span>

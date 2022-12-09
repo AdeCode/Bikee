@@ -6,7 +6,9 @@ import assist from '../images/preorder/assist.png'
 import ellipse from '../images/preorder/Ellipse.png'
 import bike from '../images/preorder/bike.png'
 import arrow from '../images/preorder/right-arrow.png'
-import redBike from '../images/preorder/redBike.png'
+// import redBike from '../images/preorder/redBike.png'
+import redBike from '../images/preorder/redBike.jpeg'
+import bikeRed from '../images/preorder/bike-red.jpeg'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
 
@@ -21,9 +23,9 @@ function PreOrder() {
         if(bikeColor === 'red'){
             return redBike
         }else if(bikeColor === 'yellow'){
-            return bikeYellow
+            return bikeRed
         }else{
-            return bikeYellow
+            return bikeRed
         }
     }
 
@@ -139,13 +141,13 @@ function PreOrder() {
                     }
                 </div>
             </div>
-            <div className="hidden lg:flex justify-center">
+            {/* <div className="hidden lg:flex justify-center">
                 <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
                     <h3 className=''>6 items</h3>
                     <h3 className='font-semibold text-[22px]'>View order</h3>
                     <h3 className=''>N120,890.00</h3>
                 </div>
-            </div>
+            </div> */}
             <div className='flex justify-center lg:mt-4'>
                 <div className='lg:w-[1200px] flex-col'>
                     <div className='flex flex-col lg:flex-row lg:gap-[33px]'>

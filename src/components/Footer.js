@@ -2,9 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import Logo from '../images/home/Logo.png'
+import { MdOutlineFacebook } from "react-icons/md";
+import { FaInstagram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 
 function Footer() {
+    let iconStyles = { color: "#556987", fontSize: "2.0em" };
   return (
     <Section>
          {/* <div className='flex flex-col items-center px-[30px] lg:px-0 lg:flex-row news pt-4 pb-11 lg:py-[83px] lg:gap-[165px] lg:justify-center bg-dark_blue'>
@@ -53,7 +57,24 @@ function Footer() {
                 </ul>
             </div>
             {/* <hr className=''/> */}
-            <p className='text-secondary_text text-center font-medium text-sm pt-[30px]'>© 2022 Bikee. All rights reserved.</p>
+            <div className='flex justify-center lg:gap-16 gap-4 social pt-[30px]'>
+                <a href='https://www.facebook.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <MdOutlineFacebook
+                        style={iconStyles}
+                    />
+                </a>
+                <a href='https://www.instagram.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <FaInstagram
+                        style={iconStyles}
+                    />
+                </a>
+                <a href='https://www.twitter.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <FaTwitter                         
+                        style={iconStyles}
+                    />
+                </a>
+            </div>
+            <p className='text-secondary_text text-center font-medium text-sm pt-[10px]'>© 2022 Bikee. All rights reserved.</p>
         </footer> 
     </Section>
   )
@@ -61,7 +82,7 @@ function Footer() {
 
 const Section = styled.section`
     footer{
-        p{
+        .social{
             border-top: 0.948611px solid #EEF0F3;
         }
         li{

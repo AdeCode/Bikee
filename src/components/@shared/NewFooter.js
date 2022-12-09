@@ -2,8 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import Logo from '../../images/home/Logo.png'
+import { MdOutlineFacebook } from "react-icons/md";
+import { FaInstagram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 function NewFooter() {
+    let iconStyles = { color: "#556987", fontSize: "2.0em" };
+
   return (
     <Section>
        <footer className='lg:pt-[70px] py-11 lg:pb-[102px] bg-[#0F0000]'>
@@ -37,8 +42,25 @@ function NewFooter() {
                     </div> 
                 </ul> */}
             </div>
-            <hr className=''/>
-            <p className='text-secondary_text text-center font-medium text-sm pt-[30px]'>© 2022 Bikee. All rights reserved.</p>
+            {/* <hr className=''/> */}
+            <div className='flex justify-center lg:gap-16 gap-4 social pt-[30px]'>
+                <a href='https://www.facebook.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <MdOutlineFacebook
+                        style={iconStyles}
+                    />
+                </a>
+                <a href='https://www.instagram.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <FaInstagram
+                        style={iconStyles}
+                    />
+                </a>
+                <a href='https://www.twitter.com/hellobikee/' target='_blank' rel="noreferrer">
+                    <FaTwitter                         
+                        style={iconStyles}
+                    />
+                </a>
+            </div>
+            <p className='text-secondary_text text-center font-medium text-sm pt-[10px]'>© 2022 Bikee. All rights reserved.</p>
         </footer> 
     </Section>
   )
@@ -46,8 +68,8 @@ function NewFooter() {
 
 const Section = styled.section`
     footer{
-        p{
-            border-top: 0.948611px solid #EEF0F3;
+        .social{
+            border-top: 0.8px solid #556987;
         }
         li{
             width: calc(100%/3);

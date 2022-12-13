@@ -23,6 +23,7 @@ function NewHome() {
         </video>
         <div className='flex flex-col relative bg-dark_text bg-opacity-60 items-center justify-center lg:h-[100vh] h-full z-10 w-full'>
           <h1 className='font-semibold lg:bold lg:text-6xl lg:leading-[72px] text-[28px] w-[300px] lg:w-[1026px] text-center mb-[21px]'>Making Your First & Last Mile Daily Journey Electric.</h1>
+          <p className='text-sm font-medium lg:text-xl text-center'>From your home, to your workplace, to your other daily plans... your day just got electrified.</p>
           {/* <div className='flex justify-center gap-[15px]'>
             <button className='flex lg:gap-[22px] gap-[13px] lg:py-[18px] py-1 lg:px-6 px-[14px] bg-red rounded-[4px] items-center'>
               <div className=''>

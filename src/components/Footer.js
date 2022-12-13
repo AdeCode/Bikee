@@ -74,7 +74,7 @@ function Footer() {
                     />
                 </a>
             </div>
-            <p className='text-secondary_text text-center font-medium text-sm pt-[10px]'>© 2022 Bikee. All rights reserved.</p>
+            <p className='text-secondary_text text-center font-medium text-sm pt-[10px]'>© 2022 Motion Mobility Limited. All rights reserved.</p>
         </footer> 
     </Section>
   )

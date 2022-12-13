@@ -161,32 +161,32 @@ function TopSection() {
                     <div className='w-[20%] hidden lg:flex'></div>
                     <div className='w-full lg:w-[80%] flex px-[30px] lg:px-0'>
                         <div className='w-[75%] lg:w-[60%] flex lg:justify-center'>
-                            <div className='flex lg:gap-[141px] gap-11 lg:mt-20 mt-12 font-bold text-base'>
+                            <div className='flex lg:gap-[141px] gap-11 lg:mt-20 mt-12 font-bold lg:text-base text-xs'>
                                 <div className='flex flex-col gap-[54px]'>
                                     <div className='flex flex-col gap-1'>
-                                        <h5 className='speed font-bold text-sm'>SPEED</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>SPEED</h5>
                                         <p className='text-white'>40KM/h</p>
                                     </div>
                                     <div className='flex flex-col gap-1'>
-                                        <h5 className='speed font-bold text-sm'>TYPE</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>TYPE</h5>
                                         <p className='text-white'>100% Electric</p>
                                     </div>
                                     <div className='flex flex-col gap-1'>
-                                        <h5 className='speed font-bold text-sm'>BATTERY HOURS</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY HOURS</h5>
                                         <p className='text-white'>8Hrs</p>
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-[54px]'>
                                     <div className='flex flex-col gap-1 items-end'>
-                                        <h5 className='speed font-bold text-sm'>BIKE RANGE</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE RANGE</h5>
                                         <p className='text-white'>90KM</p>
                                     </div>
                                     <div className='flex flex-col gap-1 items-end'>
-                                        <h5 className='speed font-bold text-sm'>BATTERY RANGE</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY RANGE</h5>
                                         <p className='text-white'>70/80km</p>
                                     </div>
                                     <div className='flex flex-col gap-1 items-end'>
-                                        <h5 className='speed font-bold text-sm'>BIKE PAYLOAD</h5>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE PAYLOAD</h5>
                                         <p className='text-white'>120KG</p>
                                     </div>
                                 </div>

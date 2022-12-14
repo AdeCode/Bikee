@@ -48,7 +48,7 @@ function NewHome() {
       </div>
       <div className='flex flex-col items-center lg:mt-12 px-[25px] lg:px-0 pt-[26px] lg:pt-0'>
         <h2 className='text-red font-normal lg:text-2xl text-sm'>Our Fleet</h2>
-        <p className='font-normal lg:text-[27px] text-xs lg:leading-[40px] mt-1 mb-[26px]'>Time to improve first & last mile mobility for good.</p>
+        <p className='font-normal lg:text-[27px] text-xs lg:leading-[40px] mt-1 mb-[26px] lg:w-[650px] text-center'>Time to improve first & last mile mobility for good, reduce traffic congestion and lower CO2 emissions</p>
         <div className='flex flex-col lg:flex-row lg:gap-[77px] gap-6 lg:mt-[90px]'>
           <div className='hidden lg:flex py-[57px] card px-[54px] flex-col bg-[#FFFCFC] rounded-lg lg:w-[420px]'>
             <div className=''>

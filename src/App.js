@@ -18,6 +18,10 @@ import HomeLayout from "./common/HomeLayout";
 import BlackLayout from "./common/BlackLayout";
 import NewHome from "./pages/NewHome";
 import NotFound from "./components/@shared/NotFound";
+import Dashboard from "./pages/admin/Dashboard";
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from "./components/@theme/theme";
+
 
 function App() {
   return (
@@ -41,6 +45,11 @@ function App() {
             <Route path='/bike-sharing' element={<BlackLayout/>}>
               <Route index element={<NewHome />} />
             </Route>
+            <Route path="/admin-dashboard" element={
+              <ThemeProvider theme={theme}>
+                <Dashboard />
+              </ThemeProvider>
+              } />
             <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>

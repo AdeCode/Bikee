@@ -10,7 +10,7 @@ import lady from '../images/landing/lady.png'
 import screens from '../images/landing/screens.png'
 import map from '../images/landing/map.png'
 // import bike from '../images/landing/bike.mp4'
-import bike from '../videos/BIKEE.mp4'
+import bike from '../videos/BIKEEE.mp4'
 import lifestyleBike from '../images/landing/lifestyleBike.png'
 import mobileDelivery from '../images/landing/mobileDelivery.png'
 

@@ -5,8 +5,11 @@ import play from '../images/landing/play.png'
 import bikeSharing from '../images/landing/bikeSharing.png'
 import bikeDelivery from '../images/landing/bikeDelivery.png'
 import helmet from '../images/landing/helmet.png'
+import Bikee_Helmet from '../images/landing/Bikee_Helmet.png'
 import man from '../images/landing/man.png'
+import Bikee_Riding from '../images/landing/Bikee_Riding.png'
 import lady from '../images/landing/lady.png'
+import Bikee_QR from '../images/landing/Bikee_QR.png'
 import screens from '../images/landing/screens.png'
 import map from '../images/landing/map.png'
 // import bike from '../images/landing/bike.mp4'
@@ -78,7 +81,7 @@ function NewHome() {
         <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-4 lg:mt-[80px] mt-8'>
           <div className='flex flex-col bg-white rounded-lg how'>
             <div className=''>
-              <img src={helmet} alt='driver with helmet'/>
+              <img src={Bikee_Helmet} alt='driver with helmet'/>
             </div>
             <div className='py-7 px-4 lg:gap-7 flex justify-between'>
               <h3 className='font-medium text-base text-red'>Locate</h3>
@@ -87,7 +90,7 @@ function NewHome() {
           </div>
           <div className='flex flex-col bg-white rounded-lg how'>
             <div className=''>
-              <img src={lady} alt='lady riding a bike'/>
+              <img src={Bikee_QR} alt='lady riding a bike'/>
             </div>
             <div className='py-7 px-4 lg:gap-7 flex justify-between'>
               <h3 className='font-medium text-base text-red'>Scan</h3>
@@ -96,7 +99,7 @@ function NewHome() {
           </div>
           <div className='flex flex-col bg-white rounded-lg how'>
             <div className=''>
-              <img src={man} alt='man riding a bike'/>
+              <img src={Bikee_Riding} alt='man riding a bike'/>
             </div>
             <div className='py-7 px-4 lg:gap-7 flex justify-between'>
               <h3 className='font-medium text-base text-red'>Ride</h3>

@@ -10,9 +10,15 @@ async function register(payload){
     return data
 }
 
+async function logout(){
+    const {data} = await httpService.post('/logout')
+    return data
+}
+
 const authService = {
     login,
     register,
+    logout,
 }
 
 export default authService

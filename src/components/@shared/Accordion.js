@@ -12,7 +12,7 @@ function Accordion({title,content}) {
                     <h2 className='flex lg:justify-between lg:items-center font-semibold lg:font-bold text-base lg:text-lg text-dark_text mb-[9px] lg:mb-[14px]'>
                         {title}  
                     </h2>
-                    <span className=''>
+                    <span className='cursor-pointer'>
                         {isActive ?
                             <img src={up} alt='closed' />
                             :

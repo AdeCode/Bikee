@@ -15,9 +15,15 @@ async function register(payload){
     return data
 }
 
+async function getProducts(){
+    const {data} = await httpService.get('/products')
+    return data
+}
+
 const authService = {
     addProduct,
     register,
+    getProducts,
 }
 
 export default authService

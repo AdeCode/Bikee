@@ -19,12 +19,12 @@ import NotFound from "./components/@shared/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from "./components/@theme/theme";
-import Leftbar from "./pages/admin/LeftBar";
 import Main from "./pages/admin/Main";
 import AddProduct from "./pages/admin/AddProduct";
 import Orders from "./pages/admin/Orders";
 import Login from '../src/pages/Login'
 import SignUp from './pages/auth/SignUp';
+import Products from './pages/admin/Products';
 
 
 function Routers() {
@@ -66,6 +66,7 @@ function Routers() {
               <Route index element={<Main />} />
               <Route path="add-product" element={<AddProduct />} />
               <Route path="orders" element={<Orders />} />
+              <Route path="products" element={<Products />} />
             </Route>
         </Routes>
         </ThemeProvider>

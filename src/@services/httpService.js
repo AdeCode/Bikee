@@ -31,6 +31,7 @@ axiosInstance.interceptors.request.use(
 
   axiosInstance.interceptors.response.use(
     response => {
+        //add filters to response
         console.log(response);
       return response;
     },

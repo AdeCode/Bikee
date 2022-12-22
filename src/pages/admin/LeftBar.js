@@ -6,6 +6,8 @@ import { Bookmark, ExitToApp, Home, List, Person, PhotoCamera, PlayCircleOutline
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Box, Grid, Paper } from '@mui/material';
 import {Link, useNavigate} from 'react-router-dom'
+import {useMutation} from 'react-query'
+import authService from '../../@services/authService';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,10 +54,25 @@ export default function Leftbar() {
 
     const navigate = useNavigate()
 
+    const logoutMutation = useMutation(authService.logout, {
+        onSuccess: res => {
+            console.log(res)
+            localStorage.removeItem('token')
+            navigate('/login')
+        },
+        onError: err => {
+            console.log(err.message)
+            alert("Could not sign in")
+            //handleClick()
+        }
+    }) 
+
     const logout = () => {
-        localStorage.removeItem('token')
-        navigate('/login')
+        // localStorage.removeItem('token')
+        // navigate('/login')
+        logoutMutation.mutate()
     }
+    
     const classes = useStyles()
     return (
         <Box flex={2}>
@@ -69,11 +86,13 @@ export default function Leftbar() {
                     </Typography>
                 </Link>  
             </div>
-            <div className={classes.item}>
-                <List className={classes.icon}/>
-                <Typography className={classes.text}>
-                    Products
-                </Typography>
+            <div>
+                <Link to='/admin/products' className={classes.item}>
+                    <List className={classes.icon}/>
+                    <Typography className={classes.text}>
+                        Products
+                    </Typography>
+                </Link>
             </div>
             <div>
                 <Link to='/admin/add-product' className={classes.item}>

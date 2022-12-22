@@ -7,12 +7,12 @@ import SignUpForm from '../../components/SignUpForm'
 function SignUp() {
     return (
         <Container className='flex justify-center items-center bg-white h-[100vh]'>
-            <div className='lg:w-[768px] flex content lg:h-fit'>
-                <div className='left flex items-center justify-center px-[50px] py-[126px]'>
+            <div className='flex content lg:h-fit'>
+                <div className='left flex items-center justify-center px-[100px] py-[66px]'>
                     <div className='lg:w-[356px] flex flex-col items-center'>
-                        <img src={Logo} alt='logo' className='mb-[46px]'/>
-                        <h2 className='text-dark_text font-bold text-[30px] mb-[16px]'>Create an account</h2>
-                        <p className='text-[18px] text-secondary_text leading-[28px] mb-[26px]'>Your last mile delivery platform</p>
+                        <img src={Logo} alt='logo' className='mb-[26px]'/>
+                        <h2 className='text-dark_text font-bold text-[30px] mb-[10px]'>Create an account</h2>
+                        <p className='text-[18px] text-secondary_text leading-[28px] mb-[22px]'>Your last mile delivery platform</p>
                         <div className='form w-full'>
                             <SignUpForm/>
                         </div>

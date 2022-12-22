@@ -7,7 +7,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   });
 
 
-function ShowAlert({type}) {
+function ShowAlert({type, message}) {
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -24,7 +24,7 @@ function ShowAlert({type}) {
   return (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
-            Invalid credentials
+                {message}
             </Alert>
       </Snackbar>
   )

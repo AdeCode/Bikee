@@ -15,7 +15,7 @@ function SigInForm() {
 
             //persist to local storage
             localStorage.setItem('token', accessToken)
-            navigate('/admin')
+            navigate('/dashboard')
         },
         onError: err => {
             console.log(err.message)

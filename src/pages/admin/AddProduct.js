@@ -42,6 +42,7 @@ function AddProduct() {
     const payload = {
       name: data.get('name'),
       type: data.get('type'),
+      image_url: "https://bikee-storage.s3.amazonaws.com/images/EVBnBdw645AnzHmzEXPd1o4DSx3Du2RRuXrrnfOE.png",
       amount: data.get('amount'),
       property:[
         {

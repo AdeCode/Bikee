@@ -79,7 +79,7 @@ export default function Leftbar() {
             <Container className={classes.container} flex={1}>
                 {/* <Box position='fixed'></Box> */}
             <div>
-                <Link to='/admin' className={classes.item}>
+                <Link to='/dashboard' className={classes.item}>
                     <Home className={classes.icon}/>
                     <Typography className={classes.text}>
                         Homepage
@@ -87,7 +87,7 @@ export default function Leftbar() {
                 </Link>  
             </div>
             <div>
-                <Link to='/admin/products' className={classes.item}>
+                <Link to='/dashboard/products' className={classes.item}>
                     <List className={classes.icon}/>
                     <Typography className={classes.text}>
                         Products
@@ -95,7 +95,7 @@ export default function Leftbar() {
                 </Link>
             </div>
             <div>
-                <Link to='/admin/add-product' className={classes.item}>
+                <Link to='/dashboard/add-product' className={classes.item}>
                     <AddCircleIcon className={classes.icon}/>
                     <Typography className={classes.text}>
                         Add Product
@@ -105,7 +105,7 @@ export default function Leftbar() {
                 
             </div>
             <div>
-                <Link to='/admin/orders' className={classes.item}>
+                <Link to='/dashboard/orders' className={classes.item}>
 
                 <List className={classes.icon}/>
                 <Typography className={classes.text}>

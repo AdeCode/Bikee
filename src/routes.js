@@ -62,7 +62,7 @@ function Routers() {
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
-            <Route path='/admin' element={<Dashboard />}>
+            <Route path='/dashboard' element={<Dashboard />}>
               <Route index element={<Main />} />
               <Route path="add-product" element={<AddProduct />} />
               <Route path="orders" element={<Orders />} />

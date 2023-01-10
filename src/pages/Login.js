@@ -1,15 +1,3 @@
-// import React from 'react'
-
-// function Login() {
-//   return (
-//     <div>Login</div>
-//   )
-// }
-
-// export default Login
-
-
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -69,6 +57,7 @@ export default function Login() {
     
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
+            console.log(res)
             const accessToken = res.token
 
             //persist to local storage

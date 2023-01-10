@@ -1,24 +1,17 @@
 import axios from 'axios'
 
-
-// export default axios.create({
-//     baseURL: 'https://api.hellobikee.com/api/v1',
-//     headers: {
-//         "Content-type" : "application/json",
-//     }
-// });
-
 const axiosInstance = axios.create({
     baseURL: 'https://api.hellobikee.com/api/v1',
     headers: {
         "Content-type" : "application/json",
+        'Accept': 'application/json',
     }
 })
 
 
 axiosInstance.interceptors.request.use(
     config => {
-        const accessToken = localStorage.getItem('token');
+        const accessToken = JSON.parse(localStorage.getItem('token'));
         if(accessToken) {
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
@@ -32,7 +25,7 @@ axiosInstance.interceptors.request.use(
   axiosInstance.interceptors.response.use(
     response => {
         //add filters to response
-        console.log(response);
+        // console.log(response);
       return response;
     },
     error => {

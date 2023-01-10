@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import authService from '../@services/authService'
 import {useMutation, useQueryClient} from 'react-query'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
 
 function SigInForm() {
     const navigate = useNavigate()
-
+    const {dispatch} = useContext(AuthContext)
 
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
-            const accessToken = res.token
-
-            //persist to local storage
-            localStorage.setItem('token', accessToken)
+            //console.log(res)
+            dispatch({ type: 'LOGIN', payload: res })
             navigate('/dashboard')
         },
         onError: err => {
@@ -25,7 +24,7 @@ function SigInForm() {
     }) 
 
     const onRegister = (values) => {
-        console.log(values)
+        //console.log(values)
         loginMutation.mutate(values)
     }
 

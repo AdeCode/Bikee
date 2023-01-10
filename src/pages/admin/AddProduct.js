@@ -10,6 +10,9 @@ import Button from '@mui/material/Button';
 import productService from '../../@services/productService'
 import {useMutation} from 'react-query'
 import ShowAlert from '../../components/@shared/showAlert';
+import { toast } from 'react-toastify';
+import {useNavigate} from 'react-router-dom'
+
 
 
 const useStyles = makeStyles((theme)=>({
@@ -22,17 +25,21 @@ const useStyles = makeStyles((theme)=>({
 
 function AddProduct() {
   const classes = useStyles()
-
+  const navigate = useNavigate()
   const addProductMutation = useMutation(productService.addProduct, {
     onSuccess: res => {
-        console.log(res)
-
-        //persist to local storage
-        // localStorage.setItem(tokenKey, accessToken)
-        // navigate('/profile')
+        // console.log(res)
+        toast.success(res.message, {
+          theme: "colored",
+        })
+        
+        navigate('/dashboard/products')
     },
     onError: err => {
-        console.log(err.message)
+        //console.log(err)
+        toast.error(err.response.data.message[0], {
+          theme: "colored",
+        })
     }
 }) 
 

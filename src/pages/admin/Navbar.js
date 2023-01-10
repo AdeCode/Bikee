@@ -6,8 +6,10 @@ import Avatar from '@mui/material/Avatar';
 import {Badge, InputBase} from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import { Cancel, Mail, NotificationImportant, Search } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Logo from '../../images/home/Logo.png'
+import extractFirstLetter from '../../@helpers/helperFunction';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +75,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
     const [open,setOpen] = useState(false)
-
+    const {state} = useContext(AuthContext)
+    if(state){
+        console.log(state.user.first_name)
+    }
+    // state && 
     const classes = useStyles({open})
     return (
         <AppBar position='sticky' className={classes.appbar} style={{backgroundColor:'#0F0000'}}>
@@ -96,7 +102,7 @@ export default function Navbar() {
                     <Badge badgeContent={2} color="secondary" className={classes.badge}>
                         <NotificationImportant/>
                     </Badge>
-                    <Avatar alt="Coder" src="/IMG_2020.jpg"/>
+                    <Avatar alt={state&&state.user.first_name} src="/IMG_2020.jpg"/>
                 </div>
             </Toolbar>
         </AppBar>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@mui/styles'
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -8,6 +8,8 @@ import { Box, Grid, Paper } from '@mui/material';
 import {Link, useNavigate} from 'react-router-dom'
 import {useMutation} from 'react-query'
 import authService from '../../@services/authService';
+import { AuthContext } from '../../contexts/AuthContext'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,25 +54,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Leftbar() {
 
+    const {dispatch, state} = useContext(AuthContext)
+
+    // state && console.log(state)
+
     const navigate = useNavigate()
 
     const logoutMutation = useMutation(authService.logout, {
         onSuccess: res => {
             console.log(res)
-            localStorage.removeItem('token')
+            dispatch({type:'LOGOUT'})
             navigate('/login')
         },
         onError: err => {
             console.log(err.message)
-            alert("Could not sign in")
-            //handleClick()
+            alert("Could not log out")
         }
     }) 
 
     const logout = () => {
-        // localStorage.removeItem('token')
-        // navigate('/login')
-        logoutMutation.mutate()
+        dispatch({type:'LOGOUT'})
+        navigate('/signin')
+        //logoutMutation.mutate()
     }
     
     const classes = useStyles()

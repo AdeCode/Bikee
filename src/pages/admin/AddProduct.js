@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
@@ -9,9 +9,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import productService from '../../@services/productService'
 import {useMutation} from 'react-query'
-import ShowAlert from '../../components/@shared/showAlert';
 import { toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
+import MenuItem from '@mui/material/MenuItem';
+import ImageUpload from '../../components/@shared/ImageUpload';
+import productTypes from '../../components/@shared/productTypes';
 
 
 
@@ -26,13 +28,41 @@ const useStyles = makeStyles((theme)=>({
 function AddProduct() {
   const classes = useStyles()
   const navigate = useNavigate()
+
+  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+
+  const selectFile = (e) => {
+    const data = e.target.files[0]
+    if(data !== null){
+      setImage(data);
+      const formData = new FormData();
+      formData.append('file', data)
+      uploadImageMutation.mutate(formData)
+    }
+  }
+
+  const uploadImageMutation = useMutation(productService.uploadImage, {
+      onSuccess: res => {
+          console.log(res.url)
+          setImageURL(res.url)
+          toast.success(res.message, {
+            theme: "colored",
+          })            
+      },
+      onError: err => {
+          toast.error(err.response.data.message[0], {
+            theme: "colored",
+          })
+      }
+  })
+
   const addProductMutation = useMutation(productService.addProduct, {
     onSuccess: res => {
         // console.log(res)
         toast.success(res.message, {
           theme: "colored",
         })
-        
         navigate('/dashboard/products')
     },
     onError: err => {
@@ -41,15 +71,21 @@ function AddProduct() {
           theme: "colored",
         })
     }
-}) 
+  }) 
+
 
   const handleSubmit = (event) => {
+    if(image === null || image === ''){
+      toast.error('Please select an image',{
+        theme: "colored",
+      })
+    }
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const payload = {
       name: data.get('name'),
       type: data.get('type'),
-      image_url: "https://bikee-storage.s3.amazonaws.com/images/EVBnBdw645AnzHmzEXPd1o4DSx3Du2RRuXrrnfOE.png",
+      image_url: imageURL,
       amount: data.get('amount'),
       property:[
         {
@@ -61,7 +97,7 @@ function AddProduct() {
       ]
     }
     addProductMutation.mutate(payload)
-    // console.log(payload)
+    //console.log(payload)
     
   };
 
@@ -82,12 +118,12 @@ function AddProduct() {
             id="outlined-error-helper-text"
             label="Product Name"
             required
-            defaultValue="Hello World"
+            defaultValue="Enter product name"
             type='text'
             helperText="Incorrect entry."
             name='name'
           />
-          <TextField
+          {/* <TextField
             id="outlined-error-helper-text"
             label="Product Type"
             required
@@ -95,7 +131,21 @@ function AddProduct() {
             type='text'
             helperText="Incorrect entry."
             name='type'
-          />
+          /> */}
+          <TextField
+            id="outlined-select-currency"
+            select
+            label="Product Type"
+            defaultValue="BIKE"
+            helperText="Please select your currency"
+            name='type'
+          >
+            {productTypes.map((product) => (
+              <MenuItem key={product.value} value={product.value}>
+                {product.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
         <div>
         <FormControl fullWidth sx={{ m: 1 }}>
@@ -151,6 +201,10 @@ function AddProduct() {
         >
           show
         </Button> */}
+        <ImageUpload
+          selectFile={selectFile}
+          image={image}
+        />
         <Button
           type="submit"
           fullWidth

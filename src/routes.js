@@ -25,7 +25,8 @@ import Orders from "./pages/admin/Orders";
 import Login from '../src/pages/Login'
 import SignUp from './pages/auth/SignUp';
 import Products from './pages/admin/Products';
-
+import Product from './pages/admin/Product';
+import EditProduct from './pages/admin/EditProduct';
 
 function Routers() {
   return (
@@ -67,6 +68,8 @@ function Routers() {
               <Route path="add-product" element={<AddProduct />} />
               <Route path="orders" element={<Orders />} />
               <Route path="products" element={<Products />} />
+              <Route path="product/:productId" element={<Product />} />
+              <Route path="product/:productId/edit" element={<EditProduct />} />
             </Route>
         </Routes>
         </ThemeProvider>

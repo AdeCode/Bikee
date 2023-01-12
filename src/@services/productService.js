@@ -20,10 +20,35 @@ async function getProducts(){
     return data
 }
 
-const authService = {
+async function getProduct({queryKey}){
+    const [_key, {productId}] = queryKey
+    const {data} = await httpService.get(`/products/${productId}`)
+    return data
+}
+
+async function updateProduct({queryKey},payload,productId){
+    // const [_key, {productId}] = queryKey
+    console.log(queryKey)
+    const {data} = await httpService.put(`/products/${productId}`,payload)
+    return data
+}
+
+async function uploadImage(payload){
+    const {data} = await httpService.post(`/images`, payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+    return data
+}
+
+const productService = {
     addProduct,
     register,
     getProducts,
+    getProduct,
+    updateProduct,
+    uploadImage,
 }
 
-export default authService
+export default productService

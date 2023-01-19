@@ -62,9 +62,9 @@ function EditProduct() {
       }
     })
 
-    const updateProductMutation = useMutation(['updateProduct',{productId}], productService.updateProduct(productId), {
+    const updateProductMutation = useMutation(productService.updateProduct, {
         onSuccess: res => {
-            // console.log(res)
+            console.log(res)
             toast.success(res.message, {
               theme: "colored",
             })
@@ -94,7 +94,8 @@ function EditProduct() {
               battery: data.get('battery'),
               speed: data.get('speed'),
             }
-          ]
+          ],
+          productId:productId
         }
         updateProductMutation.mutate(payload)
         console.log(payload)

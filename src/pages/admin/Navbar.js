@@ -77,7 +77,7 @@ export default function Navbar() {
     const [open,setOpen] = useState(false)
     const {state} = useContext(AuthContext)
     if(state){
-        console.log(state.user.first_name)
+        // console.log(state.user.first_name)
     }
     // state && 
     const classes = useStyles({open})
@@ -102,7 +102,8 @@ export default function Navbar() {
                     <Badge badgeContent={2} color="secondary" className={classes.badge}>
                         <NotificationImportant/>
                     </Badge>
-                    <Avatar alt={state&&state.user.first_name} src="/IMG_2020.jpg"/>
+                    {/* <Avatar alt={state&&state.user.first_name} src="/IMG_2020.jpg"/> */}
+                    <Avatar alt='B' src="/IMG_2020.jpg"/>
                 </div>
             </Toolbar>
         </AppBar>

@@ -26,9 +26,9 @@ async function getProduct({queryKey}){
     return data
 }
 
-async function updateProduct({queryKey},payload,productId){
-    // const [_key, {productId}] = queryKey
-    console.log(queryKey)
+async function updateProduct(payload){
+    const {productId} = payload
+    console.log(productId)
     const {data} = await httpService.put(`/products/${productId}`,payload)
     return data
 }

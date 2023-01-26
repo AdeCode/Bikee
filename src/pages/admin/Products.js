@@ -5,10 +5,9 @@ import EnhancedTable from '../../components/ProductTable'
 import LinearLoader from '../../components/@shared/LinearLoader'
 
 function Products() {
-    //const [products, setProducts] = useState([])
     const {data:products, isLoading, error} = useQuery('product', productService.getProducts)
 
-    products && console.log(products.data.data)
+    // products && console.log(products.data.data)
 
 
     if(error) return "An error occured, could not load products: "+error.message;

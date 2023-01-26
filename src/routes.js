@@ -27,6 +27,7 @@ import SignUp from './pages/auth/SignUp';
 import Products from './pages/admin/Products';
 import Product from './pages/admin/Product';
 import EditProduct from './pages/admin/EditProduct';
+import OrderCart from './pages/OrderCart';
 
 function Routers() {
   return (
@@ -39,6 +40,7 @@ function Routers() {
               <Route path='restaurant' element={<Restaurant/>}></Route>
               <Route path='sme' element={<SME/>}></Route>
               <Route path='pre-order' element={<PreOrder/>}></Route>
+              <Route path='summary' element={<OrderCart/>}></Route>
               <Route path='checkout' element={<Checkout/>}></Route>
               <Route path='order-summary' element={<OrderSummary/>}></Route>
             </Route>

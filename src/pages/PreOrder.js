@@ -305,7 +305,7 @@ function PreOrder() {
                         </div>
                         <div className='flex w-full lg:hidden rounded-lg justify-between bg-nav_text py-4 px-[30px] font-mulish font-semibold text-base text-light_gray'>
                             <h3 className=''>🛒:{cartState.length} items</h3>
-                            <h3 className='font-normal'>View order</h3>
+                            <h3 className='font-normal'><Link to='/checkout'>{cartState.length > 1 ? 'View orders' : 'View order'}</Link></h3>
                             <h3 className='font-bold'>N120,890.00</h3>
                         </div>
                         <div className='bg-gray_background rounded-[7px] pt-[33px] pb-4 px-6 flex flex-col items-center mx-7 lg:mx-0'>

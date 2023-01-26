@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState, useRef} from 'react'
 import styled from 'styled-components'
 import bikeYellow from '../images/preorder/bikeYellow.png'
 import theft from '../images/preorder/theft.png'
@@ -12,9 +12,48 @@ import bikeRed from '../images/preorder/bike-red.jpeg'
 import blue from '../images/preorder/blue-bike.png'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
+import { CartContext } from '../contexts/CartContext'
+import {Link} from 'react-router-dom'
+import {useQuery} from 'react-query'
+import productService from '../@services/productService'
 
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('')
+
+    // const [accessories, setAccessories] = useState([])
+    let accessories = []
+
+    const amountRef = useRef(null)
+    const totalSumRef = useRef(0)
+
+
+    const {state:cartState} = useContext(CartContext)
+    const {data:products, isLoading, error} = useQuery('product', productService.getProducts)
+
+    const calculateTotalPrice = () => {
+        if (cartState){
+            let total = cartState.map(item => item.total)
+            //console.log(total)
+            return total
+        }
+    }
+
+    useEffect(()=>{
+        amountRef.current = calculateTotalPrice()
+        const initialValue = 0;
+        if (amountRef.current){
+            const TotalSum = amountRef.current.reduce(
+                (accumulator, currentValue) => accumulator + currentValue,initialValue)
+                totalSumRef.current = TotalSum
+        }
+        
+    },[cartState])
+
+    // products && console.log(products.data.data)
+    if(products){
+        accessories = products.data.data.filter(product => product.type === "ACCESSORY")
+        // console.log(accessories)
+    }
 
     const bikeColorChange = (event) => {
         setBikeColor(event.target.value)
@@ -126,29 +165,34 @@ function PreOrder() {
                 </div>
                 <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
-                        inventory.map(accessory => {
+                        accessories.map(accessory => {
                             return (
 
                                 <AccessoryCard
                                     title={accessory.name}
-                                    image={accessory.image}
-                                    price={accessory.price}
+                                    image={accessory.image_url}
+                                    price={accessory.amount}
                                     key={accessory.id}
+                                    item={accessory}
                                 />
-
-
                             )
                         })
                     }
                 </div>
             </div>
-            {/* <div className="hidden lg:flex justify-center">
-                <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
-                    <h3 className=''>6 items</h3>
-                    <h3 className='font-semibold text-[22px]'>View order</h3>
-                    <h3 className=''>N120,890.00</h3>
+            {
+                cartState.length > 0 ? 
+                <div className="hidden lg:flex justify-center">
+                    <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
+                        <h3 className=''>🛒{cartState.length} {cartState.length < 2 ? 'item' : 'items'}</h3>
+                        <h3 className='font-semibold text-[22px]'><Link to='/checkout'>{cartState.length > 1 ? 'View orders' : 'View order'}</Link></h3>
+                        <h3 className=''>N{totalSumRef.current}</h3>
+                    </div>
                 </div>
-            </div> */}
+                :
+                null
+            }
+            
             <div className='flex justify-center lg:mt-4'>
                 <div className='lg:w-[1200px] flex-col'>
                     <div className='flex flex-col lg:flex-row lg:gap-[33px]'>
@@ -160,7 +204,7 @@ function PreOrder() {
                             <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>Be alerted when someone attempts to take your e-bike. We'll send you real-time tracking notifications via the app or email.</p>
                         </div>
                         <div className='flex w-full lg:hidden rounded-lg justify-between bg-nav_text py-4 px-[30px] font-mulish font-semibold text-base text-light_gray'>
-                            <h3 className=''>6 items</h3>
+                            <h3 className=''>🛒:{cartState.length} items</h3>
                             <h3 className='font-normal'>View order</h3>
                             <h3 className='font-bold'>N120,890.00</h3>
                         </div>

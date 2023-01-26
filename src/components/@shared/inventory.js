@@ -21,9 +21,8 @@ const inventory = [
     {
         id:1,
         name:'Rim',
-        price:'0.00',
+        price:50.00,
         image:rim,
-        quantity:4
 
     },
     {
@@ -31,7 +30,6 @@ const inventory = [
         name:'Motor',
         price:'0.00',
         image:motor,
-        quantity:4
 
     },
     {
@@ -39,7 +37,6 @@ const inventory = [
         name:'Tube & Tire',
         price:'0.00',
         image:tire,
-        quantity:4
 
     },
     {
@@ -47,7 +44,6 @@ const inventory = [
         name:'Battery',
         price:'0.00',
         image:battery,
-        quantity:4
 
     },
     {
@@ -55,7 +51,6 @@ const inventory = [
         name:'Bell',
         price:'0.00',
         image:bell,
-        quantity:4
 
     },
     {
@@ -63,7 +58,6 @@ const inventory = [
         name:'LCD Display',
         price:'0.00',
         image:lcd,
-        quantity:4
 
     },
     {
@@ -71,7 +65,6 @@ const inventory = [
         name:'Headlight Lamp',
         price:'0.00',
         image:lamp,
-        quantity:4
 
     },
     {
@@ -79,7 +72,6 @@ const inventory = [
         name:'Brake pedal',
         price:'0.00',
         image:pedal,
-        quantity:4
 
     },
 ]

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useRef} from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import bikeYellow from '../images/preorder/bikeYellow.png'
 import theft from '../images/preorder/theft.png'
@@ -13,8 +13,8 @@ import blue from '../images/preorder/blue-bike.png'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
 import { CartContext } from '../contexts/CartContext'
-import {Link} from 'react-router-dom'
-import {useQuery} from 'react-query'
+import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import productService from '../@services/productService'
 
 function PreOrder() {
@@ -28,50 +28,70 @@ function PreOrder() {
     const amountRef = useRef(null)
     const totalSumRef = useRef(0)
 
+    const accessoriesRef = useRef([])
+    const bikesRef = useRef([])
 
-    const {state:cartState, dispatch} = useContext(CartContext)
 
-    const {data:products, isLoading, error} = useQuery('product', productService.getProducts)
+    const { state: cartState, dispatch } = useContext(CartContext)
+
+    const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
+
+    // if(products) {
+    //     accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
+    //     bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
+    // }
+    
 
     const calculateTotalPrice = () => {
-        if (cartState){
+        if (cartState) {
             let total = cartState.map(item => item.total)
             //console.log(total)
             return total
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        if (products) {
+            accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
+            bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
+            
+            bikesRef.current.push(bikes[0])
+            // newBikes.push(bikes[1])
+        }
+        console.log(bikesRef.current)
+
         amountRef.current = calculateTotalPrice()
         const initialValue = 0;
-        if (amountRef.current){
+        if (amountRef.current) {
             const TotalSum = amountRef.current.reduce(
-                (accumulator, currentValue) => accumulator + currentValue,initialValue)
-                totalSumRef.current = TotalSum
+                (accumulator, currentValue) => accumulator + currentValue, initialValue)
+            totalSumRef.current = TotalSum
         }
-        
-    },[cartState])
+
+    }, [cartState])
 
     // products && console.log(products.data.data)
     let newBikes = []
-    if(products){
+    if (products) {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
         console.log(bikes)
         newBikes.push(bikes[0])
         newBikes.push(bikes[1])
     }
-    console.log(newBikes)
+    // console.log(accessoriesRef.current)
+    // console.log(bikesRef.current)
+
     const bikeColorChange = (event) => {
         setBikeColor(event.target.value)
     }
 
     const changeBikeColor = (bikeColor) => {
-        if(bikeColor === 'red'){
+        if (bikeColor === 'red') {
             return redBike
-        }else if(bikeColor === 'yellow'){
+        } else if (bikeColor === 'yellow') {
             return bikeRed
-        }else{
+        } else {
             return blue
         }
     }
@@ -94,84 +114,90 @@ function PreOrder() {
                         <button className='border-2 border-white py-[6px] font-semibold text-[15px] px-3 mb-7 lg:mb-0 flex items-center'>
                             PRE-ORDER NOW
                             <span className='ml-4'>
-                                <img src={arrow} alt='right arrow'/>
+                                <img src={arrow} alt='right arrow' />
                             </span>
                         </button>
                     </div>
                 </div>
             </div>
             <div className='flex flex-col-reverse lg:justify-center lg:flex-row font-mulish lg:py-24 bg-bg_brown lg:gap-[14px]'>
-                {
-                    newBikes && 
-                    <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
-                    <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{newBikes[0].name}</h2>
-                    <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
-                    <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N{newBikes[0].amount}</h3>
-                    <button onClick={()=>dispatch({type:'ADD_PRODUCT',payload:newBikes[0]})} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
-                            <p className='text-pre_brown font-normal text-sm'>150-185 cm tall</p>
-                        </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Max total weight</h4>
-                            <p className='text-pre_brown font-normal text-sm'>42kg</p>
-                        </div>
-                    </div>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Weight</h4>
-                            <p className='text-pre_brown font-normal text-sm'>{newBikes[0].property[0].weight}</p>
-                        </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Battery range</h4>
-                            <p className='text-pre_brown font-normal text-sm'>{newBikes[0].property[0].battery}</p>
-                        </div>
-                    </div>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Charging time </h4>
-                            <p className='text-pre_brown font-normal text-sm'>{newBikes[0].property[0].charging}</p>
-                        </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Assist speed</h4>
-                            <p className='text-pre_brown font-normal text-sm'>{newBikes[0].property[0].speed}</p>
-                        </div>
-                    </div>
-                </div>
-                }
-               
-                <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
-                    <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
-                        <img src={newBikes[0].image_url} alt="bike" />
-                    </div>
-                    <div className='flex flex-col'>
-                        <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
-                        <div className='flex lg:justify-end gap-6'>
-                            <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "red"}
-                                onChange={bikeColorChange} value='red'
-                                className="w-6 h-6 accent-red text-red"
-                            />
-                            <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "blue"}
-                                onChange={bikeColorChange} value='blue'
-                                className="w-6 h-6 accent-blue border-blue"
-                            />
-                            <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "yellow"}
-                                onChange={bikeColorChange} value='yellow'
-                                className="w-6 h-6 accent-yellow-500"
-                            />
+                {/* {
+                    bikesRef.current &&
+                        <div>
+                            <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
+                                <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{bikesRef.current[0].name}</h2>
+                                <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
+                                <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N{bikesRef.current[0].amount}</h3>
+                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikesRef.current[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
+                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
+                                        <p className='text-pre_brown font-normal text-sm'>150-185 cm tall</p>
+                                    </div>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Max total weight</h4>
+                                        <p className='text-pre_brown font-normal text-sm'>42kg</p>
+                                    </div>
+                                </div>
+                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Weight</h4>
+                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].weight}</p>
+                                    </div>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Battery range</h4>
+                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].battery}</p>
+                                    </div>
+                                </div>
+                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Charging time </h4>
+                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].charging}</p>
+                                    </div>
+                                    <div className=''>
+                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Assist speed</h4>
+                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].speed}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
+                                <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
+                                    <img src={bikesRef.current[0].image_url} alt="bike" />
+                                </div>
+                                <div className='flex flex-col'>
+                                    <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
+                                    <div className='flex lg:justify-end gap-6'>
+                                        <input type='radio' name='bikeColor'
+                                            checked={bikeColor === "red"}
+                                            onChange={bikeColorChange} value='red'
+                                            className="w-6 h-6 accent-red text-red"
+                                        />
+                                        <input type='radio' name='bikeColor'
+                                            checked={bikeColor === "blue"}
+                                            onChange={bikeColorChange} value='blue'
+                                            className="w-6 h-6 accent-blue border-blue"
+                                        />
+                                        <input type='radio' name='bikeColor'
+                                            checked={bikeColor === "yellow"}
+                                            onChange={bikeColorChange} value='yellow'
+                                            className="w-6 h-6 accent-yellow-500"
+                                        />
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                         
-                    </div>
-                </div>
-                {/* <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
+                } */}
+
+
+                <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
                     <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>Bikee</h2>
                     <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
                     <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N1,200,000.00</h3>
-                    <button className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
+                    <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikes[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
                     <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
                         <div className=''>
                             <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
@@ -228,9 +254,9 @@ function PreOrder() {
                         </div>
                         
                     </div>
-                </div> */}
-                
-                
+                </div>
+
+
             </div>
 
             <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px] pt-4'>
@@ -255,18 +281,18 @@ function PreOrder() {
                 </div>
             </div>
             {
-                cartState.length > 0 ? 
-                <div className="hidden lg:flex justify-center">
-                    <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
-                        <h3 className=''>🛒{cartState.length} {cartState.length < 2 ? 'item' : 'items'}</h3>
-                        <h3 className='font-semibold text-[22px]'><Link to='/checkout'>{cartState.length > 1 ? 'View orders' : 'View order'}</Link></h3>
-                        <h3 className=''>N{totalSumRef.current}</h3>
+                cartState.length > 0 ?
+                    <div className="hidden lg:flex justify-center">
+                        <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
+                            <h3 className=''>🛒{cartState.length} {cartState.length < 2 ? 'item' : 'items'}</h3>
+                            <h3 className='font-semibold text-[22px]'><Link to='/checkout'>{cartState.length > 1 ? 'View orders' : 'View order'}</Link></h3>
+                            <h3 className=''>N{totalSumRef.current}</h3>
+                        </div>
                     </div>
-                </div>
-                :
-                null
+                    :
+                    null
             }
-            
+
             <div className='flex justify-center lg:mt-4'>
                 <div className='lg:w-[1200px] flex-col'>
                     <div className='flex flex-col lg:flex-row lg:gap-[33px]'>
@@ -342,7 +368,7 @@ function PreOrder() {
                     </div>
                 </div>
             </div>
-           
+
         </Section>
     )
 }

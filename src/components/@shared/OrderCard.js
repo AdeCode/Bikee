@@ -9,8 +9,8 @@ function OrderCard({image, price, quantity, name, id}) {
   const {dispatch} = useContext(CartContext)
 
   return (
-    <Container className='flex items-center'>
-        <div className='lg:mr-[14px]'>
+    <Container className='flex items-center justify-between'>
+        <div className='lg:mr-[14px] w-14 h-12 flex items-center'>
             <img src={image} alt='item' width='80px' height='50px'/>
         </div>
         <div className='flex items-center'>

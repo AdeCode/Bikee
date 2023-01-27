@@ -11,8 +11,8 @@ function CartCard({image, price, quantity, name, id}) {
     const {state:cartState, dispatch} = useContext(CartContext)
 
   return (
-    <Container className='flex items-center lg:mb-[14px]'>
-        <div className='lg:mr-[14px]'>
+    <Container className='flex items-center lg:mb-[14px] mb-3 pt-3 justify-between'>
+        <div className='lg:mr-[14px] mr-3 w-14 h-12 flex items-center'>
             <img src={image} alt='item' height='100px' width='150px'/>
         </div>
         <h3 className='font-normal text-[#19191D] lg:text-base text-sm lg:mr-[58px]'>{name}</h3>

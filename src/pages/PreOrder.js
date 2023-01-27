@@ -36,6 +36,8 @@ function PreOrder() {
 
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
+    products && console.log(products)
+
     // if(products) {
     //     accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
     //     bikesRef.current = products.data.data.filter(product => product.type === "BIKE")

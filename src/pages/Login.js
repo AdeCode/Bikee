@@ -158,7 +158,12 @@ export default function Login() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+      >
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
           Invalid Credentials
         </Alert>

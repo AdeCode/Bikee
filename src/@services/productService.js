@@ -6,7 +6,7 @@ import authHeader from "./authHeader";
 // console.log(auth)
 
 async function addProduct(payload){
-    const {data} = await httpService.post('/products', payload);
+    const {data} = await httpService.secureInstance.post('/products', payload);
     return data
 }
 
@@ -16,7 +16,7 @@ async function register(payload){
 }
 
 async function getProducts(){
-    const {data} = await httpService.get('/products')
+    const {data} = await httpService.guestInstance.get('/products')
     return data
 }
 
@@ -34,7 +34,7 @@ async function updateProduct(payload){
 }
 
 async function uploadImage(payload){
-    const {data} = await httpService.post(`/images`, payload, {
+    const {data} = await httpService.secureInstance.post(`/images`, payload, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },

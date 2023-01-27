@@ -42,7 +42,7 @@ function Checkout() {
                 <li className=''>Maintanance and Insuransce</li>
             </ul>
         </div>
-        <div className='lg:mt-[10px]'>
+        <div className='lg:mt-[5px]'>
             <h2 className='text-blue font-medium text-base ml-[140px] cursor-pointer' onClick={()=>{navigate(-1)}}>Go back</h2>
             {
                 cartState.length > 0 ? 
@@ -54,7 +54,7 @@ function Checkout() {
                             {
                                 cartState && cartState.map(({id, image_url, amount, quantity, name}) => {
                                     return (
-                                        <div key={id}>
+                                        <div key={id} className=''>
                                             <CartCard
                                                 image={image_url}
                                                 price={amount}
@@ -62,7 +62,7 @@ function Checkout() {
                                                 name={name}
                                                 id={id}
                                             />
-                                            <hr className='text-line mb-7'/>
+                                            <hr className='text-line lg:mb-4'/>
                                         </div>
                                     )
                                 })
@@ -73,7 +73,7 @@ function Checkout() {
                             <h3 className='text-[22px] lg:leading-7'>N{totalSumRef.current}</h3>
                         </div>
                     </div>
-                    <div className=''>
+                    <div className='mt-4 lg:mt-0'>
                         <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
                         <hr className='text-line mb-7'/>
                         <p className='font-semibold text-base text-[#000000] lg:mb-6'>Cart amount : {cartState.length} items</p>
@@ -92,10 +92,10 @@ function Checkout() {
                                 })
                             }
                         </div>
-                        <hr className='text-line mb-7'/>
+                        <hr className='text-line mb-4'/>
                         <div className='text-[#000000]'>
                             <h3 className='font-semibold text-lg lg:mb-3'>Select delivery options</h3>
-                            <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
+                            <div className='lg:mb-[29px] mb-4 flex flex-col lg:gap-[18px]'>
                                 <div className="">
                                     <label>
                                         <input
@@ -123,7 +123,7 @@ function Checkout() {
                                     </label>
                                 </div>
                             </div>
-                            <button onClick={checkOut} className='bg-red text-white py-[13px] px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
+                            <button onClick={checkOut} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
                                 Proceed To checkout
                             </button>
                         </div>

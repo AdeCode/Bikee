@@ -1,14 +1,16 @@
 import React, {useContext, useState, useRef} from 'react'
 import styled from 'styled-components'
-import CartCard from '../components/@shared/CartCard'
 import cartData from '../components/@shared/cartData'
 import orderData from '../components/@shared/OrderData'
 import OrderCard from '../components/@shared/OrderCard'
 import {useNavigate } from 'react-router-dom'
 import { CartContext } from '../contexts/CartContext'
 import SubMenu from '../components/@shared/SubMenu'
+import CartCard from '../components/@shared/CartCard'
+import { useMutation, useQuery } from 'react-query'
+import orderService from '../@services/orderService'
 
-function Checkout() {
+function OrderList() {
     const [deliveryType, setDeliveryType] = useState('')
     const navigate = useNavigate()
     const totalSumRef = useRef(0)
@@ -16,14 +18,20 @@ function Checkout() {
     const {state:cartState, dispatch} = useContext(CartContext)
     console.log(cartState)
 
-    if(cartState){
-        let total = cartState.map(item => item.total)
-        if (total){
-            const TotalSum = total.reduce(
-                (accumulator, currentValue) => accumulator + currentValue)
-                totalSumRef.current = TotalSum
-        }
-    }
+    const orderId = 'bb920a4d-a9cd-41b2-a58b-788581e23096'
+
+    const {data:order, isLoading, error, isError} = useQuery(['product',{orderId}], orderService.getUserOrders)
+
+    order && console.log(order)
+
+    // if(cartState){
+    //     let total = cartState.map(item => item.total)
+    //     if (total){
+    //         const TotalSum = total.reduce(
+    //             (accumulator, currentValue) => accumulator + currentValue)
+    //             totalSumRef.current = TotalSum
+    //     }
+    // }
 
     const onChange = (event) => {
         setDeliveryType(event.target.value)
@@ -37,7 +45,7 @@ function Checkout() {
   return (
     <Section>
         <SubMenu/>
-        <div className='lg:mt-[5px]'>
+        {/* <div className='lg:mt-[5px]'>
             <h2 className='text-blue font-medium text-base ml-[140px] cursor-pointer' onClick={()=>{navigate(-1)}}>Go back</h2>
             {
                 cartState.length > 0 ? 
@@ -130,7 +138,7 @@ function Checkout() {
                 </div>
             }
             
-        </div>
+        </div> */}
     </Section>
   )
 }
@@ -166,4 +174,4 @@ const Section = styled.section`
     }
 `
 
-export default Checkout
+export default OrderList

@@ -28,6 +28,7 @@ import Products from './pages/admin/Products';
 import Product from './pages/admin/Product';
 import EditProduct from './pages/admin/EditProduct';
 import OrderCart from './pages/OrderCart';
+import OrderHistory from './components/@shared/OrderHistory';
 
 function Routers() {
   return (
@@ -43,6 +44,7 @@ function Routers() {
               <Route path='summary' element={<OrderCart/>}></Route>
               <Route path='checkout' element={<Checkout/>}></Route>
               <Route path='order-summary' element={<OrderSummary/>}></Route>
+              <Route path='order-history' element={<OrderHistory/>}></Route>
             </Route>
             <Route path='/order-checkout' element={<OrderLayout/>}>
               <Route index element={<OrderSummary />} />

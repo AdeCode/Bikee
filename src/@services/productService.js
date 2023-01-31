@@ -11,7 +11,7 @@ async function addProduct(payload){
 }
 
 async function register(payload){
-    const {data} = await httpService.post('/create-user', payload)
+    const {data} = await httpService.guestInstance.post('/create-user', payload)
     return data
 }
 
@@ -22,14 +22,14 @@ async function getProducts(){
 
 async function getProduct({queryKey}){
     const [_key, {productId}] = queryKey
-    const {data} = await httpService.get(`/products/${productId}`)
+    const {data} = await httpService.guestInstance.get(`/products/${productId}`)
     return data
 }
 
 async function updateProduct(payload){
     const {productId} = payload
     console.log(productId)
-    const {data} = await httpService.put(`/products/${productId}`,payload)
+    const {data} = await httpService.secureInstance.put(`/products/${productId}`,payload)
     return data
 }
 

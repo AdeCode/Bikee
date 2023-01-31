@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import authService from '../@services/authService'
 import {useMutation, useQueryClient} from 'react-query'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
 
 function SignUpForm() {
     const navigate = useNavigate()
+    const {dispatch} = useContext(AuthContext)
+
 
 
     const signUpMutation = useMutation(authService.register, {
         onSuccess: res => {
             console.log(res)
-            alert('account created successfully')
+            dispatch({ type: 'LOGIN', payload: res })
+            alert(res.message)
             //navigate('/admin')
         },
         onError: err => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/home/Logo.png'
 import menu from '../images/home/menu.png'
@@ -6,6 +6,7 @@ import close from '../images/nav/close.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './nav.css'
 import {Link, useLocation} from 'react-router-dom'
+import { CartContext } from '../contexts/CartContext'
 
 
 function Nav() {
@@ -15,6 +16,10 @@ function Nav() {
     const location = useLocation()
     const currLocation = location.pathname
     // console.log(location.pathname)
+    const { state: cartState, dispatch } = useContext(CartContext)
+
+    cartState && console.log(cartState)
+
 
     const navBg = () => {
         if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') || currLocation.includes('/checkout') ){
@@ -42,7 +47,7 @@ function Nav() {
     }
 
     return (
-        <Navbar className='z-50 w-full lg:mb-[50px] absolute'>
+        <Navbar className='z-50 w-full lg:mb-[50px] fixed'>
             <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[25px] lg:pt-0 flex justify-between items-center ${bg} opacity-1 font-poppings lg:${navText} nav-menu z-30`}>
                 <div className='logo'>
                     {
@@ -58,7 +63,7 @@ function Nav() {
                     </div>
                     <li className='mb-9 lg:mb-0'>
                         <Link to='/'>
-                            Home
+                            Homes
                         </Link>
                     </li>
                     <li className='mb-9 lg:mb-0'>
@@ -108,6 +113,19 @@ function Nav() {
                         </ul>
                     </li>
                 </ul>
+                {
+                    cartState.length > 0 &&
+                    <ul className="">
+                        <li className='relative'>
+                            <Link to='/checkout' className='flex'>
+                                🛒 
+                                <span className='lg:absolute text-white lg:top-[-15px] lg:left-3 bg-[#FF0000] rounded-[50%] font-medium text-base h-7 w-7 flex justify-center items-center'>{cartState.length}</span> 
+                                Shopping
+                            </Link>
+                        </li>
+                    </ul>
+                }
+                
                 {/* <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
                     <div className='mb-9 lg:mb-0'>
                         <span className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>

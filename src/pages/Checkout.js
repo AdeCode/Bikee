@@ -31,6 +31,7 @@ function Checkout() {
     }
 
     const checkOut = () => {
+        console.log(deliveryType)
         navigate("/order-summary");
     }
 
@@ -118,7 +119,7 @@ function Checkout() {
                                     </label>
                                 </div>
                             </div>
-                            <button onClick={checkOut} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
+                            <button onClick={checkOut} disabled={deliveryType === '' ? true : false} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
                                 Proceed To checkout
                             </button>
                         </div>

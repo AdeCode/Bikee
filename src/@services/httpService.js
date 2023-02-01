@@ -32,7 +32,7 @@ secureInstance.interceptors.response.use(
         return response;
     },
     error => {
-        console.log('view error')
+        //console.log('view error')
         console.log(error)
         if (error.response.status === 401) {
             console.log('unauthorized '+error);

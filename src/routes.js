@@ -29,6 +29,7 @@ import Product from './pages/admin/Product';
 import EditProduct from './pages/admin/EditProduct';
 import OrderCart from './pages/OrderCart';
 import OrderHistory from './components/@shared/OrderHistory';
+import ProtectedRoute from './components/@shared/ProtectedRoute';
 
 function Routers() {
   return (
@@ -43,7 +44,11 @@ function Routers() {
               <Route path='pre-order' element={<PreOrder/>}></Route>
               <Route path='summary' element={<OrderCart/>}></Route>
               <Route path='checkout' element={<Checkout/>}></Route>
-              <Route path='order-summary' element={<OrderSummary/>}></Route>
+              <Route path='order-summary' element={
+                <ProtectedRoute>
+                  <OrderSummary/>
+                </ProtectedRoute>
+                }></Route>
               <Route path='order-history' element={<OrderHistory/>}></Route>
             </Route>
             <Route path='/order-checkout' element={<OrderLayout/>}>
@@ -68,7 +73,8 @@ function Routers() {
             <Route path="signup" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
             <Route path='/dashboard' element={<Dashboard />}>
-              <Route index element={<Main />} />
+              <Route index element={
+              <ProtectedRoute><Main /></ProtectedRoute>} />
               <Route path="add-product" element={<AddProduct />} />
               <Route path="orders" element={<Orders />} />
               <Route path="products" element={<Products />} />

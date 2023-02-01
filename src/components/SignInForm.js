@@ -3,18 +3,28 @@ import authService from '../@services/authService'
 import {useMutation, useQueryClient} from 'react-query'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
 
 function SigInForm() {
     const navigate = useNavigate()
+    const location = useLocation()
     const {dispatch} = useContext(AuthContext)
 
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
             //console.log(res)
             dispatch({ type: 'LOGIN', payload: res })
-            navigate('/dashboard')
+            console.log(location.state)
+            if(location.state === null){
+                navigate('/dashboard')
+            }else if(location?.state.from){
+                navigate(location.state.from)
+            }
+            // if(location?.state.from){
+            //     navigate(location.state.from)
+            // }else if (location.state === null){navigate('/dashboard')}
+            // navigate('/dashboard')
         },
         onError: err => {
             console.log(err.message)

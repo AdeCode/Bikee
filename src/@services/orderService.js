@@ -18,11 +18,19 @@ async function getUserOrders({queryKey}){
     return data
 }
 
+async function generatePaymentLink(payload){
+    const {data} = await httpService.secureInstance.post('/payments', payload);
+    return data
+}
+
+
+
 
 const orderService = {
     addOrder,
     getOrders,
     getUserOrders,
+    generatePaymentLink
 }
 
 export default orderService

@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import productService from '../@services/productService'
 import SubMenu from '../components/@shared/SubMenu'
+import { AuthContext } from '../contexts/AuthContext'
 
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('')
@@ -38,6 +39,9 @@ function PreOrder() {
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
     products && console.log(products)
+
+    const { state:user } = useContext(AuthContext)
+    user&&console.log(user)
 
     // if(products) {
     //     accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")

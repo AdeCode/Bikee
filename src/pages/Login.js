@@ -18,6 +18,7 @@ import {useNavigate} from 'react-router-dom'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Logo from '../images/home/Logo.png'
+import { AuthContext } from '../contexts/AuthContext';
 
 
 
@@ -45,6 +46,9 @@ export default function Login() {
 
     const [open, setOpen] = React.useState(false);
 
+    const {dispatch} = React.useContext(AuthContext)
+
+
     const handleClick = () => {
       setOpen(true);
     };
@@ -60,10 +64,12 @@ export default function Login() {
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
             console.log(res)
-            const accessToken = res.token
+            //const accessToken = res.token
+
+            dispatch({ type: 'LOGIN', payload: res })
 
             //persist to local storage
-            localStorage.setItem('token', accessToken)
+            //localStorage.setItem('token', accessToken)
             navigate('/dashboard')
         },
         onError: err => {

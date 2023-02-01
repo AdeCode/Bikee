@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import {Outlet} from "react-router-dom"
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 // import { theme } from '../../components/@theme/theme';
@@ -35,6 +36,11 @@ const Item = styled(Paper)(({ theme }) => ({
 function Dashboard() {
   // const theme = useStyles()
   const classes = useStyles()
+
+  const {state, dispatch} = useContext(AuthContext)
+  
+  state && console.log(state)
+
   return (
     <div style={{display:'flex',flexDirection:'column',margin:'0px'}}>
       <Grid item xs container direction="column" margin="0px" spacing={2}> 

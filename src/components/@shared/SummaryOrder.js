@@ -7,14 +7,24 @@ import Modal from './Modal'
 import {useMutation} from 'react-query'
 import orderService from '../../@services/orderService'
 import helperFunction from '../../@helpers/helperFunction'
+import { v4 as uuid } from 'uuid';
+import Iframe from 'react-iframe'
+import PaymentModal from './PaymentModal'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function SummaryOrder() {
-    const [paymentType, setpaymentType] = useState('')
+    const [paymentType, setPaymentType] = useState('')
+    const [paymentURL, setPaymentURL] = useState('')
     const navigate = useNavigate()
     const {state:cartState, dispatch} = useContext(CartContext)
     const totalSumRef = useRef(0)
+    const orderRef = uuid().slice(0,13)
 
     cartState && console.log(cartState)
+
+    const {state:user} = useContext(AuthContext)
+    user && console.log(user)
+
    
     //console.log(helperFunction.getTotalOrderAmount(cartState))
 
@@ -29,14 +39,41 @@ function SummaryOrder() {
         }
     })
 
+    const generatePaymentLinkMutation = useMutation(orderService.generatePaymentLink,{
+        onSuccess: res => {
+            console.log(res)
+            setPaymentURL(res.data)
+            openPaymentModal()
+            submitOrder()
+        },
+        onError: err => {
+            console.log(err.message)
+        }
+    })
+
     const submitOrder = () => {
         let payload = helperFunction.getOrderData(cartState)
         payload.total_amount=helperFunction.getTotalOrderAmount(cartState)
+        payload.order_ref=orderRef
+        console.log('submit order')
         console.log(payload)
         addOrderMutation.mutate(payload)
     }
 
+    const processPayment = () => {
+        let payload = {
+            amount:helperFunction.getTotalOrderAmount(cartState),
+            provider:'PAYSTACK',
+            order_ref:orderRef
+        }
+        console.log('process payment')
+        console.log(payload)
+        generatePaymentLinkMutation.mutate(payload)
+    }
+
     const [modal, setModal] = useState(false)
+
+    const [paymentModal, setPaymentModal] = useState(false)
 
     const closeModal = () => {
         setModal(false)
@@ -45,6 +82,16 @@ function SummaryOrder() {
 
     const openModal = () => {
         setModal(true)
+        console.log(modal)
+    }
+
+    const closePaymentModal = () => {
+        setPaymentModal(false)
+        console.log(paymentModal)
+    }
+
+    const openPaymentModal = () => {
+        setPaymentModal(true)
         console.log(modal)
     }
 
@@ -59,7 +106,7 @@ function SummaryOrder() {
 
 
     const onChange = (event) => {
-        setpaymentType(event.target.value)
+        setPaymentType(event.target.value)
         console.log(paymentType)
     }
 
@@ -83,6 +130,20 @@ function SummaryOrder() {
                         <p className='font-normal text-sm'>Motion Mobility.</p>
                     </div>
                 </Modal>
+            }
+            {paymentModal &&
+                <PaymentModal
+                    closeModal={() => closePaymentModal()}
+                >
+                    <Iframe url={paymentURL}
+                        width="640px"
+                        height="420px"
+                        id=""
+                        className=""
+                        display="block"
+                        position="relative"
+                    />
+                </PaymentModal>
             }
             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
             <hr className='text-line mb-7' />
@@ -148,8 +209,8 @@ function SummaryOrder() {
                         </label>
                     </div>
                 </div>
-                <button onClick={submitOrder} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
-                    Proceed To checkout
+                <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
+                    Proceed To Payment
                 </button>
             </div>
         </div>

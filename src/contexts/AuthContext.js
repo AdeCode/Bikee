@@ -4,9 +4,9 @@ import { authReducer } from "../reducers/AuthReducer";
 export const AuthContext = createContext()
 
 const initialState = {
-    isAuthenticated: false,
-    user: null,
-    token: null,
+    // isAuthenticated: false,
+    // user: null,
+    // token: null,
   };
 
 function AuthContextProvider({children}) {

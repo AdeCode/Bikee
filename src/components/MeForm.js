@@ -1,45 +1,19 @@
-import React, { useContext } from 'react'
-import authService from '../@services/authService'
-import {useMutation, useQueryClient} from 'react-query'
+import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import {useNavigate, useLocation, Link} from 'react-router-dom'
-import { AuthContext } from '../contexts/AuthContext'
 
-function SigInForm() {
-    const navigate = useNavigate()
-    const location = useLocation()
-    const {dispatch} = useContext(AuthContext)
+function MeForm() {
+    const submitMutation = () => {
 
-    const loginMutation = useMutation(authService.login, {
-        onSuccess: res => {
-            //console.log(res)
-            dispatch({ type: 'LOGIN', payload: res })
-            console.log(location.state)
-            if(location.state === null){
-                navigate('/dashboard')
-            }else if(location?.state.from){
-                navigate(location.state.from)
-            }
-            // if(location?.state.from){
-            //     navigate(location.state.from)
-            // }else if (location.state === null){navigate('/dashboard')}
-            // navigate('/dashboard')
-        },
-        onError: err => {
-            console.log(err.message)
-            alert("Could not sign in")
-            //handleClick()
-        }
-    }) 
+    }
 
     const onRegister = (values) => {
-        //console.log(values)
-        loginMutation.mutate(values)
+        console.log(values)
     }
 
   return (
-            <Formik
+    <div>
+        <Formik
                 initialValues={{
                     email:'',
                     password:'',
@@ -51,7 +25,8 @@ function SigInForm() {
                             .required("email field can not be empty"),
                         password: Yup.string()
                             .required("password field can not be empty")
-                            .min(6, "Password must be at least 6 characters")
+                            .min(6, "Password must be at least 6 characters"),
+                        paymentType:Yup.string().required('Please select payment type')
                     })
                 }
                 onSubmit={(values, { setSubmitting }) => {
@@ -71,12 +46,14 @@ function SigInForm() {
                             <Field type='password' className='h-[50px] px-3' name='password' placeholder='*********'/>
                             <ErrorMessage name="password" component="div" className='text-red'/>
                         </div>
-                        <div className='flex justify-end w-full mt-1'>
-                            <Link to='/signup' className='text-red font-medium'>Create an account</Link>
+                        <div className='form-group flex flex-col'>
+                            <label className='text-lg lg:text-lg'>Password</label>
+                            <Field type='radio' className='h-[50px] px-3'  name='paymentType' placeholder='*********'/>
+                            <ErrorMessage name="password" component="div" className='text-red'/>
                         </div>
                         <button type="submit" disabled={isSubmitting} className='w-full py-[11px] text-white bg-red rounded-[6px] text-[16px] mt-[23px]'>
                             {
-                                loginMutation.isLoading 
+                                submitMutation.isLoading 
                                 ? "Please wait..." 
                                 : "Sign In"
                             }
@@ -84,10 +61,8 @@ function SigInForm() {
                     </Form>
                 )}
             </Formik>
+    </div>
   )
 }
 
-export default SigInForm
-
-
-
+export default MeForm

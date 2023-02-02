@@ -30,6 +30,7 @@ import EditProduct from './pages/admin/EditProduct';
 import OrderCart from './pages/OrderCart';
 import OrderHistory from './components/@shared/OrderHistory';
 import ProtectedRoute from './components/@shared/ProtectedRoute';
+import MeForm from './components/MeForm';
 
 function Routers() {
   return (
@@ -72,6 +73,7 @@ function Routers() {
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/meform" element={<MeForm />} />
             <Route path='/dashboard' element={<Dashboard />}>
               <Route index element={
               <ProtectedRoute><Main /></ProtectedRoute>} />

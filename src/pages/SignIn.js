@@ -7,7 +7,7 @@ import SigInForm from '../components/SignInForm'
 function SignIn() {
     return (
         <Container className='flex justify-center items-center bg-white h-[100vh]'>
-            <div className='lg:w-[768px] flex content lg:h-fit'>
+            <div className='lg:w-[1168px] flex content lg:h-fit'>
                 <div className='left flex items-center justify-center px-[50px] py-[126px]'>
                     <div className='lg:w-[356px] flex flex-col items-center'>
                         <img src={Logo} alt='logo' className='mb-[46px]'/>

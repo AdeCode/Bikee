@@ -5,8 +5,10 @@ import menu from '../images/home/menu.png'
 import close from '../images/nav/close.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './nav.css'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { CartContext } from '../contexts/CartContext'
+import { AuthContext } from '../contexts/AuthContext'
+import { BiUser } from "react-icons/bi";
 
 
 function Nav() {
@@ -15,14 +17,19 @@ function Nav() {
     const [navText, setNavText] = useState('')
     const location = useLocation()
     const currLocation = location.pathname
+    const navigate = useNavigate()
     // console.log(location.pathname)
     const { state: cartState, dispatch } = useContext(CartContext)
+
+    const { state:user, dispatch:authDispatch } = useContext(AuthContext)
+    user&&console.log(user)
+
 
     cartState && console.log(cartState)
 
 
     const navBg = () => {
-        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') || currLocation.includes('/checkout') ){
+        if(currLocation.includes('/restaurant') || currLocation.includes('/sme') || currLocation.includes('/pre') || currLocation.includes('/checkout') || currLocation.includes('/order-summary') ){
             setBg('lg:bg-white')
             setNavText('nav_text')
         }else{
@@ -46,6 +53,11 @@ function Nav() {
         setMobileMenu(false)
     }
 
+    const logout = () => {
+        authDispatch({type:'LOGOUT'})
+        // navigate('/signin')
+    }
+
     return (
         <Navbar className='z-50 w-full lg:mb-[50px] fixed'>
             <nav className={`lg:h-[90px] lg:px-[100px] px-[25px] pt-[25px] lg:pt-0 flex justify-between items-center ${bg} opacity-1 font-poppings lg:${navText} nav-menu z-30`}>
@@ -63,7 +75,7 @@ function Nav() {
                     </div>
                     <li className='mb-9 lg:mb-0'>
                         <Link to='/'>
-                            Homes
+                            Home
                         </Link>
                     </li>
                     <li className='mb-9 lg:mb-0'>
@@ -113,16 +125,29 @@ function Nav() {
                         </ul>
                     </li>
                 </ul>
-                {
-                    cartState.length > 0 &&
-                    <ul className="">
-                        <li className='relative'>
-                            <Link to='/checkout' className='flex'>
-                                🛒 
-                                <span className='lg:absolute text-white lg:top-[-15px] lg:left-3 bg-[#FF0000] rounded-[50%] font-medium text-base h-7 w-7 flex justify-center items-center'>{cartState.length}</span> 
-                                Shopping
-                            </Link>
-                        </li>
+                { (cartState.length > 0 || user.isAuthenticated) && 
+                    
+                    <ul className="flex gap-5">
+                        {
+                            user.isAuthenticated && 
+                            <li className={`flex gap-2 items-center font-normal text-sm text-[#333F51] cursor-pointer lg:${navText}`}>
+                                <BiUser/>Account
+                                <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                                    <li className={`lg:text-sm lg:${navText} hover:text-red`} onClick={logout}>
+                                        Logout
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        {cartState.length > 0 &&
+                            <li className='relative'>
+                                <Link to='/checkout' className='flex items-center'>
+                                    🛒 
+                                    <span className='lg:absolute text-white lg:top-[-15px] lg:left-3 bg-[#FF0000] rounded-[50%] font-medium text-xs h-5 w-5 flex justify-center items-center'>{cartState.length}</span> 
+                                    <h3 className={`text-sm text-[#333F51] lg:${navText} font-normal`}>Shopping</h3>
+                                </Link>
+                            </li>
+                        }
                     </ul>
                 }
                 

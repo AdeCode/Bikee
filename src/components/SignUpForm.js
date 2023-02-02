@@ -5,9 +5,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import {useNavigate} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
+import {useLocation} from 'react-router-dom'
 
 function SignUpForm() {
     const navigate = useNavigate()
+    const location = useLocation()
     const {dispatch} = useContext(AuthContext)
 
 
@@ -16,7 +18,12 @@ function SignUpForm() {
         onSuccess: res => {
             console.log(res)
             dispatch({ type: 'LOGIN', payload: res })
-            alert(res.message)
+            if(location.state === null){
+                navigate('/order-summary')
+            }else if(location?.state.from){
+                navigate(location.state.from)
+            }
+            //alert(res.message)
             //navigate('/admin')
         },
         onError: err => {
@@ -82,7 +89,7 @@ function SignUpForm() {
                             {
                                 signUpMutation.isLoading 
                                 ? "Please wait..." 
-                                : "Sign In"
+                                : "Sign Up"
                             }
                         </button>
                     </Form>

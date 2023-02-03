@@ -23,7 +23,10 @@ import helperFunction from '../@helpers/helperFunction'
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('Blue')
     const [selectedBike, setSelectedBike] = useState([])
+    const [maintanance, setMaintanance] = useState([])
+    const [insurance, setInsurance] = useState([])
     const [availableBikes, setAvailableBikes] = useState([])
+
 
     let accessories = []
     let bikes = []
@@ -38,15 +41,10 @@ function PreOrder() {
     const { state: cartState, dispatch } = useContext(CartContext)
     cartState && console.log(cartState)
 
-    const bikeNumber = (arr) => {
-        const newBikes = arr.filter(order => order.Type === 'BIKE')
-        return newBikes
-    }
-    //cartState&& console.log(bikeNumber(cartState))
-    // console.log(helperFunction.numberOfBike(cartState))
+    
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
-    // products && console.log(products)
+    products && console.log(products)
 
     const { state:user } = useContext(AuthContext)
     // user&&console.log(user)
@@ -64,6 +62,9 @@ function PreOrder() {
         if (products) {
             accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
             bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
+            const maintananceProducts = products.data.data.filter(product => product.type === "MAINTENANCE")
+            setInsurance(products.data.data.filter(product => product.type === "INSURANCE"))
+            setMaintanance(maintananceProducts)
             
             bikesRef.current.push(bikes[0])
         }
@@ -82,14 +83,12 @@ function PreOrder() {
     }, [cartState])
 
     // products && console.log(products.data.data)
-    let newBikes = []
     if (products) {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
         console.log(bikes)
         bikes[0].name=bikeColor+' Bike'
-        newBikes.push(bikes[0])
-        newBikes.push(bikes[1])
+       
     }
     // console.log(accessoriesRef.current)
     // console.log(bikesRef.current)
@@ -270,7 +269,7 @@ function PreOrder() {
                             <input type='radio' name='bikeColor' 
                                 checked={bikeColor === "Yellow"}
                                 onChange={bikeColorChange} value='Yellow'
-                                className="w-6 h-6 accent-yellow-500"
+                                className="w-6 h-6 accent-yellow-700"
                             />
                         </div>
                         
@@ -281,9 +280,13 @@ function PreOrder() {
             </div>
 
             <div className='flex flex-col items-center justify-center lg:pt-[57px] lg:pb-[67px] pt-4'>
-                <div className='flex justify-start lg:w-[1220px] w-full lg:px-2 px-8'>
-                    <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>Accessories</span>
-                </div>
+                {
+                    accessories.length > 0 &&
+                    <div className='flex justify-start lg:w-[1220px] w-full lg:px-2 px-8'>
+                        <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>Accessories</span>
+                    </div>
+                }
+                
                 <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
                         accessories.map(accessory => {
@@ -317,6 +320,7 @@ function PreOrder() {
             <div className='flex justify-center lg:mt-4'>
                 <div className='lg:w-[1200px] flex-col'>
                     <div className='flex flex-col lg:flex-row lg:gap-[33px]'>
+                        
                         <div className='bg-gray_background rounded-[7px] pt-[33px] pb-4 px-6 flex flex-col items-center mx-7 lg:mx-0'>
                             <div className='lg:mb-[33px] lg:w-[170px] lg:h-[170px]'>
                                 <img src={theft} alt='theft' />
@@ -336,29 +340,37 @@ function PreOrder() {
                             <h2 className='mb-[17px] font-medium text-[22px] text-[#0B0B0B]'>Bike value</h2>
                             <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>Your e-bike value should remain just what you paid for it. </p>
                         </div>
-                        {/* <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
-                            <h3 className='mb-5 font-semibold text-base text-black'>Insurance package</h3>
-                            <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
-                                <div className='flex flex-col'>
-                                    <h3 className='mb-[3px] font-semibold'>120,000</h3>
-                                    <h3 className='font-normal'>Billed montly</h3>
-                                </div>
-                                <div className='flex items-center'>
-                                    <div className='items-center flex w-[35px] h-[35px]'>
-                                        <img src={ellipse} alt='ellipse' />
+                        {
+                            insurance.length > 0 && 
+                            insurance.map(product => {
+                                return (
+                                    <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
+                                        <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
+                                        <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
+                                            <div className='flex flex-col'>
+                                                <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                <h3 className='font-normal'>Billed montly</h3>
+                                            </div>
+                                            <div className='flex items-center'>
+                                                <div className='items-center flex w-[35px] h-[35px]'>
+                                                    <img src={ellipse} alt='ellipse' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
+                                            <div className='flex flex-col'>
+                                                <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                <h3>Billed montly</h3>
+                                            </div>
+                                            <div className='flex items-center'>
+                                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product})} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
-                                <div className='flex flex-col'>
-                                    <h3 className='mb-[3px] font-semibold'>120,000</h3>
-                                    <h3>Billed montly</h3>
-                                </div>
-                                <div className='flex items-center'>
-                                    <button className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
-                                </div>
-                            </div>
-                        </div> */}
+                                )
+                            })
+                        }
+                       
                     </div>
                     <div className='lg:w-[1200px] flex-col lg:mt-[100px] mx-7 lg:mx-0 mt-5'>
                         {/* <h3 className='font-medium text-base text-nav_text lg:mb-8 mb-4'>Maintanance</h3> */}
@@ -371,20 +383,29 @@ function PreOrder() {
                                 <h2 className='mb-[17px] font-medium text-[22px] text-[#0B0B0B]'>Assistance</h2>
                                 <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>In case of weekly or monthly services, we'll always assist you any time.</p>
                             </div>
-                            {/* <div className='flex items-center h-full mt-8 lg:mt-0'>
-                                <div className='flex flex-col item p-6 card rounded-2xl h-fit'>
-                                    <h3 className='mb-5 font-semibold text-base text-black'>Maintanance package</h3>
-                                    <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
-                                        <div className='flex flex-col'>
-                                            <h3 className='mb-[3px] font-semibold'>120,000</h3>
-                                            <h3>Billed montly</h3>
+                            {
+                                maintanance.length > 0 &&
+
+                                maintanance.map(product => {
+                                    return (
+                                        <div className='flex items-center h-full mt-8 lg:mt-0'>
+                                            <div className='flex flex-col item p-6 card rounded-2xl h-fit'>
+                                                <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
+                                                <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
+                                                    <div className='flex flex-col'>
+                                                        <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                        <h3>Billed montly</h3>
+                                                    </div>
+                                                    <div className='flex items-center'>
+                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product})} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='flex items-center'>
-                                            <button className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
+                                    )
+                                })
+                            }
+                            
                         </div>
                     </div>
                 </div>

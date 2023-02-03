@@ -17,7 +17,7 @@ function SigInForm() {
             dispatch({ type: 'LOGIN', payload: res })
             console.log(location.state)
             if(location.state === null){
-                navigate('/dashboard')
+                navigate('/')
             }else if(location?.state.from){
                 navigate(location.state.from)
             }

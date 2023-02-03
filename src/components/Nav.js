@@ -151,19 +151,26 @@ function Nav() {
                     </ul>
                 }
                 
-                {/* <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
-                    <div className='mb-9 lg:mb-0'>
-                        <span className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>
-                            Login
-                        </span>
-                        <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm hover:text-red'>Last-mile</li>
-                            <li className='lg:text-sm hover:text-red'>APIs</li>
-                            <li className='lg:text-sm hover:text-red'>Rider App</li>
-                        </ul>
+                {
+                    !user.isAuthenticated &&
+                    <div className='lg:flex hidden items-center lg:gap-6 font-medium text-white'>
+                        <div className='mb-9 lg:mb-0'>
+                            <Link to='/signin' className='menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0'>
+                                Login
+                            </Link>
+                            <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
+                                <li className='lg:text-sm hover:text-red'>Last-mile</li>
+                                <li className='lg:text-sm hover:text-red'>APIs</li>
+                                <li className='lg:text-sm hover:text-red'>Rider App</li>
+                            </ul>
+                        </div>
+                        <Link to='/signup' className='bg-red py-2 px-4 text-sm rounded-md'>
+
+                            Sign up
+                        </Link>
                     </div>
-                    <button className='bg-red py-2 px-4 text-sm rounded-md'>Sign up</button>
-                </div> */}
+                }
+                
                 <button className='lg:hidden flex' onClick={toggleMobileMenu}>
                     <img src={menu} alt='menu' />
                 </button>

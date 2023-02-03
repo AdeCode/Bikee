@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import {useNavigate} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
 import {useLocation} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 function SignUpForm() {
     const navigate = useNavigate()
@@ -19,16 +20,22 @@ function SignUpForm() {
             console.log(res)
             dispatch({ type: 'LOGIN', payload: res })
             if(location.state === null){
-                navigate('/order-summary')
+                navigate('/')
             }else if(location?.state.from){
                 navigate(location.state.from)
             }
+            toast.success(res.message, {
+                theme: "colored",
+            }) 
             //alert(res.message)
             //navigate('/admin')
         },
         onError: err => {
             console.log(err.message)
-            alert("Could not create account")
+            toast.error(err.response.data.message[0], {
+                theme: "colored",
+              })
+            //alert("Could not create account")
             //handleClick()
         }
     }) 

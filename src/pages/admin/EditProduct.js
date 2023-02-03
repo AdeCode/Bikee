@@ -178,8 +178,8 @@ function EditProduct() {
             startAdornment={<InputAdornment position="start">N</InputAdornment>}
             label="Amount"
             name='amount'
-            // defaultValue={product.data.amount}
-            value={product.data.amount}
+            defaultValue={product.data.amount}
+            //value={product.data.amount}
           />
         </FormControl>
         </div>

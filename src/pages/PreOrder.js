@@ -18,10 +18,11 @@ import { useQuery } from 'react-query'
 import productService from '../@services/productService'
 import SubMenu from '../components/@shared/SubMenu'
 import { AuthContext } from '../contexts/AuthContext'
+import helperFunction from '../@helpers/helperFunction'
 
 function PreOrder() {
-    const [bikeColor, setBikeColor] = useState('')
-
+    const [bikeColor, setBikeColor] = useState('Blue')
+    const [selectedBike, setSelectedBike] = useState([])
     const [availableBikes, setAvailableBikes] = useState([])
 
     let accessories = []
@@ -35,20 +36,22 @@ function PreOrder() {
 
 
     const { state: cartState, dispatch } = useContext(CartContext)
+    cartState && console.log(cartState)
 
+    const bikeNumber = (arr) => {
+        const newBikes = arr.filter(order => order.Type === 'BIKE')
+        return newBikes
+    }
+    //cartState&& console.log(bikeNumber(cartState))
+    // console.log(helperFunction.numberOfBike(cartState))
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
-    products && console.log(products)
+    // products && console.log(products)
 
     const { state:user } = useContext(AuthContext)
-    user&&console.log(user)
+    // user&&console.log(user)
 
-    // if(products) {
-    //     accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
-    //     bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
-    // }
-    
-
+   
     const calculateTotalPrice = () => {
         if (cartState) {
             let total = cartState.map(item => item.total)
@@ -63,9 +66,10 @@ function PreOrder() {
             bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
             
             bikesRef.current.push(bikes[0])
-            // newBikes.push(bikes[1])
         }
         console.log(bikesRef.current)
+        const filteredCart = cartState.filter(cart => cart.type === 'BIKE')
+        setSelectedBike(filteredCart)
 
         amountRef.current = calculateTotalPrice()
         const initialValue = 0;
@@ -83,6 +87,7 @@ function PreOrder() {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
         console.log(bikes)
+        bikes[0].name=bikeColor+' Bike'
         newBikes.push(bikes[0])
         newBikes.push(bikes[1])
     }
@@ -91,16 +96,22 @@ function PreOrder() {
 
     const bikeColorChange = (event) => {
         setBikeColor(event.target.value)
+        console.log(bikeColor)
     }
 
     const changeBikeColor = (bikeColor) => {
-        if (bikeColor === 'red') {
+        if (bikeColor === 'Red') {
             return redBike
-        } else if (bikeColor === 'yellow') {
+        } else if (bikeColor === 'Yellow') {
             return bikeRed
         } else {
             return blue
         }
+    }
+
+    let bikePayload = {
+        name:bikeColor,
+
     }
 
     return (
@@ -202,10 +213,12 @@ function PreOrder() {
 
 
                 <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
-                    <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>Bikee</h2>
+                    <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{bikeColor} Bikee</h2>
                     <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
-                    <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N1,200,000.00</h3>
-                    <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikes[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
+                    <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>
+                        {helperFunction.nairaFormat(1200000)}
+                    </h3>
+                    <button disabled={selectedBike.length > 0} onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikes[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
                     <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
                         <div className=''>
                             <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
@@ -245,18 +258,18 @@ function PreOrder() {
                         <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
                         <div className='flex lg:justify-end gap-6'>
                             <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "red"}
-                                onChange={bikeColorChange} value='red'
+                                checked={bikeColor === "Red"}
+                                onChange={bikeColorChange} value='Red'
                                 className="w-6 h-6 accent-red text-red"
                             />
                             <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "blue"}
-                                onChange={bikeColorChange} value='blue'
+                                checked={bikeColor === "Blue"}
+                                onChange={bikeColorChange} value='Blue'
                                 className="w-6 h-6 accent-blue border-blue"
                             />
                             <input type='radio' name='bikeColor' 
-                                checked={bikeColor === "yellow"}
-                                onChange={bikeColorChange} value='yellow'
+                                checked={bikeColor === "Yellow"}
+                                onChange={bikeColorChange} value='Yellow'
                                 className="w-6 h-6 accent-yellow-500"
                             />
                         </div>

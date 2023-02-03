@@ -150,12 +150,12 @@ function SummaryOrder() {
             <p className='font-semibold text-base text-[#000000] lg:mb-6'>Cart amount : {cartState.length} items</p>
             <div className='flex flex-col lg:gap-2'>
                 {
-                    cartState.map(({ id, image_url, price, quantity, name }) => {
+                    cartState.map(({ id, image_url, total, quantity, name }) => {
                         return (
                             <OrderCard
                                 key={id}
                                 image={image_url}
-                                price={price}
+                                price={total}
                                 quantity={quantity}
                                 id={id}
                                 name={name}
@@ -166,7 +166,7 @@ function SummaryOrder() {
             </div>
             <div className='flex flex-col font-normal text-base mt-7'>
                 <div className='flex justify-between'>
-                    <h3>Subtotal</h3><h3 className=''>N{totalSumRef.current}</h3>
+                    <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                 </div>
                 <div className='flex justify-between mt-3'>
                     <h3 className='font-normal text-xl' >Bikee delivery</h3><h3 className=''>Free</h3>
@@ -174,7 +174,7 @@ function SummaryOrder() {
             </div>
             <hr className='text-line mb-7' />
             <div className='flex justify-between'>
-                <h2 className='font-medium text-xl'>Total</h2> <span className='font-bold text-xl'>N{totalSumRef.current}</span>
+                <h2 className='font-medium text-xl'>Total</h2> <span className='font-bold text-xl'>{helperFunction.nairaFormat(totalSumRef.current)}</span>
             </div>
             <hr className='text-line mb-7' />
             <div className='text-[#000000]'>

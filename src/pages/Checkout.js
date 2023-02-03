@@ -7,6 +7,7 @@ import OrderCard from '../components/@shared/OrderCard'
 import {useNavigate } from 'react-router-dom'
 import { CartContext } from '../contexts/CartContext'
 import SubMenu from '../components/@shared/SubMenu'
+import helperFunction from '../@helpers/helperFunction'
 
 function Checkout() {
     const [deliveryType, setDeliveryType] = useState('')
@@ -66,7 +67,7 @@ function Checkout() {
                         </div>
                         <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
                             <h3 className='text-base'>Cart total : {cartState.length} items</h3>
-                            <h3 className='text-[22px] lg:leading-7'>N{totalSumRef.current}</h3>
+                            <h3 className='text-[22px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                         </div>
                     </div>
                     <div className='mt-4 lg:mt-0'>

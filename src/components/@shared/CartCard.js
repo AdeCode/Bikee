@@ -3,6 +3,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styled from 'styled-components';
+import helperFunction from '../../@helpers/helperFunction';
 import { CartContext } from '../../contexts/CartContext'
 
 
@@ -24,7 +25,7 @@ function CartCard({image, price, quantity, name, id}) {
                     <MdKeyboardArrowDown className='cursor-pointer' onClick={()=>{dispatch({type:'DECREASE',payload:{id}})}}/>
                 </div>
             </div>
-            <span className='font-medium text-base text-[#000000]'>x {price}</span>
+            <span className='font-medium text-base text-[#000000]'>x {helperFunction.nairaFormat(price)}</span>
         </div>
         <span className='ml-4 font-bold text-2xl cursor-pointer' onClick={()=>dispatch({type:'REMOVE_PRODUCT',payload:{id}})}>
             <MdDeleteOutline/>    

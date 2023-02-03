@@ -97,7 +97,7 @@ function SummaryOrder() {
 
     if(cartState){
         let total = cartState.map(item => item.total)
-        if (total){
+        if (total.length > 0){
             const TotalSum = total.reduce(
                 (accumulator, currentValue) => accumulator + currentValue)
                 totalSumRef.current = TotalSum

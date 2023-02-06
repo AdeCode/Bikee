@@ -24,7 +24,7 @@ function SignUpForm() {
             }else if(location?.state.from){
                 navigate(location.state.from)
             }
-            toast.success(res.message, {
+            toast.success("Registration Successful, Check you email for your password", {
                 theme: "colored",
             }) 
             //alert(res.message)

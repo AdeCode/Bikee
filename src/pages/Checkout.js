@@ -19,7 +19,7 @@ function Checkout() {
 
     if(cartState){
         let total = cartState.map(item => item.total)
-        if (total){
+        if (total && total.length > 0){
             const TotalSum = total.reduce(
                 (accumulator, currentValue) => accumulator + currentValue)
                 totalSumRef.current = TotalSum
@@ -65,10 +65,14 @@ function Checkout() {
                                 })
                             }
                         </div>
-                        <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
-                            <h3 className='text-base'>Cart total : {cartState.length} items</h3>
-                            <h3 className='text-[22px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
-                        </div>
+                        {
+                            cartState.length > 0 &&
+                            <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
+                                <h3 className='text-base'>Cart total : {cartState.length} items</h3>
+                                <h3 className='text-[22px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
+                            </div>
+                        }
+                        
                     </div>
                     <div className='mt-4 lg:mt-0'>
                         <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>

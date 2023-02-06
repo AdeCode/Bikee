@@ -19,7 +19,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Logo from '../images/home/Logo.png'
 import { AuthContext } from '../contexts/AuthContext';
-
+import {toast} from 'react-toastify'
 
 
 function Copyright(props) {
@@ -74,6 +74,9 @@ export default function Login() {
         },
         onError: err => {
             console.log(err.message)
+            toast.error(err.response.data.message, {
+              theme: "colored",
+            })
             //alert("invalid credentials")
             handleClick()
         }

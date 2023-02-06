@@ -5,6 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import {useNavigate, useLocation, Link} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
+import {toast} from 'react-toastify'
+
 
 function SigInForm() {
     const navigate = useNavigate()
@@ -28,7 +30,10 @@ function SigInForm() {
         },
         onError: err => {
             console.log(err.message)
-            alert("Could not sign in")
+            toast.error(err.response.data.message, {
+                theme: "colored",
+              })
+            // alert("Could not sign in")
             //handleClick()
         }
     }) 

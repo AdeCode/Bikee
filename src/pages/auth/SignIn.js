@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import signBic from '../images/auth/signBic.png'
-import Logo from '../images/home/Logo.png'
-import SigInForm from '../components/SignInForm'
+import signBic from '../../images/auth/signBic.png'
+import Logo from '../../images/home/Logo.png'
+import SigInForm from '../../components/SignInForm'
 
 function SignIn() {
     return (

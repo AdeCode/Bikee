@@ -79,6 +79,9 @@ function SigInForm() {
                         <div className='flex justify-end w-full mt-1'>
                             <Link to='/signup' className='text-red font-medium'>Create an account</Link>
                         </div>
+                        <div className='flex justify-end w-full mt-1'>
+                            <Link to='/forgot-password' className='font-medium'>Forgot Password?</Link>
+                        </div>
                         <button type="submit" disabled={isSubmitting} className='w-full py-[11px] text-white bg-red rounded-[6px] text-[16px] mt-[23px]'>
                             {
                                 loginMutation.isLoading 

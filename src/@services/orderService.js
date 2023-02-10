@@ -7,8 +7,8 @@ async function addOrder(payload){
 }
 
 async function getOrders({queryKey}){
-    const [_key, {orderId}] = queryKey
-    const {data} = await httpService.guestInstance.get(`/products/${orderId}`)
+    const [_key, {userId}] = queryKey
+    const {data} = await httpService.secureInstance.get(`/all-orders/${userId}`)
     return data
 }
 

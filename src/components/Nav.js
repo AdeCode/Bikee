@@ -134,6 +134,11 @@ function Nav() {
                                 <BiUser/>Account
                                 <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
                                     <li className={`lg:text-sm lg:${navText} hover:text-red`} onClick={logout}>
+                                        <Link to='/profile'>
+                                            Profile
+                                        </Link>
+                                    </li>
+                                    <li className={`lg:text-sm lg:${navText} hover:text-red`} onClick={logout}>
                                         Logout
                                     </li>
                                 </ul>

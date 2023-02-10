@@ -13,13 +13,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useMutation} from 'react-query'
-import authService from '../@services/authService';
 import {useNavigate} from 'react-router-dom'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import Logo from '../images/home/Logo.png'
-import { AuthContext } from '../contexts/AuthContext';
+import Logo from '../../images/home/Logo.png'
+import { AuthContext } from '../../contexts/AuthContext';
 import {toast} from 'react-toastify'
+import authService from '../../@services/authService';
 
 
 function Copyright(props) {

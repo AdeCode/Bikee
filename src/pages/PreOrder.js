@@ -25,6 +25,8 @@ function PreOrder() {
     const [selectedBike, setSelectedBike] = useState([])
     const [maintanance, setMaintanance] = useState([])
     const [insurance, setInsurance] = useState([])
+    const [insurancePaymentType, setInsurancePaymentType] = useState('')
+    const [assistancePaymentType, setAssistancePaymentType] = useState('')
     const [availableBikes, setAvailableBikes] = useState([])
 
 
@@ -41,15 +43,15 @@ function PreOrder() {
     const { state: cartState, dispatch } = useContext(CartContext)
     cartState && console.log(cartState)
 
-    
+
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
     products && console.log(products)
 
-    const { state:user } = useContext(AuthContext)
+    const { state: user } = useContext(AuthContext)
     // user&&console.log(user)
 
-   
+
     const calculateTotalPrice = () => {
         if (cartState) {
             let total = cartState.map(item => item.total)
@@ -65,7 +67,7 @@ function PreOrder() {
             const maintananceProducts = products.data.data.filter(product => product.type === "MAINTENANCE")
             setInsurance(products.data.data.filter(product => product.type === "INSURANCE"))
             setMaintanance(maintananceProducts)
-            
+
             bikesRef.current.push(bikes[0])
         }
         console.log(bikesRef.current)
@@ -87,8 +89,8 @@ function PreOrder() {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
         console.log(bikes)
-        bikes[0].name=bikeColor+' Bike'
-       
+        bikes[0].name = bikeColor + ' Bike'
+
     }
     // console.log(accessoriesRef.current)
     // console.log(bikesRef.current)
@@ -109,8 +111,18 @@ function PreOrder() {
     }
 
     let bikePayload = {
-        name:bikeColor,
+        name: bikeColor,
 
+    }
+
+    const handlePaymentChange = (e) => {
+        console.log(e.target.value)
+        setInsurancePaymentType(e.target.value)
+    }
+
+    const handleAssistancePaymentChange = (e) => {
+        console.log(e.target.value)
+        setAssistancePaymentType(e.target.value)
     }
 
     return (
@@ -122,7 +134,7 @@ function PreOrder() {
                     <li className=''>Maintanance and Insuransce</li>
                 </ul>
             </div> */}
-            <SubMenu/>
+            <SubMenu />
             <div className='lg:bg-orderBg bg-mobileRider bg-cover bg-center lg:h-[70vh]'>
                 <div className='lg:py-[161px] lg:px-[130px] text-white font-mulish px-8 flex items-center h-[477px]'>
                     <div className='h-fit'>
@@ -256,23 +268,23 @@ function PreOrder() {
                     <div className='flex flex-col'>
                         <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
                         <div className='flex lg:justify-end gap-6'>
-                            <input type='radio' name='bikeColor' 
+                            <input type='radio' name='bikeColor'
                                 checked={bikeColor === "Red"}
                                 onChange={bikeColorChange} value='Red'
                                 className="w-6 h-6 accent-red text-red"
                             />
-                            <input type='radio' name='bikeColor' 
+                            <input type='radio' name='bikeColor'
                                 checked={bikeColor === "Blue"}
                                 onChange={bikeColorChange} value='Blue'
                                 className="w-6 h-6 accent-blue border-blue"
                             />
-                            <input type='radio' name='bikeColor' 
+                            <input type='radio' name='bikeColor'
                                 checked={bikeColor === "Yellow"}
                                 onChange={bikeColorChange} value='Yellow'
                                 className="w-6 h-6 accent-yellow-700"
                             />
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -286,7 +298,7 @@ function PreOrder() {
                         <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4'>Accessories</span>
                     </div>
                 }
-                
+
                 <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
                         accessories.map(accessory => {
@@ -320,7 +332,7 @@ function PreOrder() {
             <div className='flex justify-center lg:mt-4'>
                 <div className='lg:w-[1200px] flex-col'>
                     <div className='flex flex-col lg:flex-row lg:gap-[33px]'>
-                        
+
                         <div className='bg-gray_background rounded-[7px] pt-[33px] pb-4 px-6 flex flex-col items-center mx-7 lg:mx-0'>
                             <div className='lg:mb-[33px] lg:w-[170px] lg:h-[170px]'>
                                 <img src={theft} alt='theft' />
@@ -341,36 +353,46 @@ function PreOrder() {
                             <p className='lg:w-[316px] text-center font-normal text-base text-[#292929]'>Your e-bike value should remain just what you paid for it. </p>
                         </div>
                         {
-                            insurance.length > 0 && 
+                            insurance.length > 0 &&
                             insurance.map(product => {
                                 return (
                                     <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
                                         <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
-                                        <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
-                                            <div className='flex flex-col'>
-                                                <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
-                                                <h3 className='font-normal'>Billed montly</h3>
-                                            </div>
-                                            <div className='flex items-center'>
-                                                <div className='items-center flex w-[35px] h-[35px]'>
-                                                    <img src={ellipse} alt='ellipse' />
+                                        <div className="" onChange={handlePaymentChange}>
+                                            <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
+                                                <div className='flex flex-col'>
+                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                    <h3 className='font-normal'>Billed monthly</h3>
+                                                </div>
+                                                <div className='flex items-center'>
+                                                    <input type="radio" value="monthly" name="insurancePayment" className='cursor-pointer' />
                                                 </div>
                                             </div>
+                                            <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
+                                                <div className='flex flex-col'>
+                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                    <h3 className='font-normal'>Billed Annually</h3>
+                                                </div>
+                                                <div className='flex items-center'>
+                                                    <input type="radio" value="annually" name="insurancePayment" className='cursor-pointer' />                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
-                                            <div className='flex flex-col'>
-                                                <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
-                                                <h3>Billed montly</h3>
-                                            </div>
-                                            <div className='flex items-center'>
-                                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product})} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
-                                            </div>
+                                        <div className=''>
+                                            {
+                                                insurancePaymentType !== '' ?
+                                                    <div className='flex justify-between'>
+                                                        <h3 className=''>{insurancePaymentType}</h3>
+                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                    </div>
+                                                    :
+                                                    ''
+                                            }
                                         </div>
                                     </div>
                                 )
                             })
                         }
-                       
+
                     </div>
                     <div className='lg:w-[1200px] flex-col lg:mt-[100px] mx-7 lg:mx-0 mt-5'>
                         {/* <h3 className='font-medium text-base text-nav_text lg:mb-8 mb-4'>Maintanance</h3> */}
@@ -391,21 +413,43 @@ function PreOrder() {
                                         <div className='flex items-center h-full mt-8 lg:mt-0'>
                                             <div className='flex flex-col item p-6 card rounded-2xl h-fit'>
                                                 <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
-                                                <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] justify-between'>
-                                                    <div className='flex flex-col'>
-                                                        <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
-                                                        <h3>Billed montly</h3>
+                                                <div className="" onChange={handleAssistancePaymentChange}>
+                                                    <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
+                                                        <div className='flex flex-col'>
+                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                            <h3 className='font-normal'>Billed monthly</h3>
+                                                        </div>
+                                                        <div className='flex items-center'>
+                                                            <input type="radio" value="monthly" name="assistancePayment" className='cursor-pointer' />
+                                                        </div>
                                                     </div>
-                                                    <div className='flex items-center'>
-                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product})} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                    <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
+                                                        <div className='flex flex-col'>
+                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                            <h3 className='font-normal'>Billed Annually</h3>
+                                                        </div>
+                                                        <div className='flex items-center'>
+                                                            <input type="radio" value="annually" name="assistancePayment" className='cursor-pointer' />                                                </div>
                                                     </div>
                                                 </div>
+                                                <div className=''>
+                                                    {
+                                                        assistancePaymentType !== '' ?
+                                                            <div className='flex justify-between'>
+                                                                <h3 className=''>{assistancePaymentType}</h3>
+                                                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                            </div>
+                                                            :
+                                                            ''
+                                                    }
+                                                </div>
                                             </div>
+                                           
                                         </div>
                                     )
                                 })
                             }
-                            
+
                         </div>
                     </div>
                 </div>

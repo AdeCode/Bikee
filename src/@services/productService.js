@@ -26,6 +26,12 @@ async function getProduct({queryKey}){
     return data
 }
 
+async function deleteProduct(payload){
+    const {productId} = payload
+    const {data} = await httpService.secureInstance.delete(`/products/${productId}`)
+    return data
+}
+
 async function updateProduct(payload){
     const {productId} = payload
     console.log(productId)
@@ -49,6 +55,7 @@ const productService = {
     getProduct,
     updateProduct,
     uploadImage,
+    deleteProduct,
 }
 
 export default productService

@@ -20,7 +20,7 @@ function SignUpForm() {
             console.log(res)
             dispatch({ type: 'LOGIN', payload: res })
             if(location.state === null){
-                navigate('/')
+                navigate('/checkout')
             }else if(location?.state.from){
                 navigate(location.state.from)
             }

@@ -33,7 +33,11 @@ function Checkout() {
 
     const checkOut = () => {
         console.log(deliveryType)
-        navigate("/order-summary");
+        navigate("/order-summary",{
+            state:{
+                deliveryType:deliveryType
+            }
+        });
     }
 
   return (

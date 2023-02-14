@@ -35,6 +35,7 @@ import ResetPassword from './pages/auth/ResetPassword';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import UserProfile from './pages/UserProfile';
 import OtpInput from './pages/auth/OtpInput';
+import MuiModal from './components/@shared/MuiModal';
 
 function Routers() {
   return (
@@ -78,6 +79,7 @@ function Routers() {
               <Route index element={<Main />} />
               <Route path="add-product" element={<AddProduct />} />
             </Route> */}
+            <Route path="muimodal" element={<MuiModal />} />
             <Route path="login" element={<Login />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="password-reset" element={<ResetPassword />} />

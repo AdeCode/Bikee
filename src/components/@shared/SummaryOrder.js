@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import orderData from './OrderData'
 import OrderCard from './OrderCard'
 import { CartContext } from '../../contexts/CartContext'
-import Modal from './Modal'
+// import Modal from './Modal'
 import {useMutation} from 'react-query'
 import orderService from '../../@services/orderService'
 import helperFunction from '../../@helpers/helperFunction'
@@ -11,14 +11,45 @@ import { v4 as uuid } from 'uuid';
 import Iframe from 'react-iframe'
 import PaymentModal from './PaymentModal'
 import { AuthContext } from '../../contexts/AuthContext'
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+
+const style = {
+    // position: 'absolute',
+    // top: '50%',
+    // left: '50%',
+    // transform: 'translate(-50%, -50%)',
+    // width: 600,
+    // bgcolor: 'background.paper',
+    // border: '2px solid #000',
+    // boxShadow: 24,
+    // p: 4,
+    display:'flex',
+    justifyContent: 'center',
+    width:600,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4
+  };
 
 function SummaryOrder() {
-    const [paymentType, setPaymentType] = useState('')
+    const [paymentType, setPaymentType] = useState('paystack')
     const [paymentURL, setPaymentURL] = useState('')
     const navigate = useNavigate()
     const {state:cartState, dispatch} = useContext(CartContext)
     const totalSumRef = useRef(0)
     const orderRef = uuid().slice(0,13)
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
+
 
     cartState && console.log(cartState)
 
@@ -43,7 +74,8 @@ function SummaryOrder() {
         onSuccess: res => {
             console.log(res)
             setPaymentURL(res.data)
-            openPaymentModal()
+            // openPaymentModal()
+            handleOpen()
             submitOrder()
         },
         onError: err => {
@@ -145,6 +177,24 @@ function SummaryOrder() {
                     />
                 </PaymentModal>
             }
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{display:'flex', justifyContent:'center',backgroundColor:'#ffffff'}}
+            >
+                <Box sx={style}>
+                    <Iframe url={paymentURL}
+                        width="640px"
+                        id=""
+                        className=""
+                        display="block"
+                        position="relative"
+                    />
+                </Box>
+                {/* {children} */}
+            </Modal>
             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
             <hr className='text-line mb-7' />
             <p className='font-semibold text-base text-[#000000] lg:mb-6'>Cart amount : {cartState.length} items</p>
@@ -185,7 +235,7 @@ function SummaryOrder() {
                             <input
                                 type="radio"
                                 value="paystack"
-                                checked={paymentType === "paystack"}
+                                checked
                                 onChange={onChange}
                                 name='delivery_type'
                                 className='mr-2'
@@ -194,7 +244,7 @@ function SummaryOrder() {
                             <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p>
                         </label>
                     </div>
-                    <div className="">
+                    {/* <div className="">
                         <label>
                             <input
                                 type="radio"
@@ -207,11 +257,14 @@ function SummaryOrder() {
                             Buy now pay later (coming soon)
                             <p className='text-[#828282] font-normal text-sm'>Coming soon</p>
                         </label>
-                    </div>
+                    </div> */}
                 </div>
                 <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment
                 </button>
+                {/* <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
+                    Proceed To Payment
+                </button> */}
             </div>
         </div>
     )

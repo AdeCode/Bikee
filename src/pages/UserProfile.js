@@ -36,8 +36,10 @@ function UserProfile() {
 
 
     useEffect(()=>{
-        if(orders.data.data.length > 0){
-            setOrderHistory(orders.data.data)
+        if(orders){
+            if(orders.data.data.length > 0){
+                setOrderHistory(orders.data.data)
+            }
         }
         // const orderHistory = orders.data.data
         console.log(orderHistory)
@@ -180,7 +182,7 @@ function UserProfile() {
                             })
                         } */}
                     </div>
-                    <div className='flex flex-col font-normal text-base mt-7'>
+                    {/* <div className='flex flex-col font-normal text-base mt-7'>
                         <div className='flex justify-between'>
                             <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                         </div>
@@ -192,7 +194,7 @@ function UserProfile() {
                     <div className='flex justify-between'>
                         <h2 className='font-medium text-xl'>Total</h2> <span className='font-bold text-xl'>{helperFunction.nairaFormat(totalSumRef.current)}</span>
                     </div>
-                    <hr className='text-line mb-7' />
+                    <hr className='text-line mb-7' /> */}
                 </div>
             </div>
         </Container>

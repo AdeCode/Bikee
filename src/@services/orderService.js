@@ -23,6 +23,11 @@ async function generatePaymentLink(payload){
     return data
 }
 
+async function getBanks(){
+    const {data} = await httpService.guestInstance.get(`/bikee-banks`)
+    return data
+}
+
 
 
 
@@ -30,7 +35,8 @@ const orderService = {
     addOrder,
     getOrders,
     getUserOrders,
-    generatePaymentLink
+    generatePaymentLink,
+    getBanks
 }
 
 export default orderService

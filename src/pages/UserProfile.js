@@ -34,16 +34,13 @@ function UserProfile() {
 
     orders && console.log(orders.data.data)
 
+    const getOrderHistory = () => {
+        setOrderHistory(orders.data.data)
+    }
+
 
     useEffect(()=>{
-        if(orders){
-            if(orders.data.data.length > 0){
-                setOrderHistory(orders.data.data)
-            }
-        }
-        // const orderHistory = orders.data.data
-        console.log(orderHistory)
-
+        getOrderHistory()
     },[])
 
 
@@ -135,20 +132,24 @@ function UserProfile() {
                     <p className='font-semibold text-base text-[#000000] lg:mb-6'>Item amount : {orderHistory.length}</p>
                     <div className='flex flex-col lg:gap-2'>
                         {
+                            // orderHistory.length > 0 ?
                             orderHistory.length > 0 ?
                             orderHistory.map((order) => {
                                 return (
                                     <div className=''>
                                         <div className='flex flex-col font-normal text-base mt-7'>
-                                            <div className='flex justify-between'>
-                                                <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                            </div>
                                             <div className='flex justify-between mt-3'>
                                                 <h3 className='font-normal text-xl' >Bikee delivery</h3><h3 className=''>Free</h3>
                                             </div>
                                         </div>
-                                        <h3 className=''>Total amount: {helperFunction.nairaFormat(order.total_amount)}</h3>
+                                        <div className='flex justify-between'>
+                                            <h3>Total amount:</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                        </div>
+                                        <div className='flex justify-between'>
+                                            <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                        </div>
                                         <h3 className=''>Order ref: {order.order_ref}</h3>
+                                        <h3 className=''>Payment: {order.payment?.provider}</h3>
                                         {
                                             // order.payment.provider !== null ? 
                                             // <h3 className=''>Payment options: {order.payment.order_ref} 

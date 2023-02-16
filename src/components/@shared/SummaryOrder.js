@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef} from 'react'
+import React, {useContext, useState, useRef, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import orderData from './OrderData'
 import OrderCard from './OrderCard'
@@ -37,8 +37,9 @@ const style = {
   };
 
 function SummaryOrder() {
-    const [paymentType, setPaymentType] = useState('paystack')
+    const [paymentType, setPaymentType] = useState('')
     const [paymentURL, setPaymentURL] = useState('')
+    const [bikeeBanks, setBikeeBanks] = useState([])
     const navigate = useNavigate()
     const {state:cartState, dispatch} = useContext(CartContext)
     const totalSumRef = useRef(0)
@@ -82,6 +83,20 @@ function SummaryOrder() {
             console.log(err.message)
         }
     })
+
+    const getBikeeBanks = useMutation(orderService.getBanks,{
+        onSuccess: res => {
+            console.log(res)
+            setBikeeBanks(res.data.data)
+        },
+        onError: err => {
+            console.log(err.message)
+        }
+    })
+
+    useEffect(()=>{
+        getBikeeBanks.mutate()
+    },[])
 
     const submitOrder = () => {
         let payload = helperFunction.getOrderData(cartState)
@@ -235,7 +250,6 @@ function SummaryOrder() {
                             <input
                                 type="radio"
                                 value="paystack"
-                                checked
                                 onChange={onChange}
                                 name='delivery_type'
                                 className='mr-2'
@@ -244,6 +258,50 @@ function SummaryOrder() {
                             <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p>
                         </label>
                     </div>
+                    {/* <div className="">
+                        <label>
+                            <input
+                                type="radio"
+                                value="pay_later"
+                                checked={paymentType === "pay_later"}
+                                onChange={onChange}
+                                name='delivery_type'
+                                className='mr-2'
+                            />
+                            Buy now pay later (coming soon)
+                            <p className='text-[#828282] font-normal text-sm'>Coming soon</p>
+                        </label>
+                    </div> */}
+                </div>
+                <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
+                    {
+                        bikeeBanks.length > 0 && 
+                        <div className="">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="bank"
+                                    onChange={onChange}
+                                    name='delivery_type'
+                                    className='mr-2'
+                                />
+                                Make transfer to Bank Account
+                                {
+                                    bikeeBanks.map(bank => {
+                                        return (
+                                            <div className='flex' key={bank.id}>
+                                                <p className='text-[#828282] font-normal text-sm'>{bank.account_number} {bank.name}, {bank.account_name}
+                                                </p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p> */}
+                            </label>
+                        </div>
+                        
+                    }
+                    
                     {/* <div className="">
                         <label>
                             <input

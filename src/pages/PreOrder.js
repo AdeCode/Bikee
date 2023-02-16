@@ -41,12 +41,12 @@ function PreOrder() {
 
 
     const { state: cartState, dispatch } = useContext(CartContext)
-    cartState && console.log(cartState)
+    // cartState && console.log(cartState)
 
 
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
-    products && console.log(products)
+    // products && console.log(products)
 
     const { state: user } = useContext(AuthContext)
     // user&&console.log(user)
@@ -70,7 +70,7 @@ function PreOrder() {
 
             bikesRef.current.push(bikes[0])
         }
-        console.log(bikesRef.current)
+        // console.log(bikesRef.current)
         const filteredCart = cartState.filter(cart => cart.type === 'BIKE')
         setSelectedBike(filteredCart)
 
@@ -88,7 +88,7 @@ function PreOrder() {
     if (products) {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
-        console.log(bikes)
+        // console.log(bikes)
         bikes[0].name = bikeColor + ' Bike'
 
     }
@@ -97,7 +97,7 @@ function PreOrder() {
 
     const bikeColorChange = (event) => {
         setBikeColor(event.target.value)
-        console.log(bikeColor)
+        // console.log(bikeColor)
     }
 
     const changeBikeColor = (bikeColor) => {
@@ -116,12 +116,12 @@ function PreOrder() {
     }
 
     const handlePaymentChange = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setInsurancePaymentType(e.target.value)
     }
 
     const handleAssistancePaymentChange = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setAssistancePaymentType(e.target.value)
     }
 
@@ -356,7 +356,7 @@ function PreOrder() {
                             insurance.length > 0 &&
                             insurance.map(product => {
                                 return (
-                                    <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0'>
+                                    <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0' key={[product.id]}>
                                         <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
                                         <div className="" onChange={handlePaymentChange}>
                                             <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
@@ -410,7 +410,7 @@ function PreOrder() {
 
                                 maintanance.map(product => {
                                     return (
-                                        <div className='flex items-center h-full mt-8 lg:mt-0'>
+                                        <div className='flex items-center h-full mt-8 lg:mt-0' key={product.id}>
                                             <div className='flex flex-col item p-6 card rounded-2xl h-fit'>
                                                 <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
                                                 <div className="" onChange={handleAssistancePaymentChange}>

@@ -13,13 +13,13 @@ function OrderSummary() {
   return (
     <Container className='lg:pt-[100px]'>
         {/* <SubMenu/> */}
-        <div className='lg:pt-[10px] lg:pb-[22px] lg:pl-[140px] hidden lg:flex'>
+        {/* <div className='lg:pt-[10px] lg:pb-[22px] lg:pl-[140px] hidden lg:flex'>
             <ul className='flex lg:gap-11 font-normal text-[13px] lg:leading-[22px] text-nav_text'>
                 <li className=''>E-bike</li>
                 <li className=''>Accessories </li>
                 <li className=''>Maintanance and Insuransce</li>
             </ul>
-        </div>
+        </div> */}
         <div className='lg:hidden flex pt-[100px]'>
             <ul className='flex justify-between w-full'>
                 <li>

@@ -35,7 +35,7 @@ function UserProfile() {
     orders && console.log(orders.data.data)
 
     const getOrderHistory = () => {
-        setOrderHistory(orders.data.data)
+        orders && setOrderHistory(orders.data.data)
     }
 
 

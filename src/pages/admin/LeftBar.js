@@ -118,6 +118,14 @@ export default function Leftbar() {
                 </Typography>
                 </Link>
             </div>
+            <div>
+                <Link to='/dashboard/users' className={classes.item}>
+                    <List className={classes.icon}/>
+                    <Typography className={classes.text}>
+                        Users
+                    </Typography>
+                </Link>
+            </div>
             {/* <div className={classes.item}>
                 <PhotoCamera className={classes.icon}/>
                 <Typography className={classes.text}>

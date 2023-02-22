@@ -87,6 +87,8 @@ function AddProduct() {
       type: data.get('type'),
       image_url: imageURL,
       amount: data.get('amount'),
+      amount_monthly: data.get('amount_monthly'),
+      amount_yearly: data.get('amount_yearly'),
       property:[
         {
           weight: data.get('weight'),
@@ -148,15 +150,35 @@ function AddProduct() {
           </TextField>
         </div>
         <div>
-        <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            startAdornment={<InputAdornment position="start">N</InputAdornment>}
-            label="Amount"
-            name='amount'
-          />
-        </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              startAdornment={<InputAdornment position="start">N</InputAdornment>}
+              label="Amount"
+              name='amount'
+            />
+          </FormControl>
+        </div>
+        <div className='flex'>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Amount monthly</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              startAdornment={<InputAdornment position="start">N</InputAdornment>}
+              label="Amount mmonthly"
+              name='amount_monthly'
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Amount yearly</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              startAdornment={<InputAdornment position="start">N</InputAdornment>}
+              label="Amount yearly"
+              name='amount_yearly'
+            />
+          </FormControl>
         </div>
         
         <div>

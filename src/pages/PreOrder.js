@@ -23,14 +23,16 @@ import helperFunction from '../@helpers/helperFunction'
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('Blue')
     const [selectedBike, setSelectedBike] = useState([])
-    const [maintanance, setMaintanance] = useState([])
-    const [insurance, setInsurance] = useState([])
+    // const [maintanance, setMaintanance] = useState([])
+    // const [insurance, setInsurance] = useState([])
     const [insurancePaymentType, setInsurancePaymentType] = useState('')
     const [assistancePaymentType, setAssistancePaymentType] = useState('')
     const [availableBikes, setAvailableBikes] = useState([])
 
 
     let accessories = []
+    let insurance = []
+    let maintanance = []
     let bikes = []
 
     const amountRef = useRef(null)
@@ -46,7 +48,7 @@ function PreOrder() {
 
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
-    // products && console.log(products)
+    products && console.log(products)
 
     const { state: user } = useContext(AuthContext)
     // user&&console.log(user)
@@ -64,9 +66,9 @@ function PreOrder() {
         if (products) {
             accessoriesRef.current = products.data.data.filter(product => product.type === "ACCESSORY")
             bikesRef.current = products.data.data.filter(product => product.type === "BIKE")
-            const maintananceProducts = products.data.data.filter(product => product.type === "MAINTENANCE")
-            setInsurance(products.data.data.filter(product => product.type === "INSURANCE"))
-            setMaintanance(maintananceProducts)
+            // const maintananceProducts = products.data.data.filter(product => product.type === "MAINTENANCE")
+            // setInsurance(products.data.data.filter(product => product.type === "INSURANCE"))
+            // setMaintanance(maintananceProducts)
 
             bikesRef.current.push(bikes[0])
         }
@@ -88,6 +90,8 @@ function PreOrder() {
     if (products) {
         accessories = products.data.data.filter(product => product.type === "ACCESSORY")
         bikes = products.data.data.filter(product => product.type === "BIKE")
+        insurance = products.data.data.filter(product => product.type === "INSURANCE")
+        maintanance = products.data.data.filter(product => product.type === "MAINTENANCE")
         // console.log(bikes)
         bikes[0].name = bikeColor + ' Bike'
 
@@ -151,78 +155,6 @@ function PreOrder() {
                 </div>
             </div>
             <div className='flex flex-col-reverse lg:justify-center lg:flex-row font-mulish lg:py-24 bg-bg_brown lg:gap-[14px]'>
-                {/* {
-                    bikesRef.current &&
-                        <div>
-                            <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
-                                <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{bikesRef.current[0].name}</h2>
-                                <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
-                                <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>N{bikesRef.current[0].amount}</h3>
-                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikesRef.current[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
-                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
-                                        <p className='text-pre_brown font-normal text-sm'>150-185 cm tall</p>
-                                    </div>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Max total weight</h4>
-                                        <p className='text-pre_brown font-normal text-sm'>42kg</p>
-                                    </div>
-                                </div>
-                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Weight</h4>
-                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].weight}</p>
-                                    </div>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Battery range</h4>
-                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].battery}</p>
-                                    </div>
-                                </div>
-                                <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Charging time </h4>
-                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].charging}</p>
-                                    </div>
-                                    <div className=''>
-                                        <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Assist speed</h4>
-                                        <p className='text-pre_brown font-normal text-sm'>{bikesRef.current[0].property[0].speed}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
-                                <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
-                                    <img src={bikesRef.current[0].image_url} alt="bike" />
-                                </div>
-                                <div className='flex flex-col'>
-                                    <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
-                                    <div className='flex lg:justify-end gap-6'>
-                                        <input type='radio' name='bikeColor'
-                                            checked={bikeColor === "red"}
-                                            onChange={bikeColorChange} value='red'
-                                            className="w-6 h-6 accent-red text-red"
-                                        />
-                                        <input type='radio' name='bikeColor'
-                                            checked={bikeColor === "blue"}
-                                            onChange={bikeColorChange} value='blue'
-                                            className="w-6 h-6 accent-blue border-blue"
-                                        />
-                                        <input type='radio' name='bikeColor'
-                                            checked={bikeColor === "yellow"}
-                                            onChange={bikeColorChange} value='yellow'
-                                            className="w-6 h-6 accent-yellow-500"
-                                        />
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        
-                } */}
-
-
                 <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
                     <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{bikeColor} Bikee</h2>
                     <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
@@ -361,7 +293,7 @@ function PreOrder() {
                                         <div className="" onChange={handlePaymentChange}>
                                             <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                                 <div className='flex flex-col'>
-                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount_monthly)}</h3>
                                                     <h3 className='font-normal'>Billed monthly</h3>
                                                 </div>
                                                 <div className='flex items-center'>
@@ -370,7 +302,7 @@ function PreOrder() {
                                             </div>
                                             <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                                 <div className='flex flex-col'>
-                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                    <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount_yearly)}</h3>
                                                     <h3 className='font-normal'>Billed Annually</h3>
                                                 </div>
                                                 <div className='flex items-center'>
@@ -394,9 +326,9 @@ function PreOrder() {
                         }
 
                     </div>
-                    <div className='lg:w-[1200px] flex-col lg:mt-[100px] mx-7 lg:mx-0 mt-5'>
+                    <div className='lg:w-[1200px] flex-col lg:mt-[100px] mx-7 lg:mx-0'>
                         {/* <h3 className='font-medium text-base text-nav_text lg:mb-8 mb-4'>Maintanance</h3> */}
-                        <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4 lg:mb-8'>Maintanance</span>
+                        {/* <span className='text-red accessories pickup font-medium rounded-[34px] text-xs py-[1.5px] px-[7.6px] w-fit mb-4 lg:mb-8'>Maintanance</span> */}
                         <div className='flex lg:gap-[50px] flex-col lg:flex-row'>
                             <div className='bg-gray_background rounded-[7px] pt-[33px] pb-4 px-6 flex flex-col items-center lg:mx-0'>
                                 <div className='lg:mb-[33px] lg:w-[170px] lg:h-[170px]'>
@@ -407,7 +339,6 @@ function PreOrder() {
                             </div>
                             {
                                 maintanance.length > 0 &&
-
                                 maintanance.map(product => {
                                     return (
                                         <div className='flex items-center h-full mt-8 lg:mt-0' key={product.id}>
@@ -416,7 +347,7 @@ function PreOrder() {
                                                 <div className="" onChange={handleAssistancePaymentChange}>
                                                     <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                                         <div className='flex flex-col'>
-                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount_monthly)}</h3>
                                                             <h3 className='font-normal'>Billed monthly</h3>
                                                         </div>
                                                         <div className='flex items-center'>
@@ -425,7 +356,7 @@ function PreOrder() {
                                                     </div>
                                                     <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                                         <div className='flex flex-col'>
-                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount)}</h3>
+                                                            <h3 className='mb-[3px] font-semibold'>{helperFunction.nairaFormat(product.amount_yearly)}</h3>
                                                             <h3 className='font-normal'>Billed Annually</h3>
                                                         </div>
                                                         <div className='flex items-center'>

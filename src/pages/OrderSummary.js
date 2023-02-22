@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import SummaryOrder from '../components/@shared/SummaryOrder'
 import { useLocation,Link } from 'react-router-dom';
+import SubMenu from '../components/@shared/SubMenu';
 
 function OrderSummary() {
     let location = useLocation()
@@ -10,14 +11,15 @@ function OrderSummary() {
 
   return (
     <Container className='lg:pt-[100px]'>
-        <div className='lg:pt-[90px] lg:pb-[42px] lg:pl-[140px]'>
+        {/* <SubMenu/> */}
+        <div className='lg:pt-[10px] lg:pb-[22px] lg:pl-[140px] hidden lg:flex'>
             <ul className='flex lg:gap-11 font-normal text-[13px] lg:leading-[22px] text-nav_text'>
                 <li className=''>E-bike</li>
                 <li className=''>Accessories </li>
                 <li className=''>Maintanance and Insuransce</li>
             </ul>
         </div>
-        {/* <div className='lg:hidden flex pt-[100px]'>
+        <div className='lg:hidden flex pt-[100px]'>
             <ul className='flex justify-between w-full'>
                 <li>
                     <Link to={`${pathname}/shipping-address`}>Shipping address</Link>
@@ -29,8 +31,8 @@ function OrderSummary() {
                         <Link to={`${pathname}/summary`}>Summary</Link>
                     </li>
             </ul>
-        </div> */}
-        <div className='lg:flex hidden flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
+        </div>
+        <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
             <div className='flex flex-col font-mulish'>
                 <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>Checkout</h2>
                 <p className='font-bold text-base mb-[39px]'>Shipping address</p>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import helperFunction from '../../@helpers/helperFunction';
 import {CartContext} from '../../contexts/CartContext';
 
 
@@ -9,8 +10,8 @@ function OrderCard({image, price, quantity, name, id}) {
   const {dispatch} = useContext(CartContext)
 
   return (
-    <Container className='flex items-center'>
-        <div className='lg:mr-[14px]'>
+    <Container className='flex items-center justify-between'>
+        <div className='lg:mr-[14px] w-14 h-12 flex items-center'>
             <img src={image} alt='item' width='80px' height='50px'/>
         </div>
         <div className='flex items-center'>
@@ -18,7 +19,7 @@ function OrderCard({image, price, quantity, name, id}) {
                 <h3 className='text-[#19191D] lg:text-base text-sm'>{name}</h3>
                 <h4 className='text-[10px]'>x {quantity}</h4>
             </div>
-            <span className='font-medium text-base text-[#000000]' onClick={()=>dispatch({type:'REMOVE_PRODUCT',payload:{id}})}>x {price}</span>
+            <span className='font-medium text-base text-[#000000]' onClick={()=>dispatch({type:'REMOVE_PRODUCT',payload:{id}})}>{helperFunction.nairaFormat(price)}</span>
         </div>
     </Container>
   )

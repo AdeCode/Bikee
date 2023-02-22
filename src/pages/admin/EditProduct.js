@@ -79,6 +79,22 @@ function EditProduct() {
         }
     })
 
+    const deleteProductMutation = useMutation(productService.deleteProduct, {
+        onSuccess: res => {
+            console.log(res)
+            toast.success(res.message, {
+              theme: "colored",
+            })
+            navigate('/dashboard/products')
+        },
+        onError: err => {
+            //console.log(err)
+            toast.error(err.response.data.message[0], {
+              theme: "colored",
+            })
+        }
+    })
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -116,6 +132,13 @@ function EditProduct() {
         return <span>{error.message}</span>
     }
 
+    const deleteProduct = () => {
+      console.log(productId+ 'delete clicked')
+      const payload = {
+        productId:productId
+      }
+      deleteProductMutation.mutate(payload)
+    }
    
   return (
     <div>
@@ -178,8 +201,8 @@ function EditProduct() {
             startAdornment={<InputAdornment position="start">N</InputAdornment>}
             label="Amount"
             name='amount'
-            // defaultValue={product.data.amount}
-            value={product.data.amount}
+            defaultValue={product.data.amount}
+            //value={product.data.amount}
           />
         </FormControl>
         </div>
@@ -247,6 +270,14 @@ function EditProduct() {
           sx={{ mt: 3, mb: 2 }}
         >
           Update Product
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 2, mb: 2, backgroundColor:'red' }}
+          onClick={deleteProduct}
+        >
+          Delete Product
         </Button>
       </Box>
     </Box>

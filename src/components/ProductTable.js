@@ -24,7 +24,7 @@ import { visuallyHidden } from '@mui/utils';
 import {useNavigate} from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -276,6 +276,12 @@ export default function EnhancedTable({rowData}) {
     setDense(event.target.checked);
   };
 
+  // const deleteProductMutation = useMutation()
+
+  const deleteProduct = (id) => {
+    console.log(id)
+  }
+
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -344,6 +350,11 @@ export default function EnhancedTable({rowData}) {
                       <TableCell align="right">{row.type}</TableCell>
                       <TableCell align="right">{row.amount}</TableCell>
                       <TableCell align="right" sx={{display:'flex',gap:'20px'}}>
+                          {/* <Tooltip title="Delete">
+                            <IconButton onClick={deleteProduct(row.id)}>
+                              <DeleteForeverIcon/>
+                            </IconButton>
+                          </Tooltip> */}
                           <Tooltip title="Edit">
                             <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}/edit`)}>
                               <EditIcon/>

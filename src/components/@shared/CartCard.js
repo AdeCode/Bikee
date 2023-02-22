@@ -3,6 +3,7 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styled from 'styled-components';
+import helperFunction from '../../@helpers/helperFunction';
 import { CartContext } from '../../contexts/CartContext'
 
 
@@ -11,8 +12,8 @@ function CartCard({image, price, quantity, name, id}) {
     const {state:cartState, dispatch} = useContext(CartContext)
 
   return (
-    <Container className='flex items-center lg:mb-[14px]'>
-        <div className='lg:mr-[14px]'>
+    <Container className='flex items-center lg:mb-[14px] mb-3 pt-3 justify-between'>
+        <div className='lg:mr-[14px] mr-3 w-14 h-12 flex items-center'>
             <img src={image} alt='item' height='100px' width='150px'/>
         </div>
         <h3 className='font-normal text-[#19191D] lg:text-base text-sm lg:mr-[58px]'>{name}</h3>
@@ -24,7 +25,7 @@ function CartCard({image, price, quantity, name, id}) {
                     <MdKeyboardArrowDown className='cursor-pointer' onClick={()=>{dispatch({type:'DECREASE',payload:{id}})}}/>
                 </div>
             </div>
-            <span className='font-medium text-base text-[#000000]'>x {price}</span>
+            <span className='font-medium text-base text-[#000000]'>x {helperFunction.nairaFormat(price)}</span>
         </div>
         <span className='ml-4 font-bold text-2xl cursor-pointer' onClick={()=>dispatch({type:'REMOVE_PRODUCT',payload:{id}})}>
             <MdDeleteOutline/>    

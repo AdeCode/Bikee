@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const axiosInstance = axios.create({
+const secureInstance = axios.create({
     baseURL: 'https://api.hellobikee.com/api/v1',
     headers: {
         "Content-type" : "application/json",
@@ -8,8 +8,11 @@ const axiosInstance = axios.create({
     }
 })
 
+const guestInstance = axios.create({
+    baseURL: 'https://api.hellobikee.com/api/v1',
+})
 
-axiosInstance.interceptors.request.use(
+secureInstance.interceptors.request.use(
     config => {
         const accessToken = JSON.parse(localStorage.getItem('token'));
         if(accessToken) {
@@ -20,16 +23,16 @@ axiosInstance.interceptors.request.use(
       error => {
           return Promise.reject(error);
       }
-  );
+);
 
-  axiosInstance.interceptors.response.use(
+secureInstance.interceptors.response.use(
     response => {
         //add filters to response
         // console.log(response);
-      return response;
+        return response;
     },
     error => {
-        console.log('view error')
+        //console.log('view error')
         console.log(error)
         if (error.response.status === 401) {
             console.log('unauthorized '+error);
@@ -39,8 +42,13 @@ axiosInstance.interceptors.request.use(
             console.log('Can not process request');
             return Promise.reject(error);
         }
-      return Promise.reject(error);
+        return Promise.reject(error);
     }
-  );
+);
 
-  export default axiosInstance
+const axiosInstance = {
+    secureInstance,
+    guestInstance
+}
+
+export default axiosInstance

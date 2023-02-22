@@ -13,10 +13,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useMutation} from 'react-query'
-import authService from '../@services/authService';
 import {useNavigate} from 'react-router-dom'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import Logo from '../../images/home/Logo.png'
+import { AuthContext } from '../../contexts/AuthContext';
+import {toast} from 'react-toastify'
+import authService from '../../@services/authService';
 
 
 function Copyright(props) {
@@ -43,6 +46,9 @@ export default function Login() {
 
     const [open, setOpen] = React.useState(false);
 
+    const {dispatch} = React.useContext(AuthContext)
+
+
     const handleClick = () => {
       setOpen(true);
     };
@@ -58,14 +64,19 @@ export default function Login() {
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
             console.log(res)
-            const accessToken = res.token
+            //const accessToken = res.token
+
+            dispatch({ type: 'LOGIN', payload: res })
 
             //persist to local storage
-            localStorage.setItem('token', accessToken)
+            //localStorage.setItem('token', accessToken)
             navigate('/dashboard')
         },
         onError: err => {
             console.log(err.message)
+            toast.error(err.response.data.message, {
+              theme: "colored",
+            })
             //alert("invalid credentials")
             handleClick()
         }
@@ -94,9 +105,12 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
+          <div>
+            <img src={Logo} alt='logo' className='mb-[46px]'/>
+          </div>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -153,7 +167,12 @@ export default function Login() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+      >
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
           Invalid Credentials
         </Alert>

@@ -21,10 +21,29 @@ function getOrderData (arr) {
     return orderData
 }
 
+function nairaFormat(price){
+    return (new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN'
+      })).format(price)
+}
+
+function numberOfBike(arr){
+    arr.filter(order => order.type === 'BIKE')
+    // arr.map(order => {
+    //     let numberOfBike = 0
+    //     if(order.type === 'BIKE'){
+    //         return numberOfBike ++
+    //     }
+    // })
+}
+
 const helperFunction = {
     getTotalOrderAmount,
     extractFirstLetter,
-    getOrderData
+    getOrderData,
+    nairaFormat,
+    numberOfBike
 }
 
 export default helperFunction

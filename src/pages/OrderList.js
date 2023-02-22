@@ -1,15 +1,16 @@
 import React, {useContext, useState, useRef} from 'react'
 import styled from 'styled-components'
-import CartCard from '../components/@shared/CartCard'
 import cartData from '../components/@shared/cartData'
 import orderData from '../components/@shared/OrderData'
 import OrderCard from '../components/@shared/OrderCard'
 import {useNavigate } from 'react-router-dom'
 import { CartContext } from '../contexts/CartContext'
 import SubMenu from '../components/@shared/SubMenu'
-import helperFunction from '../@helpers/helperFunction'
+import CartCard from '../components/@shared/CartCard'
+import { useMutation, useQuery } from 'react-query'
+import orderService from '../@services/orderService'
 
-function Checkout() {
+function OrderList() {
     const [deliveryType, setDeliveryType] = useState('')
     const navigate = useNavigate()
     const totalSumRef = useRef(0)
@@ -17,14 +18,20 @@ function Checkout() {
     const {state:cartState, dispatch} = useContext(CartContext)
     console.log(cartState)
 
-    if(cartState){
-        let total = cartState.map(item => item.total)
-        if (total && total.length > 0){
-            const TotalSum = total.reduce(
-                (accumulator, currentValue) => accumulator + currentValue)
-                totalSumRef.current = TotalSum
-        }
-    }
+    const orderId = 'bb920a4d-a9cd-41b2-a58b-788581e23096'
+
+    const {data:order, isLoading, error, isError} = useQuery(['product',{orderId}], orderService.getUserOrders)
+
+    order && console.log(order)
+
+    // if(cartState){
+    //     let total = cartState.map(item => item.total)
+    //     if (total){
+    //         const TotalSum = total.reduce(
+    //             (accumulator, currentValue) => accumulator + currentValue)
+    //             totalSumRef.current = TotalSum
+    //     }
+    // }
 
     const onChange = (event) => {
         setDeliveryType(event.target.value)
@@ -32,14 +39,13 @@ function Checkout() {
     }
 
     const checkOut = () => {
-        console.log(deliveryType)
         navigate("/order-summary");
     }
 
   return (
     <Section>
         <SubMenu/>
-        <div className='lg:mt-[5px]'>
+        {/* <div className='lg:mt-[5px]'>
             <h2 className='text-blue font-medium text-base ml-[140px] cursor-pointer' onClick={()=>{navigate(-1)}}>Go back</h2>
             {
                 cartState.length > 0 ? 
@@ -65,14 +71,10 @@ function Checkout() {
                                 })
                             }
                         </div>
-                        {
-                            cartState.length > 0 &&
-                            <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
-                                <h3 className='text-base'>Cart total : {cartState.length} items</h3>
-                                <h3 className='text-[22px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
-                            </div>
-                        }
-                        
+                        <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
+                            <h3 className='text-base'>Cart total : {cartState.length} items</h3>
+                            <h3 className='text-[22px] lg:leading-7'>N{totalSumRef.current}</h3>
+                        </div>
                     </div>
                     <div className='mt-4 lg:mt-0'>
                         <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
@@ -124,7 +126,7 @@ function Checkout() {
                                     </label>
                                 </div>
                             </div>
-                            <button onClick={checkOut} disabled={deliveryType === '' ? true : false} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
+                            <button onClick={checkOut} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
                                 Proceed To checkout
                             </button>
                         </div>
@@ -136,7 +138,7 @@ function Checkout() {
                 </div>
             }
             
-        </div>
+        </div> */}
     </Section>
   )
 }
@@ -172,4 +174,4 @@ const Section = styled.section`
     }
 `
 
-export default Checkout
+export default OrderList

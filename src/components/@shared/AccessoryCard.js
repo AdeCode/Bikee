@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { CartContext } from '../../contexts/CartContext'
+import helperFunction from '../../@helpers/helperFunction'
 
 function AccessoryCard({image, title, price, item}) {
   // item && console.log(item)
@@ -43,7 +44,11 @@ function AccessoryCard({image, title, price, item}) {
         <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[7px]'>
                 <h3 className='text-accessory_text font-semibold text-xs'>{title}</h3>
-                <h3 className='text-accessory_price font-semibold text-base'>N{price}</h3>
+                <h3 className='text-accessory_price font-semibold text-base'>
+                  {
+                    helperFunction.nairaFormat(price)                    
+                  }
+                </h3>
             </div>
             <div className='flex items-center'>
               {

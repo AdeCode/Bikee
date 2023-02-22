@@ -102,6 +102,7 @@ function SummaryOrder() {
         let payload = helperFunction.getOrderData(cartState)
         payload.total_amount=helperFunction.getTotalOrderAmount(cartState)
         payload.order_ref=orderRef
+        payload.payment_method = paymentType
         console.log('submit order')
         console.log(payload)
         addOrderMutation.mutate(payload)
@@ -249,9 +250,9 @@ function SummaryOrder() {
                         <label>
                             <input
                                 type="radio"
-                                value="paystack"
+                                value="PAYSTACK"
                                 onChange={onChange}
-                                name='delivery_type'
+                                name='payment_type'
                                 className='mr-2'
                             />
                             Pay with paystack
@@ -265,7 +266,7 @@ function SummaryOrder() {
                                 value="pay_later"
                                 checked={paymentType === "pay_later"}
                                 onChange={onChange}
-                                name='delivery_type'
+                                name='payment_type'
                                 className='mr-2'
                             />
                             Buy now pay later (coming soon)
@@ -280,9 +281,9 @@ function SummaryOrder() {
                             <label>
                                 <input
                                     type="radio"
-                                    value="bank"
+                                    value="BANK_TRANSFER"
                                     onChange={onChange}
-                                    name='delivery_type'
+                                    name='payment_type'
                                     className='mr-2'
                                 />
                                 Make transfer to Bank Account
@@ -317,7 +318,7 @@ function SummaryOrder() {
                         </label>
                     </div> */}
                 </div>
-                <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
+                <button onClick={processPayment} disabled={paymentType === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment
                 </button>
                 {/* <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>

@@ -28,6 +28,11 @@ async function getBanks(){
     return data
 }
 
+async function getWebUsers(){
+    const {data} = await httpService.secureInstance.get(`/web-users`)
+    return data
+}
+
 
 
 
@@ -36,7 +41,8 @@ const orderService = {
     getOrders,
     getUserOrders,
     generatePaymentLink,
-    getBanks
+    getBanks,
+    getWebUsers
 }
 
 export default orderService

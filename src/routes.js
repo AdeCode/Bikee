@@ -36,6 +36,8 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import UserProfile from './pages/UserProfile';
 import OtpInput from './pages/auth/OtpInput';
 import MuiModal from './components/@shared/MuiModal';
+import Users from './pages/admin/Users';
+import OrderConfirmation from './pages/OrderConfirmation';
 
 function Routers() {
   return (
@@ -58,6 +60,11 @@ function Routers() {
               <Route path='profile' element={
                 <ProtectedRoute>
                   <UserProfile/>
+                </ProtectedRoute>
+                }></Route>
+              <Route path='order-confirmation' element={
+                <ProtectedRoute>
+                  <OrderConfirmation/>
                 </ProtectedRoute>
                 }></Route>
               <Route path='order-history' element={<OrderHistory/>}></Route>
@@ -96,6 +103,7 @@ function Routers() {
               <Route path="products" element={<Products />} />
               <Route path="product/:productId" element={<Product />} />
               <Route path="product/:productId/edit" element={<EditProduct />} />
+              <Route path="users" element={<Users />} />
             </Route>
         </Routes>
         </ThemeProvider>

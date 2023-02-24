@@ -38,6 +38,7 @@ import OtpInput from './pages/auth/OtpInput';
 import MuiModal from './components/@shared/MuiModal';
 import Users from './pages/admin/Users';
 import OrderConfirmation from './pages/OrderConfirmation';
+import PreOrderPolicy from './pages/PreOrderPolicy';
 
 function Routers() {
   return (
@@ -50,6 +51,7 @@ function Routers() {
               <Route path='restaurant' element={<Restaurant/>}></Route>
               <Route path='sme' element={<SME/>}></Route>
               <Route path='pre-order' element={<PreOrder/>}></Route>
+              <Route path='pre-order-policy' element={<PreOrderPolicy/>}></Route>
               <Route path='summary' element={<OrderCart/>}></Route>
               <Route path='checkout' element={<Checkout/>}></Route>
               <Route path='order-summary' element={

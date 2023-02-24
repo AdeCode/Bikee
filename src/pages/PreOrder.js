@@ -156,42 +156,58 @@ function PreOrder() {
             </div>
             <div className='flex flex-col-reverse lg:justify-center lg:flex-row font-mulish lg:py-24 bg-bg_brown lg:gap-[14px]'>
                 <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
-                    <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>{bikeColor} Bikee</h2>
-                    <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p>
+                    <div className='mb-3'>
+                        <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>REVV 1 {bikeColor} Bikee</h2>
+                        {/* <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p> */}
+                        <div className='lg:max-w-[450px]'>
+                            <h2 className='font-normal text-xl mb-2'>Powerful moto-inspired moped ebike</h2>
+                            <p className=''>Available on Pre-Order, orders are expected to ship by end of February.</p>
+                            <Link to='/pre-order-policy' className='text-red'>View Pre-Order Policy</Link>
+                            {/* <span className=''>View Pre-Order Policy</span> */}
+                            <p className=''>
+                                A bold, moped-style electric bike perfect for that extra kick of adrenaline on your rides. Whether commuting, joy-riding, running errands
+                                or exploring, the Revv 1 is made for thrill rides no matter the use case. Boasting high-end specs, this rugged custom bike is peak performance
+                                at a value price that only Bikee can deliver
+                            </p>
+                        </div>
+                    </div>
                     <h3 className='font-bold lg:text-lg text-base text-black_text mb-[17px] lg:mb-0'>
                         {helperFunction.nairaFormat(1200000)}
                     </h3>
                     <button disabled={selectedBike.length > 0} onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: bikes[0] })} className='w-fit lg:font-semibold font-bold text-btn_text text-xs py-3 lg:py-[7px] px-[38px] bg-red lg:rounded-xl rounded-[10px]'>PRE-ORDER</button>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
-                            <p className='text-pre_brown font-normal text-sm'>150-185 cm tall</p>
+                    <div className='flex flex-col gap-2'>
+                        <div className='flex gap-[34px] lg:gap-3 lg:flex-col'>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Optimized for</h4>
+                                <p className='text-pre_brown font-normal text-sm'>150-185 cm tall</p>
+                            </div>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Max total weight</h4>
+                                <p className='text-pre_brown font-normal text-sm'>42kg</p>
+                            </div>
                         </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Max total weight</h4>
-                            <p className='text-pre_brown font-normal text-sm'>42kg</p>
+                        <div className='flex gap-[34px] lg:gap-4 lg:flex-col'>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Weight</h4>
+                                <p className='text-pre_brown font-normal text-sm'>36kg</p>
+                            </div>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Battery range</h4>
+                                <p className='text-pre_brown font-normal text-sm'>500W</p>
+                            </div>
+                        </div>
+                        <div className='flex gap-[34px] lg:gap-4 lg:flex-col'>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Charging time </h4>
+                                <p className='text-pre_brown font-normal text-sm'>4hrs</p>
+                            </div>
+                            <div className=''>
+                                <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Assist speed</h4>
+                                <p className='text-pre_brown font-normal text-sm'>40km/hr</p>
+                            </div>
                         </div>
                     </div>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Weight</h4>
-                            <p className='text-pre_brown font-normal text-sm'>36kg</p>
-                        </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Battery range</h4>
-                            <p className='text-pre_brown font-normal text-sm'>500W</p>
-                        </div>
-                    </div>
-                    <div className='flex gap-[34px] lg:gap-4 lg:flex-col mb-10 lg:mb-0'>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Charging time </h4>
-                            <p className='text-pre_brown font-normal text-sm'>4hrs</p>
-                        </div>
-                        <div className=''>
-                            <h4 className='text-black_text font-bold text-base lg:mb-0 mb-2'>Assist speed</h4>
-                            <p className='text-pre_brown font-normal text-sm'>40km/hr</p>
-                        </div>
-                    </div>
+
                 </div>
                 <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
                     <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
@@ -314,7 +330,7 @@ function PreOrder() {
                                                 insurancePaymentType !== '' ?
                                                     <div className='flex justify-between'>
                                                         <h3 className=''>{insurancePaymentType}</h3>
-                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: {product} })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
                                                     </div>
                                                     :
                                                     ''
@@ -375,7 +391,7 @@ function PreOrder() {
                                                     }
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
                                     )
                                 })

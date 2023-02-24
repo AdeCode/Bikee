@@ -33,7 +33,10 @@ async function getWebUsers(){
     return data
 }
 
-
+async function saveShippingAddress(payload){
+    const {data} = await httpService.secureInstance.post('/address', payload);
+    return data
+}
 
 
 const orderService = {
@@ -42,7 +45,8 @@ const orderService = {
     getUserOrders,
     generatePaymentLink,
     getBanks,
-    getWebUsers
+    getWebUsers,
+    saveShippingAddress
 }
 
 export default orderService

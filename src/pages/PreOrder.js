@@ -48,7 +48,7 @@ function PreOrder() {
 
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
-    products && console.log(products)
+    // products && console.log(products)
 
     const { state: user } = useContext(AuthContext)
     // user&&console.log(user)
@@ -127,6 +127,16 @@ function PreOrder() {
     const handleAssistancePaymentChange = (e) => {
         // console.log(e.target.value)
         setAssistancePaymentType(e.target.value)
+    }
+
+    const handleSelection = (payload, paymentType) => {
+        if(paymentType === 'monthly'){
+            payload = {...payload, amount: payload.amount_monthly, payment_type:paymentType}
+        }else{
+            payload = {...payload, amount: payload.amount_yearly, payment_type:paymentType}
+        }
+        // console.log(payload)
+        dispatch({ type: 'ADD_PRODUCT', payload: payload })
     }
 
     return (
@@ -270,7 +280,7 @@ function PreOrder() {
                         <div className='flex lg:w-[1205px] bg-nav_text rounded-lg justify-between lg:py-[24px] lg:px-[32px] font-mulish font-normal text-xl text-light_gray'>
                             <h3 className=''>🛒{cartState.length} {cartState.length < 2 ? 'item' : 'items'}</h3>
                             <h3 className='font-semibold text-[22px]'><Link to='/checkout'>{cartState.length > 1 ? 'View orders' : 'View order'}</Link></h3>
-                            <h3 className=''>N{totalSumRef.current}</h3>
+                            <h3 className=''>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                         </div>
                     </div>
                     :
@@ -330,7 +340,7 @@ function PreOrder() {
                                                 insurancePaymentType !== '' ?
                                                     <div className='flex justify-between'>
                                                         <h3 className=''>{insurancePaymentType}</h3>
-                                                        <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: {product} })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                        <button onClick={()=>handleSelection(product, insurancePaymentType)} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
                                                     </div>
                                                     :
                                                     ''
@@ -384,7 +394,7 @@ function PreOrder() {
                                                         assistancePaymentType !== '' ?
                                                             <div className='flex justify-between'>
                                                                 <h3 className=''>{assistancePaymentType}</h3>
-                                                                <button onClick={() => dispatch({ type: 'ADD_PRODUCT', payload: product })} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
+                                                                <button onClick={()=>handleSelection(product, assistancePaymentType)} className='bg-red text-white text-[9px] leading-[15px] py-[3px] px-[11px] rounded-[18px]'>Add to cart</button>
                                                             </div>
                                                             :
                                                             ''

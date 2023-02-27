@@ -22,10 +22,10 @@ function Nav() {
     const { state: cartState, dispatch } = useContext(CartContext)
 
     const { state:user, dispatch:authDispatch } = useContext(AuthContext)
-    user&&console.log(user)
+    // user&&console.log(user)
 
 
-    cartState && console.log(cartState)
+    // cartState && console.log(cartState)
 
 
     const navBg = () => {

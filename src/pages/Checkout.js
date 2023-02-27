@@ -15,7 +15,7 @@ function Checkout() {
     const totalSumRef = useRef(0)
 
     const {state:cartState, dispatch} = useContext(CartContext)
-    console.log(cartState)
+    // console.log(cartState)
 
     if(cartState){
         let total = cartState.map(item => item.total)
@@ -33,11 +33,13 @@ function Checkout() {
 
     const checkOut = () => {
         console.log(deliveryType)
-        navigate("/order-summary",{
-            state:{
-                deliveryType:deliveryType
-            }
-        });
+        sessionStorage.setItem('deliveryType',deliveryType)
+        navigate("/order-summary");
+        // navigate("/order-summary",{
+        //     state:{
+        //         deliveryType:deliveryType
+        //     }
+        // });
     }
 
   return (

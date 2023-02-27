@@ -9,18 +9,9 @@ function AccessoryCard({image, title, price, item}) {
 
   const [quantitySelected, setQuantitySelected] = useState(1)
 
-  const cartRef = useRef(0)
-
-  const [product, setProduct] = useState({
-    name:title,
-    quantity:1,
-    image_url:null,
-    price:price
-  })
-
   const {dispatch, state} = useContext(CartContext)
 
-  state && console.log(state)
+  // state && console.log(state)
 
   const addProduct = (e) => {
     e.preventDefault()

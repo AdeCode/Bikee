@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import SummaryOrder from '../components/@shared/SummaryOrder'
 import { useLocation, Link } from 'react-router-dom';
@@ -14,12 +14,17 @@ import {toast} from 'react-toastify'
 
 function OrderSummary() {
     const location = useLocation()
-    console.log(location.state.deliveryType)
+    let deliveryType = ''
+    if(sessionStorage.getItem('deliveryType') !== ''){
+        deliveryType = sessionStorage.getItem('deliveryType')
+    }
+    // deliveryType && console.log(deliveryType)
+    // console.log(location.state.deliveryType)
     const { pathname } = location
-    console.log(pathname)
+    // console.log(pathname)
 
     const { state: user } = useContext(AuthContext)
-    user && console.log(user)
+    // user && console.log(user)
 
     const { state: cartState, dispatch } = useContext(CartContext)
 
@@ -70,7 +75,7 @@ function OrderSummary() {
                 <div className='flex flex-col font-mulish'>
                     <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>Checkout</h2>
                     {
-                        location.state?.deliveryType === "doorstep" ?
+                        deliveryType === "doorstep" ?
                             <>
                                 <p className='font-bold text-base mb-[39px]'>Shipping address</p>
                                 <div className=''>

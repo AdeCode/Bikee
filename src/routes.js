@@ -64,11 +64,7 @@ function Routers() {
                   <UserProfile/>
                 </ProtectedRoute>
                 }></Route>
-              <Route path='order-confirmation' element={
-                <ProtectedRoute>
-                  <OrderConfirmation/>
-                </ProtectedRoute>
-                }></Route>
+              <Route path='order-confirmation' element={<OrderConfirmation/>}></Route>
               <Route path='order-history' element={<OrderHistory/>}></Route>
             </Route>
             <Route path='/order-checkout' element={<OrderLayout/>}>

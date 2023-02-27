@@ -2,8 +2,9 @@ export const cartReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_PRODUCT':
             action.payload.quantity = 1
-            action.payload.amount = +(action.payload.amount)
-            action.payload.total = action.payload.quantity * action.payload.amount
+            action.payload.amount = parseInt(action.payload.amount)
+            action.payload.total = action.payload.quantity * parseInt(action.payload.amount)
+            console.log(action.payload)
             return [
                 ...state,
                 action.payload
@@ -37,7 +38,7 @@ export const cartReducer = (state, action) => {
                         ...item,
                         quantity: item.quantity + 1,
                         // total: item.quantity * item.amount
-                        total: item.total + item.amount
+                        total: +(item.total) + item.amount
                     }
                 } else {
                     return item

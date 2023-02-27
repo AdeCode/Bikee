@@ -4,7 +4,7 @@ import {Navigate, useLocation} from 'react-router-dom'
 
 function ProtectedRoute({children}) {
     const {state:user} = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
     const location = useLocation()
 
     const isAuth = JSON.parse(localStorage.getItem('isAuthenticated'))

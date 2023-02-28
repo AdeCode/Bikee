@@ -7,6 +7,7 @@ import { AuthContext } from '../contexts/AuthContext'
 import { CartContext } from '../contexts/CartContext'
 import { useQuery } from 'react-query'
 import orderService from '../@services/orderService'
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 
 
@@ -15,7 +16,9 @@ function UserProfile() {
 
     const { state: cart } = useContext(CartContext)
 
-    const [orderHistory, setOrderHistory] = useState([])
+    // const [orderHistory, setOrderHistory] = useState([])
+
+    let orderHistory = []
 
     const totalSumRef = useRef(0)
 
@@ -34,8 +37,17 @@ function UserProfile() {
 
     orders && console.log(orders.data.data)
 
+    if(orders){
+        orderHistory=orders.data.data
+
+    }
+
+    const {data:address} = useQuery(['address',{userId}], orderService.getUserAddress)
+    address && console.log(address)
+
+
     const getOrderHistory = () => {
-        orders && setOrderHistory(orders.data.data)
+        //orders && setOrderHistory(orders.data.data)
     }
 
 
@@ -44,8 +56,8 @@ function UserProfile() {
     },[])
 
 
-    user && console.log(user)
-    cart && console.log(cart)
+    // user && console.log(user)
+    // cart && console.log(cart)
 
     const logout = () => {
         authDispatch({type:'LOGOUT'})
@@ -72,7 +84,7 @@ function UserProfile() {
             <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
                 <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
                     <div className='flex flex-col font-mulish'>
-                        <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>Checkout</h2>
+                        {/* <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>My Profile</h2> */}
                         <p className='font-bold text-base mb-[39px]'>Shipping address</p>
                         <div className=''>
                             <form className='flex flex-col'>
@@ -126,7 +138,7 @@ function UserProfile() {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="lg:w-[300px]">
                     <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
                     <hr className='text-line mb-7' />
                     <p className='font-semibold text-base text-[#000000] lg:mb-6'>Item amount : {orderHistory.length}</p>
@@ -136,32 +148,36 @@ function UserProfile() {
                             orderHistory.length > 0 ?
                             orderHistory.map((order) => {
                                 return (
-                                    <div className=''>
-                                        <div className='flex flex-col font-normal text-base mt-7'>
-                                            <div className='flex justify-between mt-3'>
-                                                <h3 className='font-normal text-xl' >Bikee delivery</h3><h3 className=''>Free</h3>
-                                            </div>
+                                    <div className='' key={order.id}>
+                                        <div className='flex justify-between'>
+                                            <h3 className='font-medium'>Order ref: </h3><h3 className=''>{order.order_ref}</h3>
                                         </div>
                                         <div className='flex justify-between'>
-                                            <h3>Total amount:</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                            <h3 className='font-medium'>Total amount: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
                                         </div>
                                         <div className='flex justify-between'>
-                                            <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                <h3 className='font-medium' >Delivery option:</h3><h3 className=''>Free</h3>
                                         </div>
-                                        <h3 className=''>Order ref: {order.order_ref}</h3>
-                                        <h3 className=''>Payment: {order.payment?.provider}</h3>
-                                        {
-                                            // order.payment.provider !== null ? 
-                                            // <h3 className=''>Payment options: {order.payment.order_ref} 
-                                            //     <span className=''>{order.payment.status === "successful" ? 'Paid' : order.payment.status === "pending" ? 'Pending' : 'failed'}</span>
-                                            // </h3> 
-                                            // :
-                                            // null
-                                        }
-                                        {/* <h3 className=''>Payment options: {order.payment.provider} 
-                                            <span className=''>{order.payment.status === "successful" ? 'Paid' : order.payment.status === "pending" ? 'Pending' : 'failed'}</span>
-                                        </h3> */}
-
+                                        <div className='flex justify-between'>
+                                            <h3  className='font-medium'>Subtotal: </h3>
+                                            <h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                        </div>
+                                        <div className='flex justify-between'>
+                                            <h3  className='font-medium'>Provider: </h3>
+                                            <h3 className=''>{order.payment?.provider}</h3>
+                                        </div>
+                                        <div className='flex justify-between'>
+                                            <h3  className='font-medium'>Payment: </h3>
+                                            {
+                                                order.payment?.status === 'successful' ?
+                                                <div className='flex items-center text-green-700 gap-1'>
+                                                    <h3 className='text-green-700'>Paid</h3>
+                                                    <IoCheckmarkCircleOutline/>
+                                                </div>
+                                                :
+                                                <h3 className=''>{order.payment?.status}</h3>
+                                            }
+                                        </div>
                                     </div>
                                 )
                             })

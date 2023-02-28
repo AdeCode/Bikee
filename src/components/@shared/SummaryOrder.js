@@ -52,10 +52,10 @@ function SummaryOrder() {
 
 
 
-    cartState && console.log(cartState)
+    // cartState && console.log(cartState)
 
     const {state:user} = useContext(AuthContext)
-    user && console.log(user)
+    // user && console.log(user)
 
    
     //console.log(helperFunction.getTotalOrderAmount(cartState))
@@ -63,8 +63,7 @@ function SummaryOrder() {
     const addOrderMutation = useMutation(orderService.addOrder,{
         onSuccess: res => {
             console.log(res)
-            openModal()
-            //navigate('/dashboard')
+            //openModal()
         },
         onError: err => {
             console.log(err.message)
@@ -73,11 +72,12 @@ function SummaryOrder() {
 
     const generatePaymentLinkMutation = useMutation(orderService.generatePaymentLink,{
         onSuccess: res => {
-            console.log(res)
-            setPaymentURL(res.data)
-            // openPaymentModal()
-            handleOpen()
+            console.log('submitting order...')
             submitOrder()
+            window.open(res.data,'_self')
+            //setPaymentURL(res.data)
+            // openPaymentModal()
+            // handleOpen()
         },
         onError: err => {
             console.log(err.message)
@@ -86,7 +86,7 @@ function SummaryOrder() {
 
     const getBikeeBanks = useMutation(orderService.getBanks,{
         onSuccess: res => {
-            console.log(res)
+            // console.log(res)
             setBikeeBanks(res.data.data)
         },
         onError: err => {

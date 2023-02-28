@@ -4,7 +4,7 @@ export const cartReducer = (state, action) => {
             action.payload.quantity = 1
             action.payload.amount = parseInt(action.payload.amount)
             action.payload.total = action.payload.quantity * parseInt(action.payload.amount)
-            console.log(action.payload)
+            // console.log(action.payload)
             return [
                 ...state,
                 action.payload

@@ -39,6 +39,7 @@ import MuiModal from './components/@shared/MuiModal';
 import Users from './pages/admin/Users';
 import OrderConfirmation from './pages/OrderConfirmation';
 import PreOrderPolicy from './pages/PreOrderPolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function Routers() {
   return (
@@ -49,6 +50,7 @@ function Routers() {
               <Route index element={<HomePage />} />
               <Route path='service' element={<Service/>}></Route>
               <Route path='restaurant' element={<Restaurant/>}></Route>
+              <Route path='privacy-policy' element={<PrivacyPolicy/>}></Route>
               <Route path='sme' element={<SME/>}></Route>
               <Route path='pre-order' element={<PreOrder/>}></Route>
               <Route path='pre-order-policy' element={<PreOrderPolicy/>}></Route>

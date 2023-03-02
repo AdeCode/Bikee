@@ -51,7 +51,7 @@ function Footer() {
                             <a href='/' className='text-start'>Help</a>
                         </li>
                         <li>
-                            <a href='/'>Privacy</a>
+                            <a href='/privacy-policy'>Privacy</a>
                         </li>
                     </div> 
                 </ul>

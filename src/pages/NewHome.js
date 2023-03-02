@@ -116,7 +116,7 @@ function NewHome() {
       </div>
       <div className='flex lg:flex-col bg-red px-10 py-5'>
             <div className='flex flex-col justify-center items-center text-white mb-14'>
-                <h1 className='text-[3rem] font-semibold mb-4'>It's a great day to commute with BIKEE.</h1>
+                <h1 className='text-[3rem] font-semibold mb-4'>Great day to commute/deliver with BIKEE.</h1>
                 <p className='text-[1.5rem] mb-3'>At the heart of a city, Bikee App is your daily road companion. </p>
                 <p className='text-base lg:mb-5 w-[600px] text-center'>From mapping the best routes to keeping you informed of the daily CO2 reduction, the app is the key to a Connected ride.</p>
                 <a href='https://play.google.com/store/apps/details?id=com.motionafrica.e_bike_app&hl=en&gl=US' target='_blank' rel='noreferrer' className='bg-white rounded-3xl text-red text-base font-semibold py-2 px-4'>Discover the app</a>

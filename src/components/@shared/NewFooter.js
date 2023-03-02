@@ -37,7 +37,7 @@ function NewFooter() {
                             <a href='/'>Help</a>
                         </li>
                         <li>
-                            <a href='/'>Privacy</a>
+                            <a href='/privacy-policy'>Privacy</a>
                         </li>
                     </div> 
                 </ul> */}

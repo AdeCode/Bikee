@@ -10,6 +10,7 @@ import arrow from '../images/preorder/right-arrow.png'
 import redBike from '../images/preorder/redBike.jpeg'
 import bikeRed from '../images/preorder/bike-red.jpeg'
 import blue from '../images/preorder/blue-bike.png'
+import revv1 from '../images/preorder/revv1-bg.png'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
 import { CartContext } from '../contexts/CartContext'
@@ -20,6 +21,7 @@ import SubMenu from '../components/@shared/SubMenu'
 import { AuthContext } from '../contexts/AuthContext'
 import helperFunction from '../@helpers/helperFunction'
 import { GiCheckMark } from "react-icons/gi";
+import BikeCarousel from '../components/@shared/BikeCarousel'
 
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('Blue')
@@ -111,7 +113,7 @@ function PreOrder() {
         } else if (bikeColor === 'Yellow') {
             return bikeRed
         } else {
-            return blue
+            return revv1
         }
     }
 
@@ -221,8 +223,9 @@ function PreOrder() {
 
                 </div>
                 <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
-                    <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
-                        <img src={changeBikeColor(bikeColor)} alt="bike" />
+                    <div className='lg:w-[800px] lg:h-[800px] mt-4 lg:mt-0'>
+                        {/* <img src={changeBikeColor(bikeColor)} alt="bike" /> */}
+                        <BikeCarousel/>
                     </div>
                     <div className='flex flex-col'>
                         <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>

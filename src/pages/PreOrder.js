@@ -10,6 +10,7 @@ import arrow from '../images/preorder/right-arrow.png'
 import redBike from '../images/preorder/redBike.jpeg'
 import bikeRed from '../images/preorder/bike-red.jpeg'
 import blue from '../images/preorder/blue-bike.png'
+import revv1 from '../images/preorder/revv1-bg.png'
 import AccessoryCard from '../components/@shared/AccessoryCard'
 import inventory from '../components/@shared/inventory'
 import { CartContext } from '../contexts/CartContext'
@@ -19,6 +20,8 @@ import productService from '../@services/productService'
 import SubMenu from '../components/@shared/SubMenu'
 import { AuthContext } from '../contexts/AuthContext'
 import helperFunction from '../@helpers/helperFunction'
+import { GiCheckMark } from "react-icons/gi";
+import BikeCarousel from '../components/@shared/BikeCarousel'
 
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('Blue')
@@ -110,7 +113,7 @@ function PreOrder() {
         } else if (bikeColor === 'Yellow') {
             return bikeRed
         } else {
-            return blue
+            return revv1
         }
     }
 
@@ -155,26 +158,26 @@ function PreOrder() {
                         <h2 className='lg:mb-[15px] mt-[6px] font-semibold text-xl lg:text-[53px] lg:leading-[67px]'>Ride all classy</h2>
                         <h1 className='lg:mb-[15px] mb-2 font-bold text-2xl lg:text-[54px] lg:leading-[67px]'>With BIKEE!</h1>
                         <p className='lg:mb-[56px] mb-9 font-medium text-sm lg:text-lg'>Introducing the safest and smartest pedal assist e-bike</p>
-                        <button className='border-2 border-white py-[6px] font-semibold text-[15px] px-3 mb-7 lg:mb-0 flex items-center'>
+                        {/* <button className='border-2 border-white py-[6px] font-semibold text-[15px] px-3 mb-7 lg:mb-0 flex items-center'>
                             PRE-ORDER NOW
                             <span className='ml-4'>
                                 <img src={arrow} alt='right arrow' />
                             </span>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
             <div className='flex flex-col-reverse lg:justify-center lg:flex-row font-mulish lg:py-24 bg-bg_brown lg:gap-[14px]'>
                 <div className='flex flex-col lg:gap-6 px-[33px] lg:px-0'>
-                    <div className='mb-3'>
-                        <h2 className='lg:font-bold font-semibold text-2xl text-black_text mb-2 lg:mb-0'>REVV 1 {bikeColor} Bikee</h2>
+                    <div className=''>
+                        <h2 className='lg:font-bold font-semibold text-2xl lg:text-[2.2rem] text-black_text mb-2'>REVV 1 {bikeColor} Bikee</h2>
                         {/* <p className='lg:w-[296px] w-[231px] font-normal text-sm text-brown mb-4 lg:mb-0'>Uniquely designed for this environment.</p> */}
                         <div className='lg:max-w-[450px]'>
-                            <h2 className='font-normal text-xl mb-2'>Powerful moto-inspired moped ebike</h2>
-                            <p className=''>Available on Pre-Order, orders are expected to ship by end of February.</p>
+                            <h2 className='font-[200] text-xl mb-4 opacity-50'>Powerful moto-inspired moped ebike</h2>
+                            <p className='text-base font-bold'>Available on Pre-Order, orders are expected to ship by end of February.</p>
                             <Link to='/pre-order-policy' className='text-red'>View Pre-Order Policy</Link>
                             {/* <span className=''>View Pre-Order Policy</span> */}
-                            <p className=''>
+                            <p className='mt-4'>
                                 A bold, moped-style electric bike perfect for that extra kick of adrenaline on your rides. Whether commuting, joy-riding, running errands
                                 or exploring, the Revv 1 is made for thrill rides no matter the use case. Boasting high-end specs, this rugged custom bike is peak performance
                                 at a value price that only Bikee can deliver
@@ -220,8 +223,9 @@ function PreOrder() {
 
                 </div>
                 <div className='flex flex-col px-[33px] mb-[50px] lg:mb-0'>
-                    <div className='lg:w-[557px] lg:h-[490px] mt-4 lg:mt-0'>
-                        <img src={changeBikeColor(bikeColor)} alt="bike" />
+                    <div className='lg:w-[800px] lg:h-[800px] mt-4 lg:mt-0'>
+                        {/* <img src={changeBikeColor(bikeColor)} alt="bike" /> */}
+                        <BikeCarousel/>
                     </div>
                     <div className='flex flex-col'>
                         <h3 className='flex lg:justify-end lg:mb-6 mb-4 font-medium text-[13px] text-[#3E3E3E] leading-3 lg:text-base'>Available colors</h3>
@@ -315,7 +319,15 @@ function PreOrder() {
                             insurance.map(product => {
                                 return (
                                     <div className='flex flex-col p-6 card rounded-2xl mx-7 mt-2 lg:mt-0' key={[product.id]}>
-                                        <h3 className='mb-5 font-semibold text-base text-black'>{product.name}</h3>
+                                        <div className=''>
+                                            <h3 className='mb-2 font-semibold text-base text-black'>{product.name}</h3>
+                                            <p className='text-xs lg:text-[13px] text'>Find peace of mind with theft detection notifications and a convenient plan to insure your ride</p>
+                                            <i className='text-xs'>* 1-year/1-month contract term with first renewal offered free</i>
+                                            <h3 className='text-xs flex gap-2'><GiCheckMark fill='green' className=''/> Thefts Alerts</h3>
+                                            <h3 className='text-xs flex gap-2'><GiCheckMark fill='green' className=''/> Full bike value</h3>
+                                            <h3 className='text-xs flex gap-2'><GiCheckMark fill='green' className=''/> 24/7 assistance</h3>
+                                        </div>
+                                        
                                         <div className="" onChange={handlePaymentChange}>
                                             <div className='flex lg:gap-[90px] rounded-2xl card p-4 lg:pt-[19px] mb-4 justify-between'>
                                                 <div className='flex flex-col'>

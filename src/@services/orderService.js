@@ -18,6 +18,12 @@ async function getUserOrders({queryKey}){
     return data
 }
 
+async function getUserAddress({queryKey}){
+    const [_key, {userId}] = queryKey
+    const {data} = await httpService.secureInstance.get(`/address/${userId}`)
+    return data
+}
+
 async function generatePaymentLink(payload){
     const {data} = await httpService.secureInstance.post('/payments', payload);
     return data
@@ -46,7 +52,8 @@ const orderService = {
     generatePaymentLink,
     getBanks,
     getWebUsers,
-    saveShippingAddress
+    saveShippingAddress,
+    getUserAddress
 }
 
 export default orderService

@@ -25,6 +25,10 @@ import meter from '../images/home/meter.png'
 import macMobile from '../images/home/mac-mobile.png'
 import mapbg from '../images/home/mapbg.png'
 import charge from '../images/home/charge.png'
+import Mockup1 from '../images/home/Mockup1.png'
+import Mockup2 from '../images/home/Mockup2.png'
+import Mockup3 from '../images/home/Mockup3.png'
+import Mockup from '../images/home/Mockup.png'
 import bikee from '../images/home/bikee-vid.mp4'
 import chicken from '../images/home/chicken-republic.png'
 import jise from '../images/home/jise.png'
@@ -132,6 +136,28 @@ function TopSection() {
                 </div>
             </div>
 
+        </div>
+        <div className='flex lg:flex-col bg-red px-10 py-5'>
+            <div className='flex flex-col justify-center items-center text-white mb-14'>
+                <h1 className='text-[3rem] font-semibold mb-4'>Great day to commute/deliver with BIKEE.</h1>
+                <p className='text-[1.5rem] mb-3'>At the heart of a city, Bikee App is your daily road companion. </p>
+                <p className='text-base lg:mb-5 w-[600px] text-center'>From mapping the best routes to keeping you informed of the daily CO2 reduction, the app is the key to a Connected ride.</p>
+                <a href='https://play.google.com/store/apps/details?id=com.motionafrica.e_bike_app&hl=en&gl=US' target='_blank' rel='noreferrer' className='bg-white rounded-3xl text-red text-base font-semibold py-2 px-4'>Discover the app</a>
+            </div>
+            <div className='flex justify-between'>
+                <div className='w-[250px] h-[500px]'>
+                    <img src={Mockup2} alt='mockup'/>
+                </div>
+                <div className='w-[300px] h-[600px]'>
+                    <img src={Mockup1} alt='mockup'/>
+                </div>
+                <div className='w-[250px] h-[500px]'>
+                    <img src={Mockup} alt='mockup'/>
+                </div>
+                <div className='w-[250px] h-[500px]'>
+                    <img src={Mockup3} alt='mockup'/>
+                </div>
+            </div>
         </div>
         <div className='w-full flex lg:justify-center lg:pt-[113px] pt-7 lg:pb-[113px] pb-6 order mt-8 lg:mt-0'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[123px]'>

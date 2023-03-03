@@ -52,10 +52,10 @@ function SummaryOrder() {
 
 
 
-    cartState && console.log(cartState)
+    // cartState && console.log(cartState)
 
     const {state:user} = useContext(AuthContext)
-    user && console.log(user)
+    // user && console.log(user)
 
    
     //console.log(helperFunction.getTotalOrderAmount(cartState))
@@ -63,8 +63,7 @@ function SummaryOrder() {
     const addOrderMutation = useMutation(orderService.addOrder,{
         onSuccess: res => {
             console.log(res)
-            openModal()
-            //navigate('/dashboard')
+            //openModal()
         },
         onError: err => {
             console.log(err.message)
@@ -73,11 +72,12 @@ function SummaryOrder() {
 
     const generatePaymentLinkMutation = useMutation(orderService.generatePaymentLink,{
         onSuccess: res => {
-            console.log(res)
-            setPaymentURL(res.data)
-            // openPaymentModal()
-            handleOpen()
+            console.log('submitting order...')
             submitOrder()
+            window.open(res.data,'_self')
+            //setPaymentURL(res.data)
+            // openPaymentModal()
+            // handleOpen()
         },
         onError: err => {
             console.log(err.message)
@@ -86,7 +86,7 @@ function SummaryOrder() {
 
     const getBikeeBanks = useMutation(orderService.getBanks,{
         onSuccess: res => {
-            console.log(res)
+            // console.log(res)
             setBikeeBanks(res.data.data)
         },
         onError: err => {
@@ -317,6 +317,17 @@ function SummaryOrder() {
                             <p className='text-[#828282] font-normal text-sm'>Coming soon</p>
                         </label>
                     </div> */}
+                </div>
+                <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
+                    <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
+                    <p className='text-[#979797] font-bold'>
+                        Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.
+                        You'll receive a tracking and confirmation email from our delivery partner approximately 1 week before your order is due to be delivered.
+                    </p>
+                    <ul className='font-bold text-black'>
+                        <li>1 - year warranty</li>
+                        <li>Free Bike Shipping</li>
+                    </ul>
                 </div>
                 <button onClick={processPayment} disabled={paymentType === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment

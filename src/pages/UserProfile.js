@@ -7,15 +7,20 @@ import { AuthContext } from '../contexts/AuthContext'
 import { CartContext } from '../contexts/CartContext'
 import { useQuery } from 'react-query'
 import orderService from '../@services/orderService'
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 
 
 function UserProfile() {
-    const { state: user, dispatch:authDispatch } = useContext(AuthContext)
-
+    const { state: user, dispatch: authDispatch } = useContext(AuthContext)
+    user && console.log(user)
     const { state: cart } = useContext(CartContext)
 
+
     const [orderHistory, setOrderHistory] = useState([])
+
+    // let orderHistory = []
+    let userAddress = []
 
     const totalSumRef = useRef(0)
 
@@ -30,25 +35,38 @@ function UserProfile() {
 
     const userId = user.user.id
 
-    const {data:orders, isLoading, error, isError} = useQuery(['order',{userId}], orderService.getOrders)
+    const { data: orders, isLoading, error, isError } = useQuery(['order', { userId }], orderService.getOrders)
 
     orders && console.log(orders.data.data)
+    orders && setOrderHistory(orders.data.data)
+
+    // if (orders) {
+    //     orderHistory = orders.data.data
+
+    // }
+
+    const { data: address } = useQuery(['address', { userId }], orderService.getUserAddress)
+    if (address) {
+        userAddress = address.data.data
+    }
+    address && console.log(address.data.data)
+
 
     const getOrderHistory = () => {
-        orders && setOrderHistory(orders.data.data)
+        //orders && setOrderHistory(orders.data.data)
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         getOrderHistory()
-    },[])
+    }, [])
 
 
-    user && console.log(user)
-    cart && console.log(cart)
+    // user && console.log(user)
+    // cart && console.log(cart)
 
     const logout = () => {
-        authDispatch({type:'LOGOUT'})
+        authDispatch({ type: 'LOGOUT' })
     }
 
     return (
@@ -57,7 +75,7 @@ function UserProfile() {
                 <h3 className='cursor-pointer text-[#1071FF] font-medium text-base' onClick={logout}>Logout</h3>
                 <div className='lg:px-[200px] font-bold text-[22px]'>
                     {
-                        user && 
+                        user &&
                         <h2 className=''>My Profile</h2>
                     }
                     {
@@ -67,43 +85,75 @@ function UserProfile() {
                     }
                 </div>
             </div>
-            
+
 
             <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
                 <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
                     <div className='flex flex-col font-mulish'>
-                        <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>Checkout</h2>
+                        {/* <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>My Profile</h2> */}
                         <p className='font-bold text-base mb-[39px]'>Shipping address</p>
                         <div className=''>
                             <form className='flex flex-col'>
-                                <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
-                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
-                                    <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
-                                </div>
-                                <div className='form-group lg:w-[465px] lg:mb-[39px]'>
-                                    <h2 className='lg:font-normal font-bold text-base text-[#030919] lg:leading-[19px] mb-2'>Contact information</h2>
-                                    <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px] w-full'>
-                                        <div className='flex flex-col lg:w-[50%] w-full'>
-                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>First name</h2>
-                                            <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
+                                {
+                                    user &&
+                                    <div className=''>
+                                        <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
+                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
+                                            <input type='text' name='address' placeholder='' value={user.user.email} className='h-[46px] border w-full' />
                                         </div>
-                                        <div className='flex flex-col lg:w-[50%] w-full'>
-                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Last name</h2>
-                                            <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
+                                        <div className='form-group lg:w-[465px] lg:mb-[39px]'>
+                                            <h2 className='lg:font-normal font-bold text-base text-[#030919] lg:leading-[19px] mb-2'>Contact information</h2>
+                                            <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px] w-full'>
+                                                <div className='flex flex-col lg:w-[50%] w-full'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>First name</h2>
+                                                    <input type='text' name='address' placeholder='' value={user.user.first_name} className='h-[46px] border w-full' />
+                                                </div>
+                                                <div className='flex flex-col lg:w-[50%] w-full'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Last name</h2>
+                                                    <input type='text' name='address' placeholder='' value={user.user.last_name} className='h-[46px] border w-full' />
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                                <div className='flex flex-col lg:w-[50%]'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Company name (optional)</h2>
+                                                    <input type='text' name='address' placeholder='' value={user.user.company && user.user.company} className='h-[46px] border w-full' />
+                                                </div>
+                                                {/* <div className='flex flex-col lg:w-[50%]'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
+                                                    <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
+                                                </div> */}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
-                                        <div className='flex flex-col lg:w-[50%]'>
-                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Company name (optional)</h2>
-                                            <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
-                                        </div>
-                                        <div className='flex flex-col lg:w-[50%]'>
-                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
-                                            <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                }
+
+                                {
+                                    userAddress.map(address => {
+                                        return (
+                                            <div className='' key={address.id}>
+                                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
+                                                    <input type='text' name='address' placeholder='' value={address.street} className='h-[46px] border w-full' />
+                                                </div>
+                                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                                    <div className='flex flex-col lg:w-[50%]'>
+                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
+                                                        <input type='text' name='state' placeholder='' value={address.state} className='h-[46px] border w-full' />
+                                                    </div>
+                                                    <div className='flex flex-col lg:w-[50%]'>
+                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
+                                                        <input type='text' name='city' placeholder='' value={address.city} className='h-[46px] border w-full' />
+                                                    </div>
+                                                </div>
+                                                <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
+                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
+                                                    <input type='number' name='phoneNumber' placeholder='' value={address.phone && address.phone} className='h-[46px] border w-full' />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
                                     <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
                                 </div>
@@ -114,75 +164,87 @@ function UserProfile() {
                                     </div>
                                     <div className='flex flex-col lg:w-[50%]'>
                                         <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                        <input type='text' name='city' placeholder='' className='h-[46px] border w-full' />
+                                        <input type='text' name='city' placeholder='' value={userAddress.city} className='h-[46px] border w-full' />
                                     </div>
                                 </div>
                                 <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
                                     <input type='number' name='phoneNumber' placeholder='' className='h-[46px] border w-full' />
                                 </div>
-                                <button className='lg:w-full font-bold text-btn_text bg-red text-base py-[14px] rounded-[4px]'>Save</button>
+                                <button className='lg:w-full font-bold text-btn_text bg-red text-base py-[14px] rounded-[4px]'>Save</button> */}
                             </form>
                         </div>
                     </div>
                 </div>
-                <div className="">
-                    <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
-                    <hr className='text-line mb-7' />
-                    <p className='font-semibold text-base text-[#000000] lg:mb-6'>Item amount : {orderHistory.length}</p>
-                    <div className='flex flex-col lg:gap-2'>
-                        {
-                            // orderHistory.length > 0 ?
-                            orderHistory.length > 0 ?
-                            orderHistory.map((order) => {
-                                return (
-                                    <div className=''>
-                                        <div className='flex flex-col font-normal text-base mt-7'>
-                                            <div className='flex justify-between mt-3'>
-                                                <h3 className='font-normal text-xl' >Bikee delivery</h3><h3 className=''>Free</h3>
-                                            </div>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <h3>Total amount:</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                        </div>
-                                        <h3 className=''>Order ref: {order.order_ref}</h3>
-                                        <h3 className=''>Payment: {order.payment?.provider}</h3>
-                                        {
-                                            // order.payment.provider !== null ? 
-                                            // <h3 className=''>Payment options: {order.payment.order_ref} 
-                                            //     <span className=''>{order.payment.status === "successful" ? 'Paid' : order.payment.status === "pending" ? 'Pending' : 'failed'}</span>
-                                            // </h3> 
-                                            // :
-                                            // null
-                                        }
-                                        {/* <h3 className=''>Payment options: {order.payment.provider} 
-                                            <span className=''>{order.payment.status === "successful" ? 'Paid' : order.payment.status === "pending" ? 'Pending' : 'failed'}</span>
-                                        </h3> */}
+                <div className="lg:w-[300px]">
+                    {
+                        isLoading ? 'Loading...'
+                        :
+                        <>
+                            <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
+                            <hr className='text-line mb-7' />
+                            <p className='font-semibold text-base text-[#000000] lg:mb-6'>Item amount : {orderHistory.length}</p>
+                            <div className='flex flex-col lg:gap-2'>
+                                {
+                                    // orderHistory.length > 0 ?
+                                    orderHistory.length > 0 ?
+                                        orderHistory.map((order) => {
+                                            return (
+                                                <div className='' key={order.id}>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium'>Order ref: </h3><h3 className=''>{order.order_ref}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium'>Total amount: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium' >Delivery option:</h3><h3 className=''>Free</h3>
+                                                    </div>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium'>Subtotal: </h3>
+                                                        <h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium'>Provider: </h3>
+                                                        <h3 className=''>{order.payment?.provider}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between'>
+                                                        <h3 className='font-medium'>Payment: </h3>
+                                                        {
+                                                            order.payment.status === 'successful' ?
+                                                                <div className='flex items-center text-green-700 gap-1'>
+                                                                    <h3 className='text-green-700'>Paid</h3>
+                                                                    <IoCheckmarkCircleOutline />
+                                                                </div>
+                                                                :
+                                                                <h3 className=''>{order.payment.status}</h3>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                        :
+                                        'You currently have no order history'
+                                }
+                                {/* {
+                                    cart.map(({ id, image_url, total, quantity, name, total_amount }) => {
+                                        return (
+                                            <OrderCard
+                                                key={id}
+                                                image={image_url}
+                                                price={total}
+                                                quantity={quantity}
+                                                id={id}
+                                                name={name}
+                                            />
+                                        )
+                                    })
+                                } */}
+                            </div>
+                        </>
 
-                                    </div>
-                                )
-                            })
-                            :
-                            'You currently have no order history'
-                        }
-                        {/* {
-                            cart.map(({ id, image_url, total, quantity, name, total_amount }) => {
-                                return (
-                                    <OrderCard
-                                        key={id}
-                                        image={image_url}
-                                        price={total}
-                                        quantity={quantity}
-                                        id={id}
-                                        name={name}
-                                    />
-                                )
-                            })
-                        } */}
-                    </div>
+                    }
+                    
                     {/* <div className='flex flex-col font-normal text-base mt-7'>
                         <div className='flex justify-between'>
                             <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(totalSumRef.current)}</h3>

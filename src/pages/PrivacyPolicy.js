@@ -128,7 +128,7 @@ function PrivacyPolicy() {
             <div className='mb-[30px]'>
                 <h2 className='font-semibold text-base mb-5 '>11.0. YOUR OPT-OUT AND INFORMATION ACCESS RIGHTS.</h2>
                 <p className='mb-4'>
-                If at any time You do not wish to receive the communications stated herein from MOTION MOBILITY LIMITED, You may “opt-out” by writing to MOTION MOBILITY LIMITED Limited., 8b Sunday Adigun, Street, Lagos or by e-mailing info@motion.africa. It may take up to 15 days for the change to be fully effective.                </p>
+                If at any time You do not wish to receive the communications stated herein from MOTION MOBILITY LIMITED, You may “opt-out” by writing to MOTION MOBILITY LIMITED Limited., 103 Allen Avenue, Mosesola House, Ikeja Lagos, or by e-mailing info@hellobikee.com. It may take up to 15 days for the change to be fully effective.                </p>
             </div>
             <div className='mb-[30px]'>
                 <h2 className='font-semibold text-base mb-5 '>12.0. CHANGE IN MOTION MOBILITY LIMITED BUSINESS OWNERSHIP OR STRUCTURE.</h2>

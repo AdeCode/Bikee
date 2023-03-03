@@ -120,7 +120,8 @@ function Nav() {
                             {/* <li className='lg:text-sm hover:text-red'>Businesses</li>
                             <li className='lg:text-sm hover:text-red'>Gig Workers</li> */}
                             <li className='lg:text-sm hover:text-red'>
-                                <Link to='/pre-order'>Pre-Order</Link>
+                                <Link to='/'>Pre-Order (Coming Soon!)</Link>
+                                {/* <Link to='/pre-order'>Pre-Order (Coming Soon!)</Link> */}
                             </li>
                         </ul>
                     </li>
@@ -160,9 +161,9 @@ function Nav() {
                     !user.isAuthenticated &&
                     <div className='lg:flex hidden items-center lg:gap-6 font-medium'>
                         <div className='mb-9 lg:mb-0'>
-                            <Link to='/signin' className={`menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0`}>
+                            {/* <Link to='/signin' className={`menu flex items-center gap-[3px] lg:gap-[6px] cursor-pointer font-semibold lg:m-0 lg:p-0`}>
                                 Login
-                            </Link>
+                            </Link> */}
                             <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
                                 <li className='lg:text-sm hover:text-red'>Last-mile</li>
                                 <li className='lg:text-sm hover:text-red'>APIs</li>

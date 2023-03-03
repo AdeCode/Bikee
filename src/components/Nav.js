@@ -120,7 +120,8 @@ function Nav() {
                             {/* <li className='lg:text-sm hover:text-red'>Businesses</li>
                             <li className='lg:text-sm hover:text-red'>Gig Workers</li> */}
                             <li className='lg:text-sm hover:text-red'>
-                                <Link to='/pre-order'>Pre-Order</Link>
+                                {/* <Link to='/'>Pre-Order (Coming Soon!)</Link> */}
+                                <Link to='/pre-order'>Pre-Order (Coming Soon!)</Link>
                             </li>
                         </ul>
                     </li>

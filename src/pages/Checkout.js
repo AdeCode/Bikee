@@ -74,7 +74,7 @@ function Checkout() {
                         {
                             cartState.length > 0 &&
                             <div className='flex justify-between lg:mt-5 text-[#000000] font-semibold'>
-                                <h3 className='text-base'>Cart total : {cartState.length} items</h3>
+                                <h3 className='text-base'>Cart total : {cartState.length} Accessories</h3>
                                 <h3 className='text-[22px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                             </div>
                         }
@@ -98,6 +98,10 @@ function Checkout() {
                                     )
                                 })
                             }
+                        </div>
+                        <div className='flex justify-between text-[20px] font-bold'>
+                            <h3>Total</h3>
+                            <h3 className='text-[20px] lg:leading-7'>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
                         </div>
                         <hr className='text-line mb-4'/>
                         <div className='text-[#000000]'>

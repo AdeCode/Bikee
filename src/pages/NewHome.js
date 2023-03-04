@@ -114,28 +114,28 @@ function NewHome() {
           
         </div>
       </div>
-      <div className='flex lg:flex-col bg-red px-10 py-5'>
-            <div className='flex flex-col justify-center items-center text-white mb-14'>
-                <h1 className='text-[3rem] font-semibold mb-4'>Great day to commute/deliver with BIKEE.</h1>
-                <p className='text-[1.5rem] mb-3'>At the heart of a city, Bikee App is your daily road companion. </p>
-                <p className='text-base lg:mb-5 w-[600px] text-center'>From mapping the best routes to keeping you informed of the daily CO2 reduction, the app is the key to a Connected ride.</p>
-                <a href='https://play.google.com/store/apps/details?id=com.motionafrica.e_bike_app&hl=en&gl=US' target='_blank' rel='noreferrer' className='bg-white rounded-3xl text-red text-base font-semibold py-2 px-4'>Discover the app</a>
+      <div className='flex flex-col bg-red lg:px-10 px-3 py-5'>
+            <div className='flex flex-col lg:justify-center items-center text-white mb-6 lg:mb-14 max-w-[100vw]'>
+                <h1 className='lg:text-[3rem] text-[1.5rem] font-semibold mb-4 text-center'>Great day to commute/deliver with BIKEE.</h1>
+                <p className='lg:text-[1.5rem] text-[1.2rem] mb-3  text-center'>At the heart of a city, Bikee App is your daily road companion. </p>
+                <p className='text-base mb-5 lg:w-[600px] text-center'>From mapping the best routes to keeping you informed of the daily CO2 reduction, the app is the key to a Connected ride.</p>
+                <a href='https://play.google.com/store/apps/details?id=com.motionafrica.e_bike_app&hl=en&gl=US' target='_blank' rel='noreferrer' className='bg-white rounded-3xl text-red text-base font-semibold py-2 px-4 w-fit'>Discover the app</a>
             </div>
-            <div className='flex justify-between'>
-            <div className='w-[250px] h-[500px]'>
+            <div className='flex flex-col lg:flex-row lg:justify-between items-center gap-5 lg:gap-0'>
+                <div className='lg:w-[250px] lg:h-[500px] w-[300px] h-auto'>
                     <img src={Mockup2} alt='mockup'/>
                 </div>
-                <div className='w-[300px] h-[600px]'>
+                <div className='lg:w-[300px] lg:h-[600px] w-[300px] h-auto'>
                     <img src={Mockup1} alt='mockup'/>
                 </div>
-                <div className='w-[250px] h-[500px]'>
+                <div className='lg:w-[250px] lg:h-[500px] w-[300px] h-auto'>
                     <img src={Mockup} alt='mockup'/>
                 </div>
-                <div className='w-[250px] h-[500px]'>
+                <div className='lg:w-[250px] lg:h-[500px] w-[300px] h-auto'>
                     <img src={Mockup3} alt='mockup'/>
                 </div>
             </div>
-        </div>
+      </div>
       <div className='bg-[#280101] lg:pt-[90px] pt-10 pb-20 lg:pb-[25px] flex flex-col lg:flex-row lg:justify-center lg:gap-20 px-[30px] lg:px-0'>
         <div className='mb-20 lg:mb-0'>
           <img src={screens} alt='mobile app screen'/>

@@ -2,9 +2,9 @@ import React from 'react'
 
 function PrivacyPolicy() {
   return (
-    <div className='lg:pt-[100px] lg:px-[100px]'>
-        <h1 className='text-[3rem] lg:mb-[30px]'>MOTION MOBILITY LIMITED PRIVACY POLICY</h1>
-        <hr className='mb-[60px]'/>
+    <div className='lg:pt-[100px] pt-[60px] lg:px-[100px] px-5 py-5'>
+        <h1 className='lg:text-[3rem] text-[1.5rem] lg:mb-[30px]'>MOTION MOBILITY LIMITED PRIVACY POLICY</h1>
+        <hr className='lg:mb-[60px] mb-7'/>
         <div className='lg:w-[1000px]'>
             <h3 className='font-semibold mb-7 text-[1.3rem]'>Last updated: (07/12/2022)</h3>
             <p className='mb-6'>This User Agreement is a legally binding contract between you (“You”, “Your” and in some instances “User”) and MOTION, 

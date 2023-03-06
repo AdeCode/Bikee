@@ -127,7 +127,7 @@ function OrderSummary() {
                                             <Form className='flex flex-col w-full'>
                                                 <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
-                                                    <Field type="email" name="email" value={user.user.email} className='h-[46px] border w-full px-3' placeholder='enter your email' />
+                                                    <Field type="email" name="email" value={user.user.email} readOnly={true} className='h-[46px] border w-full px-3' placeholder='enter your email' />
                                                     <ErrorMessage name="email" component="div" className='text-red' />
                                                 </div>
                                                 <div className='form-group lg:w-[465px] lg:mb-[39px]'>
@@ -135,12 +135,12 @@ function OrderSummary() {
                                                     <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px] w-full'>
                                                         <div className='flex flex-col lg:w-[50%] w-full'>
                                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>First name</h2>
-                                                            <Field type="text" name="first_name" value={user.user.first_name} className='h-[46px] border w-full px-3' placeholder='enter your first name' />
+                                                            <Field type="text" name="first_name" value={user.user.first_name} readOnly className='h-[46px] border w-full px-3'  placeholder='enter your first name' />
                                                             <ErrorMessage name="first_name" component="div" className='text-red' />
                                                         </div>
                                                         <div className='flex flex-col lg:w-[50%] w-full'>
                                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Last name</h2>
-                                                            <Field type="text" name="last_name" value={user.user.last_name} className='h-[46px] border w-full px-3' placeholder='enter your last name' />
+                                                            <Field type="text" name="last_name" value={user.user.last_name} readOnly className='h-[46px] border w-full px-3' placeholder='enter your last name' />
                                                             <ErrorMessage name="last_name" component="div" className='text-red' />
                                                         </div>
                                                     </div>
@@ -152,10 +152,46 @@ function OrderSummary() {
                                                         </div>
                                                         <div className='flex flex-col lg:w-[50%]'>
                                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
-                                                            <Field type="number" name="quantity" value={cartState.length} className='h-[46px] border w-full px-3' placeholder='enter companyname' />
+                                                            <Field type="number" name="quantity" value={cartState.length} readOnly className='h-[46px] border w-full px-3' placeholder='enter companyname' />
                                                             <ErrorMessage name="quantity" component="div" className='text-red' />
                                                         </div>
                                                     </div>
+                                                    {
+                                                        userAddress.length < 1 ?
+                                                            <div className=''>
+                                                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
+                                                                    <Field type="text" name="street" className='h-[46px] border w-full px-3' placeholder='enter address' />
+                                                                    <ErrorMessage name="street" component="div" className='text-red' />
+                                                                </div>
+                                                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                                                    <div className='flex flex-col lg:w-[50%]'>
+                                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
+                                                                        <Field type="text" name="state" className='h-[46px] border w-full px-3' placeholder='enter address' />
+                                                                        <ErrorMessage name="state" component="div" className='text-red' />
+                                                                    </div>
+                                                                    <div className='flex flex-col lg:w-[50%]'>
+                                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
+                                                                        <Field type="text" name="city" className='h-[46px] border w-full px-3' placeholder='enter your city' />
+                                                                        <ErrorMessage name="city" component="div" className='text-red' />
+                                                                    </div>
+                                                                </div>
+                                                                <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
+                                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
+                                                                    <Field type="number" name="phone_number" className='h-[46px] border w-full px-3' placeholder='enter your city' />
+                                                                    <ErrorMessage name="phone_number" component="div" className='text-red' />
+                                                                </div>
+                                                                <button type="submit" disabled={isSubmitting} className='w-full py-[11px] text-white bg-red rounded-[6px] text-[16px] mt-[23px]'>
+                                                                    {
+                                                                        saveAddressMutation.isLoading
+                                                                            ? "Please wait..."
+                                                                            : "Save"
+                                                                    }
+                                                                </button>
+                                                            </div>
+                                                            :
+                                                            ''
+                                                    }
                                                 </div>
                                                 {
                                                     userAddress &&
@@ -194,12 +230,12 @@ function OrderSummary() {
                                                 }
                                                 {
                                                     showForm === false ?
-                                                    <div className='text-red'>
-                                                        <h3 onClick={() => setShowForm(!showForm)} className='flex items-center cursor-pointer'><IoAddCircleOutline/> Use a different address</h3>
-                                                    </div>
-                                                    : ''
+                                                        <div className='text-red'>
+                                                            <h3 onClick={() => setShowForm(!showForm)} className='flex items-center cursor-pointer'><IoAddCircleOutline /> Use a different address</h3>
+                                                        </div>
+                                                        : ''
                                                 }
-                                                
+
                                                 {
                                                     showForm &&
                                                     <div>

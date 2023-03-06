@@ -13,7 +13,7 @@ function OrderConfirmation() {
                     <p className='font-normal text-sm'>Motion Mobility.</p>
                 </div>
             </div>
-            <div className='w-full text-dark_blue mt-3'>
+            <div className='w-full text-dark_blue mt-3 flex justify-center'>
                 <Link to='/'>Go home</Link>
             </div>
         </div>

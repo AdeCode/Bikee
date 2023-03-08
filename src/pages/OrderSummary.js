@@ -16,6 +16,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 function OrderSummary() {
     const location = useLocation()
     const [showForm, setShowForm] = useState(false)
+    const [selectedAddress, setSelectedAddress] = useState('')
     let deliveryType = ''
     let userAddress = []
     if (sessionStorage.getItem('deliveryType') !== '') {
@@ -46,6 +47,7 @@ function OrderSummary() {
     const saveAddressMutation = useMutation(orderService.saveShippingAddress, {
         onSuccess: res => {
             console.log(res)
+            setSelectedAddress(res.data.id)
             toast.success(res.message, {
                 theme: "colored",
             })
@@ -57,6 +59,11 @@ function OrderSummary() {
             })
         }
     })
+
+    const onAddressChange = (e) => {
+        setSelectedAddress(e.target.value)
+        console.log(selectedAddress)
+    }
 
 
     return (
@@ -125,7 +132,7 @@ function OrderSummary() {
                                     >
                                         {({ isSubmitting }) => (
                                             <Form className='flex flex-col w-full'>
-                                                <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
+                                                <div className='form-group lg:w-[465px] lg:mb-[24px] mb-[18px]'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
                                                     <Field type="email" name="email" value={user.user.email} readOnly={true} className='h-[46px] border w-full px-3' placeholder='enter your email' />
                                                     <ErrorMessage name="email" component="div" className='text-red' />
@@ -195,38 +202,58 @@ function OrderSummary() {
                                                 </div>
                                                 {
                                                     userAddress &&
-                                                    userAddress.map(address => {
-                                                        return (
-                                                            <div className='mb-8' key={address.id}>
-                                                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
-                                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
-                                                                    <Field type="text" name="street" className='h-[46px] border w-full px-3' value={address.street} placeholder='enter address' />
-                                                                    <ErrorMessage name="street" component="div" className='text-red' />
-                                                                </div>
-                                                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
-                                                                    <div className='flex flex-col lg:w-[50%]'>
-                                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
-                                                                        <Field type="text" name="state" className='h-[46px] border w-full px-3' value={address.state} placeholder='enter address' />
-                                                                        <ErrorMessage name="state" component="div" className='text-red' />
+                                                    <>
+                                                        <h3 className='mb-6 font-semibold'>Select an exisiting address</h3>
+                                                        {
+                                                            userAddress.map(address => {
+                                                                return (
+                                                                    <div className='mb-4' key={address.id}>
+                                                                        <div className=''>
+                                                                            <div className="">
+                                                                                <label>
+                                                                                    <input
+                                                                                        type="radio"
+                                                                                        value={address.id}
+                                                                                        onChange={onAddressChange}
+                                                                                        name='deliveryAddress'
+                                                                                        className='mr-2'
+                                                                                    />
+                                                                                    {address.street}, {address.city}, {address.state}
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        {/* <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
+                                                                            <Field type="text" name="street" className='h-[46px] border w-full px-3' value={address.street} placeholder='enter address' />
+                                                                            <ErrorMessage name="street" component="div" className='text-red' />
+                                                                        </div>
+                                                                        <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                                                            <div className='flex flex-col lg:w-[50%]'>
+                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
+                                                                                <Field type="text" name="state" className='h-[46px] border w-full px-3' value={address.state} placeholder='enter address' />
+                                                                                <ErrorMessage name="state" component="div" className='text-red' />
+                                                                            </div>
+                                                                            <div className='flex flex-col lg:w-[50%]'>
+                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
+                                                                                <Field type="text" name="city" className='h-[46px] border w-full px-3' value={address.city} placeholder='enter your city' />
+                                                                                <ErrorMessage name="city" component="div" className='text-red' />
+                                                                            </div>
+                                                                        </div>
+                                                                        {
+                                                                            address.phone_number &&
+                                                                            <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
+                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
+                                                                                <Field type="number" name="phone_number" className='h-[46px] border w-full px-3' value={address.phone_number} placeholder='enter your city' />
+                                                                                <ErrorMessage name="phone_number" component="div" className='text-red' />
+                                                                            </div>
+                                                                        } */}
+        
                                                                     </div>
-                                                                    <div className='flex flex-col lg:w-[50%]'>
-                                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                                                        <Field type="text" name="city" className='h-[46px] border w-full px-3' value={address.city} placeholder='enter your city' />
-                                                                        <ErrorMessage name="city" component="div" className='text-red' />
-                                                                    </div>
-                                                                </div>
-                                                                {
-                                                                    address.phone_number &&
-                                                                    <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
-                                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
-                                                                        <Field type="number" name="phone_number" className='h-[46px] border w-full px-3' value={address.phone_number} placeholder='enter your city' />
-                                                                        <ErrorMessage name="phone_number" component="div" className='text-red' />
-                                                                    </div>
-                                                                }
-
-                                                            </div>
-                                                        )
-                                                    })
+                                                                )
+                                                            })
+                                                        }
+                                                    </>
+                                                    
                                                 }
                                                 {
                                                     showForm === false ?
@@ -283,7 +310,7 @@ function OrderSummary() {
 
                 </div>
                 <div>
-                    <SummaryOrder />
+                    <SummaryOrder addressId={selectedAddress}/>
                 </div>
             </div>
         </Container>

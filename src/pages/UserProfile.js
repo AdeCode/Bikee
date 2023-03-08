@@ -228,6 +228,14 @@ function UserProfile() {
                                                                 <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>{order.payment.status}</h3>
                                                         }
                                                     </div>
+                                                    {
+                                                        order.address &&
+                                                        <div className='flex justify-between'>
+                                                            <h3 className='font-medium'>Shipping address: </h3>
+                                                            <h3 className='text-end'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
+                                                        </div>
+                                                    }
+                                                    
                                                     <hr/>
                                                 </div>
                                             )

@@ -191,6 +191,10 @@ const Section = styled.section`
         visibility: visible;
         border: 2px solid #FF0000;
     }
+    button[disabled]{
+        opacity: 0.2;
+        cursor: not-allowed;
+    }
 `
 
 export default Checkout

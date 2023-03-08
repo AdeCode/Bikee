@@ -22,6 +22,8 @@ import { AuthContext } from '../contexts/AuthContext'
 import helperFunction from '../@helpers/helperFunction'
 import { GiCheckMark } from "react-icons/gi";
 import BikeCarousel from '../components/@shared/BikeCarousel'
+import { ThreeDots } from  'react-loader-spinner'
+import { FiAlertTriangle } from "react-icons/fi";
 
 function PreOrder() {
     const [bikeColor, setBikeColor] = useState('Blue')
@@ -52,6 +54,8 @@ function PreOrder() {
     const { data: products, isLoading, error } = useQuery('product', productService.getProducts)
 
     // products && console.log(products)
+
+    // isLoading && return <div></div>
 
     const { state: user } = useContext(AuthContext)
     // user&&console.log(user)
@@ -144,13 +148,6 @@ function PreOrder() {
 
     return (
         <Section>
-            {/* <div className='lg:pt-[90px] lg:pb-[42px] lg:pl-[140px] hidden lg:flex'>
-                <ul className='flex lg:gap-11 font-normal text-[13px] lg:leading-[22px] text-nav_text'>
-                    <li className=''>E-bike</li>
-                    <li className=''>Accessories </li>
-                    <li className=''>Maintanance and Insuransce</li>
-                </ul>
-            </div> */}
             <SubMenu />
             <div className='lg:bg-orderBg bg-mobileRider bg-cover bg-center lg:h-[70vh]'>
                 <div className='lg:py-[161px] lg:px-[130px] text-white font-mulish px-8 flex items-center h-[477px]'>
@@ -263,6 +260,26 @@ function PreOrder() {
 
                 <div className="flex lg:flex-wrap lg:w-[1220px] w-full overflow-auto lg:gap-7 gap-6 lg:px-[auto] pl-[33px] lg:pl-0 pb-10">
                     {
+                        isLoading ? 
+                        <div className='flex justify-center w-full'>
+                            <ThreeDots 
+                                height="80" 
+                                width="80" 
+                                radius="9"
+                                color="#FF0000" 
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClassName=""
+                                visible={true}
+                            />
+                        </div>
+                        :
+                        error ?
+                        <div className='flex flex-col items-center w-full'>
+                            <FiAlertTriangle size="70px" color="#BBC3CF"/>
+                            <h3 className='text-base font-medium'>{error.message}</h3>
+                        </div>
+                        :
                         accessories.map(accessory => {
                             return (
 

@@ -12,9 +12,9 @@ import Iframe from 'react-iframe'
 import PaymentModal from './PaymentModal'
 import { AuthContext } from '../../contexts/AuthContext'
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import styled from 'styled-components'
 
 
 const style = {
@@ -36,7 +36,7 @@ const style = {
     p: 4
   };
 
-function SummaryOrder() {
+function SummaryOrder({addressId}) {
     const [paymentType, setPaymentType] = useState('')
     const [paymentURL, setPaymentURL] = useState('')
     const [bikeeBanks, setBikeeBanks] = useState([])
@@ -103,6 +103,7 @@ function SummaryOrder() {
         payload.total_amount=helperFunction.getTotalOrderAmount(cartState)
         payload.order_ref=orderRef
         payload.payment_method = paymentType
+        payload.delivery_address_id = addressId
         console.log('submit order')
         console.log(payload)
         addOrderMutation.mutate(payload)
@@ -164,7 +165,7 @@ function SummaryOrder() {
 
     return (
         
-        <div className=''>
+        <Section className=''>
             {modal &&
                 <Modal
                     title='Thank you for your order!'
@@ -318,26 +319,24 @@ function SummaryOrder() {
                         </label>
                     </div> */}
                 </div>
-                <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
-                    <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
-                    <p className='text-[#979797] font-bold'>
-                        Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.
-                        You'll receive a tracking and confirmation email from our delivery partner approximately 1 week before your order is due to be delivered.
-                    </p>
-                    <ul className='font-bold text-black'>
-                        <li>1 - year warranty</li>
-                        <li>Free Bike Shipping</li>
-                    </ul>
-                </div>
-                <button onClick={processPayment} disabled={paymentType === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
+                
+                <button onClick={processPayment} disabled={paymentType === '' ? true : addressId === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment
                 </button>
                 {/* <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment
                 </button> */}
             </div>
-        </div>
+        </Section>
     )
 }
+
+const Section = styled.section`
+    button[disabled]{
+        opacity: 0.2;
+        cursor: not-allowed;
+    }
+`
+    
 
 export default SummaryOrder

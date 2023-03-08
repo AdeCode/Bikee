@@ -102,24 +102,24 @@ function UserProfile() {
                                     <div className=''>
                                         <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
-                                            <input type='text' name='address' placeholder='' value={user.user.email} className='h-[46px] border w-full' />
+                                            <input type='text' name='address' placeholder='' value={user.user.email} readOnly className='h-[46px] border w-full' />
                                         </div>
                                         <div className='form-group lg:w-[465px] lg:mb-[39px]'>
                                             <h2 className='lg:font-normal font-bold text-base text-[#030919] lg:leading-[19px] mb-2'>Contact information</h2>
                                             <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px] w-full'>
                                                 <div className='flex flex-col lg:w-[50%] w-full'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>First name</h2>
-                                                    <input type='text' name='address' placeholder='' value={user.user.first_name} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.first_name} className='h-[46px] border w-full' />
                                                 </div>
                                                 <div className='flex flex-col lg:w-[50%] w-full'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Last name</h2>
-                                                    <input type='text' name='address' placeholder='' value={user.user.last_name} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.last_name} className='h-[46px] border w-full' />
                                                 </div>
                                             </div>
                                             <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
                                                 <div className='flex flex-col lg:w-[50%]'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Company name (optional)</h2>
-                                                    <input type='text' name='address' placeholder='' value={user.user.company && user.user.company} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly={user.user?.company} value={user.user.company && user.user.company} className='h-[46px] border w-full' />
                                                 </div>
                                                 {/* <div className='flex flex-col lg:w-[50%]'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
@@ -136,22 +136,23 @@ function UserProfile() {
                                             <div className='' key={address.id}>
                                                 <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
-                                                    <input type='text' name='address' placeholder='' value={address.street} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly value={address.street} className='h-[46px] border w-full' />
                                                 </div>
                                                 <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
                                                     <div className='flex flex-col lg:w-[50%]'>
                                                         <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
-                                                        <input type='text' name='state' placeholder='' value={address.state} className='h-[46px] border w-full' />
+                                                        <input type='text' name='state' placeholder='' readOnly value={address.state} className='h-[46px] border w-full' />
                                                     </div>
                                                     <div className='flex flex-col lg:w-[50%]'>
                                                         <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                                        <input type='text' name='city' placeholder='' value={address.city} className='h-[46px] border w-full' />
+                                                        <input type='text' name='city' placeholder='' readOnly value={address.city} className='h-[46px] border w-full' />
                                                     </div>
                                                 </div>
                                                 <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
-                                                    <input type='number' name='phoneNumber' placeholder='' value={address.phone && address.phone} className='h-[46px] border w-full' />
+                                                    <input type='number' name='phoneNumber' placeholder='' readOnly={address?.phone} value={address.phone && address.phone} className='h-[46px] border w-full' />
                                                 </div>
+                                                <hr/>
                                             </div>
                                         )
                                     })
@@ -186,7 +187,7 @@ function UserProfile() {
                         <>
                             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
                             <hr className='text-line mb-7' />
-                            <p className='font-semibold text-base text-[#000000] lg:mb-6'>Item amount : {orderHistoryRef.current.length}</p>
+                            <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p>
                             <div className='flex flex-col lg:gap-5'>
                                 {
                                     // orderHistory.length > 0 ?
@@ -227,6 +228,14 @@ function UserProfile() {
                                                                 <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>{order.payment.status}</h3>
                                                         }
                                                     </div>
+                                                    {
+                                                        order.address &&
+                                                        <div className='flex justify-between'>
+                                                            <h3 className='font-medium'>Shipping address: </h3>
+                                                            <h3 className='text-end'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
+                                                        </div>
+                                                    }
+                                                    
                                                     <hr/>
                                                 </div>
                                             )

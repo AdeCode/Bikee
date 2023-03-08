@@ -134,6 +134,17 @@ function Checkout() {
                                     </label>
                                 </div>
                             </div>
+                            <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
+                                <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
+                                <p className='text-[#979797] font-bold'>
+                                    Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.
+                                    You'll receive a tracking and confirmation email from our delivery partner approximately 1 week before your order is due to be delivered.
+                                </p>
+                                <ul className='font-bold text-black'>
+                                    <li>1 - year warranty</li>
+                                    <li>Free Bike Shipping</li>
+                                </ul>
+                            </div>
                             <button onClick={checkOut} disabled={deliveryType === '' ? true : false} className='bg-red text-white py-[13px] w-full px-[26px] lg:w-fit rounded-[4px] lg:leading-7'>
                                 Proceed To checkout
                             </button>
@@ -179,6 +190,10 @@ const Section = styled.section`
         display: inline-block;
         visibility: visible;
         border: 2px solid #FF0000;
+    }
+    button[disabled]{
+        opacity: 0.2;
+        cursor: not-allowed;
     }
 `
 

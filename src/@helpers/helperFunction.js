@@ -38,12 +38,19 @@ function numberOfBike(arr){
     // })
 }
 
+
+function summer(acc, curr){
+    const returns = acc + curr
+    return returns
+}
+
 const helperFunction = {
     getTotalOrderAmount,
     extractFirstLetter,
     getOrderData,
     nairaFormat,
-    numberOfBike
+    numberOfBike,
+    summer
 }
 
 export default helperFunction

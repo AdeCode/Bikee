@@ -73,7 +73,7 @@ function UserProfile() {
     }
 
     return (
-        <Container className='pt-[150px]'>
+        <Container className='pt-[100px]'>
             <div className='flex lg:px-[100px] lg:mb-5'>
                 <h3 className='cursor-pointer text-[#1071FF] font-medium text-base' onClick={logout}>Logout</h3>
                 <div className='lg:px-[200px] font-bold text-[22px]'>
@@ -116,16 +116,20 @@ function UserProfile() {
                                                     <input type='text' name='address' placeholder='' readOnly value={user.user.last_name} className='h-[46px] border w-full' />
                                                 </div>
                                             </div>
-                                            <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
-                                                <div className='flex flex-col lg:w-[50%]'>
-                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Company name (optional)</h2>
-                                                    <input type='text' name='address' placeholder='' readOnly={user.user?.company} value={user.user.company && user.user.company} className='h-[46px] border w-full' />
+                                            {
+                                                user.user?.company &&
+                                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                                    <div className='flex flex-col lg:w-[50%]'>
+                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Company name (optional)</h2>
+                                                        <input type='text' name='address' placeholder='' readOnly={user.user?.company} value={user.user.company && user.user.company} className='h-[46px] border w-full' />
+                                                    </div>
+                                                    {/* <div className='flex flex-col lg:w-[50%]'>
+                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
+                                                        <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
+                                                    </div> */}
                                                 </div>
-                                                {/* <div className='flex flex-col lg:w-[50%]'>
-                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Item quantity</h2>
-                                                    <input type='text' name='address' placeholder='' className='h-[46px] border w-full' />
-                                                </div> */}
-                                            </div>
+                                            }
+                                            
                                         </div>
                                     </div>
                                 }
@@ -180,31 +184,88 @@ function UserProfile() {
                         </div>
                     </div>
                 </div>
-                <div className="lg:w-[300px]">
+                <div className="lg:w-[320px]">
+                    <div className='lg:fixed'>
                     {
                         isLoading ? 'Loading...'
                         :
                         <>
                             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
                             <hr className='text-line mb-7' />
-                            <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p>
-                            <div className='flex flex-col lg:gap-5'>
+                            {/* <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p> */}
+                            <div className='flex flex-col lg:gap-5 lg:mb-9 max-h-[500px] overflow-auto hover:overflow-y-scroll container-snap pr-2'>
                                 {
                                     // orderHistory.length > 0 ?
                                     orderHistoryRef.current.length > 0 ?
                                     orderHistoryRef.current.map((order) => {
                                             return (
                                                 <div className='' key={order.id}>
-                                                    <div className='flex justify-between'>
+                                                    <div className='flex justify-between text-base'>
+                                                        <h3 className='font-normal'>Number of items: </h3>
+                                                        {/* <h3 className=''>{order.order_product.length}</h3> */}
+                                                        {
+                                                            order.order_product.reduce((acc, item) => acc + item.quantity, 0)
+                                                        }
+                                                    </div>
+                                                    <div className="flex flex-col mb-4">
+                                                        {
+                                                            order.order_product?.map(item => {
+                                                                return (
+                                                                    <div className='flex mb-1 h-[42px] items-center' key={item.product?.id}>
+                                                                        <div className='w-9 h-8 lg:mr-5'>
+                                                                            <img src={item.product?.image_url} alt={item.product?.name} />
+                                                                        </div>
+                                                                        <div className='flex justify-between lg:w-[50%]'>
+                                                                            <div className='flex flex-col'>
+                                                                                <h3 className='font-medium text-[9px] text-[#19191D]'>{item.product?.name}</h3>
+                                                                                <h3 className='text-[6px] font-medium text-black'>X {item.quantity}</h3>
+                                                                            </div>
+                                                                            <div className='text-[11px] font-normal text-black'>{item.product?.amount}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                    <div className='flex justify-between text-base font-normal text-black'>
+                                                        <h3 className='font-normal'>Subtotal: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between text-base font-normal text-black'>
+                                                        <h3 className=''>Bikee delivery: </h3><h3 className=''>Free</h3>
+                                                    </div>
+                                                    <hr className='text-[#EBEBEB] my-3'/>
+                                                    <div className='flex justify-between text-black'>
+                                                        <h3 className='font-normal text-[19px]'>Total </h3><h3 className='text-xl font-bold'>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                    </div>
+                                                    <div className='flex justify-between font-normal text-base'>
+                                                        <h3 className=''>Payment options: </h3>
+                                                        <div className='flex'>
+                                                            <h3 className='font-semibold'>{order.payment?.provider}</h3>
+                                                            {
+                                                                order.payment.status === 'successful' ?
+                                                                    <div className='flex items-center text-green-700 gap-1'>
+                                                                        <h3 className='text-green-700'>(Paid)</h3>
+                                                                        <IoCheckmarkCircleOutline />
+                                                                    </div>
+                                                                    :
+                                                                    <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>({order.payment.status})</h3>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div className='flex justify-between font-normal text-base'>
+                                                        <h3 className=''>Expected time of arrival: </h3>
+                                                        {/* <h3 className=''></h3> */}
+                                                    </div>
+                                                    {/* <div className='flex justify-between'>
                                                         <h3 className='font-medium'>Order ref: </h3><h3 className=''>{order.order_ref}</h3>
+                                                    </div> */}
+                                                    <div className='flex justify-between text-base font-normal'>
+                                                        <h3 className='' >Delivery option:</h3><h3 className='font-semibold'>Free delivery</h3>
                                                     </div>
-                                                    <div className='flex justify-between'>
-                                                        <h3 className='font-medium'>Total amount: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                    <div className='flex justify-between text-base font-normal'>
+                                                        <h3 className='' >Order ref:</h3><h3 className='font-semibold'>{order.order_ref}</h3>
                                                     </div>
-                                                    <div className='flex justify-between'>
-                                                        <h3 className='font-medium' >Delivery option:</h3><h3 className=''>Free</h3>
-                                                    </div>
-                                                    <div className='flex justify-between font-normal'>
+                                                    {/* <div className='flex justify-between font-normal'>
                                                         <h3 className='font-medium'>Subtotal: </h3>
                                                         <h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
                                                     </div>
@@ -227,16 +288,16 @@ function UserProfile() {
                                                                 :
                                                                 <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>{order.payment.status}</h3>
                                                         }
-                                                    </div>
+                                                    </div> */}
                                                     {
                                                         order.address &&
-                                                        <div className='flex justify-between'>
-                                                            <h3 className='font-medium'>Shipping address: </h3>
-                                                            <h3 className='text-end'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
+                                                        <div className='flex justify-between text-base font-normal'>
+                                                            <h3 className=''>Shipping address: </h3>
+                                                            <h3 className='text-end font-semibold'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
                                                         </div>
                                                     }
                                                     
-                                                    <hr/>
+                                                    <hr className='text-[#EBEBEB] my-5'/>
                                                 </div>
                                             )
                                         })
@@ -275,6 +336,8 @@ function UserProfile() {
                         <h2 className='font-medium text-xl'>Total</h2> <span className='font-bold text-xl'>{helperFunction.nairaFormat(totalSumRef.current)}</span>
                     </div>
                     <hr className='text-line mb-7' /> */}
+                    </div>
+                    
                 </div>
             </div>
         </Container>
@@ -283,6 +346,16 @@ function UserProfile() {
 
 const Container = styled.div`
 
+    /*hide scrool bar for Safari, Chrome and Opera */
+    .container-snap::-webkit-scrollbar{
+        display: none;
+    }
+
+    /*hide scrool bar for Edge IE and firefox */
+    .container-snap{
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
 `
 

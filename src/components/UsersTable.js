@@ -77,9 +77,15 @@ const headCells = [
     },
     {
         id: 'phone',
-        numeric: true,
+        numeric: false,
         disablePadding: false,
         label: 'Phone',
+    },
+    {
+        id: 'actions',
+        numeric: false,
+        disablePadding: false,
+        label: 'Actions',
     },
 
 ];
@@ -327,7 +333,7 @@ export default function UsersTable({rowData}) {
                       </TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>
                       <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left">{row.phonr}</TableCell>
+                      <TableCell align="left">{row.phone}</TableCell>
                       <TableCell align="left" sx={{display:'flex',gap:'20px'}}>
                           <Tooltip title="Edit">
                             <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}/edit`)}>

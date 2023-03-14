@@ -109,37 +109,24 @@ function AddProduct() {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 1, width: '30ch' },
         }}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <div>
+        <div className='flex justify-between'>
           <TextField
             id="outlined-error-helper-text"
             label="Product Name"
             required
-            defaultValue="Enter product name"
             type='text'
-            helperText="Incorrect entry."
             name='name'
           />
-          {/* <TextField
-            id="outlined-error-helper-text"
-            label="Product Type"
-            required
-            defaultValue="Hello World"
-            type='text'
-            helperText="Incorrect entry."
-            name='type'
-          /> */}
           <TextField
             id="outlined-select-currency"
             select
             label="Product Type"
-            defaultValue="BIKE"
-            helperText="Please select your currency"
             name='type'
           >
             {productTypes.map((product) => (
@@ -150,7 +137,7 @@ function AddProduct() {
           </TextField>
         </div>
         <div>
-          <FormControl fullWidth sx={{ m: 1 }}>
+          <FormControl sx={{ m: 1, width:'97%' }}>
             <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
             <OutlinedInput
               id="outlined-adornment-amount"
@@ -180,8 +167,49 @@ function AddProduct() {
             />
           </FormControl>
         </div>
+
+        <div className='flex'>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Weight</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              endAdornment={<InputAdornment position="start">kg</InputAdornment>}
+              label="Weight"
+              name='Weight'
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Battery</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              label="Battery"
+              name='battery'
+            />
+          </FormControl>
+        </div>
+
+        <div className='flex'>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Charging</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              endAdornment={<InputAdornment position="start">hr</InputAdornment>}
+              label="Charging"
+              name='charging'
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Speed</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              endAdornment={<InputAdornment position="start">km/hr</InputAdornment>}
+              label="Speed"
+              name='speed'
+            />
+          </FormControl>
+        </div>
         
-        <div>
+        {/* <div>
           <TextField
             id="filled-error"
             label="Weight"
@@ -197,8 +225,8 @@ function AddProduct() {
             variant="filled"
             name="battery"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <TextField
             id="filled-error"
             label="Charging"
@@ -214,7 +242,7 @@ function AddProduct() {
             variant="filled"
             name="speed"
           />
-        </div>
+        </div> */}
         {/* <Button
           fullWidth
           variant="contained"

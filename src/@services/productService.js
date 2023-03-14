@@ -1,6 +1,4 @@
 import httpService from "./httpService";
-import authHeader from "./authHeader";
-
 
 // const auth = authHeader()
 // console.log(auth)

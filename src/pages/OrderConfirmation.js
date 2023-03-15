@@ -14,7 +14,7 @@ function OrderConfirmation() {
                 </div>
             </div>
             <div className='w-full text-dark_blue mt-3 flex justify-center'>
-                <Link to='/'>Go home</Link>
+                <Link to='/profile'>Go home</Link>
             </div>
         </div>
     )

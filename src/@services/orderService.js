@@ -44,6 +44,12 @@ async function saveShippingAddress(payload){
     return data
 }
 
+async function deleteUserAddress(payload){
+    const {addressId} = payload
+    const {data} = await httpService.secureInstance.delete(`/address/${addressId}`)
+    return data
+}
+
 
 const orderService = {
     addOrder,
@@ -53,7 +59,8 @@ const orderService = {
     getBanks,
     getWebUsers,
     saveShippingAddress,
-    getUserAddress
+    getUserAddress,
+    deleteUserAddress
 }
 
 export default orderService

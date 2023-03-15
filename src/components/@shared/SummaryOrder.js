@@ -1,10 +1,10 @@
-import React, {useContext, useState, useRef, useEffect} from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import orderData from './OrderData'
 import OrderCard from './OrderCard'
 import { CartContext } from '../../contexts/CartContext'
 // import Modal from './Modal'
-import {useMutation} from 'react-query'
+import { useMutation } from 'react-query'
 import orderService from '../../@services/orderService'
 import helperFunction from '../../@helpers/helperFunction'
 import { v4 as uuid } from 'uuid';
@@ -27,23 +27,23 @@ const style = {
     // border: '2px solid #000',
     // boxShadow: 24,
     // p: 4,
-    display:'flex',
+    display: 'flex',
     justifyContent: 'center',
-    width:600,
+    width: 600,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4
-  };
+};
 
-function SummaryOrder({addressId}) {
+function SummaryOrder({ addressId }) {
     const [paymentType, setPaymentType] = useState('')
     const [paymentURL, setPaymentURL] = useState('')
     const [bikeeBanks, setBikeeBanks] = useState([])
     const navigate = useNavigate()
-    const {state:cartState, dispatch} = useContext(CartContext)
+    const { state: cartState, dispatch } = useContext(CartContext)
     const totalSumRef = useRef(0)
-    const orderRef = uuid().slice(0,13)
+    const orderRef = uuid().slice(0, 13)
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -54,13 +54,13 @@ function SummaryOrder({addressId}) {
 
     // cartState && console.log(cartState)
 
-    const {state:user} = useContext(AuthContext)
+    const { state: user } = useContext(AuthContext)
     // user && console.log(user)
 
-   
+
     //console.log(helperFunction.getTotalOrderAmount(cartState))
 
-    const addOrderMutation = useMutation(orderService.addOrder,{
+    const addOrderMutation = useMutation(orderService.addOrder, {
         onSuccess: res => {
             console.log(res)
             //openModal()
@@ -70,21 +70,23 @@ function SummaryOrder({addressId}) {
         }
     })
 
-    const generatePaymentLinkMutation = useMutation(orderService.generatePaymentLink,{
+    const generatePaymentLinkMutation = useMutation(orderService.generatePaymentLink, {
         onSuccess: res => {
             console.log('submitting order...')
             submitOrder()
-            window.open(res.data,'_self')
-            //setPaymentURL(res.data)
-            // openPaymentModal()
-            // handleOpen()
+            if (paymentType === 'PAYSTACK') {
+                window.open(res.data, '_self')
+            } else {
+                //show modal for bank transfers
+                handleOpen()
+            }
         },
         onError: err => {
             console.log(err.message)
         }
     })
 
-    const getBikeeBanks = useMutation(orderService.getBanks,{
+    const getBikeeBanks = useMutation(orderService.getBanks, {
         onSuccess: res => {
             // console.log(res)
             setBikeeBanks(res.data.data)
@@ -94,14 +96,14 @@ function SummaryOrder({addressId}) {
         }
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         getBikeeBanks.mutate()
-    },[])
+    }, [])
 
     const submitOrder = () => {
         let payload = helperFunction.getOrderData(cartState)
-        payload.total_amount=helperFunction.getTotalOrderAmount(cartState)
-        payload.order_ref=orderRef
+        payload.total_amount = helperFunction.getTotalOrderAmount(cartState)
+        payload.order_ref = orderRef
         payload.payment_method = paymentType
         payload.delivery_address_id = addressId
         console.log('submit order')
@@ -111,9 +113,9 @@ function SummaryOrder({addressId}) {
 
     const processPayment = () => {
         let payload = {
-            amount:helperFunction.getTotalOrderAmount(cartState),
-            provider:'PAYSTACK',
-            order_ref:orderRef
+            amount: helperFunction.getTotalOrderAmount(cartState),
+            provider: 'PAYSTACK',
+            order_ref: orderRef
         }
         console.log('process payment')
         console.log(payload)
@@ -144,12 +146,12 @@ function SummaryOrder({addressId}) {
         console.log(modal)
     }
 
-    if(cartState){
+    if (cartState) {
         let total = cartState.map(item => item.total)
-        if (total.length > 0){
+        if (total.length > 0) {
             const TotalSum = total.reduce(
                 (accumulator, currentValue) => accumulator + currentValue)
-                totalSumRef.current = TotalSum
+            totalSumRef.current = TotalSum
         }
     }
 
@@ -164,7 +166,7 @@ function SummaryOrder({addressId}) {
     }
 
     return (
-        
+
         <Section className=''>
             {modal &&
                 <Modal
@@ -199,17 +201,25 @@ function SummaryOrder({addressId}) {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                sx={{display:'flex', justifyContent:'center',backgroundColor:'#ffffff'}}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}
             >
-                <Box sx={style}>
-                    <Iframe url={paymentURL}
-                        width="640px"
-                        id=""
-                        className=""
-                        display="block"
-                        position="relative"
-                    />
-                </Box>
+                <div className='w-[400px] bg-white text-black lg:h-[500px] rounded-xl flex flex-col items-center px-5 py-6'>
+                    <h2 className='font-semibold text-lg mb-6'>Transfer to Bank Account</h2>
+                    <p className='mb-4 text-medium'>Make transfer to any of the account below</p>
+                    <div className='bg-red px-3 py-5 text-white rounded-3xl w-full h-[300px] mb-6'>
+                        {
+                            bikeeBanks.map(bank => {
+                                return (
+                                    <div className='flex justify-center' key={bank.id}>
+                                        <p className='font-medium text-base mb-2'>{bank.account_number} {bank.name}, {bank.account_name}
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    <button className='bg-red text-white w-full py-3 text-semibold rounded-xl' onClick={()=>navigate('/profile')}>Done</button>
+                </div>
                 {/* {children} */}
             </Modal>
             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
@@ -277,7 +287,7 @@ function SummaryOrder({addressId}) {
                 </div>
                 <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
                     {
-                        bikeeBanks.length > 0 && 
+                        bikeeBanks.length > 0 &&
                         <div className="">
                             <label>
                                 <input
@@ -301,9 +311,9 @@ function SummaryOrder({addressId}) {
                                 {/* <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p> */}
                             </label>
                         </div>
-                        
+
                     }
-                    
+
                     {/* <div className="">
                         <label>
                             <input
@@ -319,8 +329,18 @@ function SummaryOrder({addressId}) {
                         </label>
                     </div> */}
                 </div>
-                
-                <button onClick={processPayment} disabled={paymentType === '' ? true : addressId === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
+                <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
+                    <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
+                    <p className='text-[#979797] font-bold'>
+                        Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.
+                        You'll receive a tracking and confirmation email from our delivery partner approximately 1 week before your order is due to be delivered.
+                    </p>
+                    <ul className='font-bold text-black'>
+                        <li>1 - year warranty</li>
+                        <li>Free Bike Shipping</li>
+                    </ul>
+                </div>
+                <button onClick={processPayment} disabled={paymentType === '' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
                     Proceed To Payment
                 </button>
                 {/* <button onClick={processPayment} disabled={paymentType !== 'paystack' ? true : false} className='bg-red text-white py-[13px] px-[26px] lg:w-fit w-full rounded-[4px] lg:leading-7'>
@@ -337,6 +357,6 @@ const Section = styled.section`
         cursor: not-allowed;
     }
 `
-    
+
 
 export default SummaryOrder

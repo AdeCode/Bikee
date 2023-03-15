@@ -16,7 +16,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 function OrderSummary() {
     const location = useLocation()
     const [showForm, setShowForm] = useState(false)
-    const [selectedAddress, setSelectedAddress] = useState('')
+    const [selectedAddress, setSelectedAddress] = useState('Office Pickup')
     let deliveryType = ''
     let userAddress = []
     if (sessionStorage.getItem('deliveryType') !== '') {
@@ -222,32 +222,6 @@ function OrderSummary() {
                                                                                 </label>
                                                                             </div>
                                                                         </div>
-                                                                        {/* <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
-                                                                            <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
-                                                                            <Field type="text" name="street" className='h-[46px] border w-full px-3' value={address.street} placeholder='enter address' />
-                                                                            <ErrorMessage name="street" component="div" className='text-red' />
-                                                                        </div>
-                                                                        <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
-                                                                            <div className='flex flex-col lg:w-[50%]'>
-                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
-                                                                                <Field type="text" name="state" className='h-[46px] border w-full px-3' value={address.state} placeholder='enter address' />
-                                                                                <ErrorMessage name="state" component="div" className='text-red' />
-                                                                            </div>
-                                                                            <div className='flex flex-col lg:w-[50%]'>
-                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                                                                <Field type="text" name="city" className='h-[46px] border w-full px-3' value={address.city} placeholder='enter your city' />
-                                                                                <ErrorMessage name="city" component="div" className='text-red' />
-                                                                            </div>
-                                                                        </div>
-                                                                        {
-                                                                            address.phone_number &&
-                                                                            <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
-                                                                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
-                                                                                <Field type="number" name="phone_number" className='h-[46px] border w-full px-3' value={address.phone_number} placeholder='enter your city' />
-                                                                                <ErrorMessage name="phone_number" component="div" className='text-red' />
-                                                                            </div>
-                                                                        } */}
-        
                                                                     </div>
                                                                 )
                                                             })
@@ -257,7 +231,7 @@ function OrderSummary() {
                                                 }
                                                 {
                                                     showForm === false ?
-                                                        <div className='text-red'>
+                                                        <div className='text-green-700'>
                                                             <h3 onClick={() => setShowForm(!showForm)} className='flex items-center cursor-pointer'><IoAddCircleOutline /> Use a different address</h3>
                                                         </div>
                                                         : ''
@@ -286,7 +260,7 @@ function OrderSummary() {
                                                         </div>
                                                         <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
                                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
-                                                            <Field type="number" name="phone_number" className='h-[46px] border w-full px-3' placeholder='enter your city' />
+                                                            <Field type="number" name="phone_number" value={user.user.phone} className='h-[46px] border w-full px-3' placeholder='enter phone number' />
                                                             <ErrorMessage name="phone_number" component="div" className='text-red' />
                                                         </div>
                                                         <button type="submit" disabled={isSubmitting} className='w-full py-[11px] text-white bg-red rounded-[6px] text-[16px] mt-[23px]'>

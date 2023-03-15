@@ -5,17 +5,19 @@ import helperFunction from '../@helpers/helperFunction'
 import OrderCard from '../components/@shared/OrderCard'
 import { AuthContext } from '../contexts/AuthContext'
 import { CartContext } from '../contexts/CartContext'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import orderService from '../@services/orderService'
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-
+import Moment from 'react-moment';
+import { toast } from 'react-toastify';
+import { MdDeleteOutline } from "react-icons/md";
 
 
 function UserProfile() {
     const { state: user, dispatch: authDispatch } = useContext(AuthContext)
     user && console.log(user)
     const { state: cart } = useContext(CartContext)
-
+    const [selectedAddress,setSelectedAddress] = useState('')
 
     // const [orderHistory, setOrderHistory] = useState([])
 
@@ -39,6 +41,7 @@ function UserProfile() {
     const { data: orders, isLoading, error, isError } = useQuery(['order', { userId }], orderService.getOrders)
 
     // orders && console.log(orders.data.data)
+    //error&&console.log(error.response.data.message)
 
     if (orders) {
         orderHistoryRef.current = orders.data.data
@@ -70,6 +73,28 @@ function UserProfile() {
 
     const logout = () => {
         authDispatch({ type: 'LOGOUT' })
+    }
+
+    const deleteAddressMutation = useMutation(orderService.deleteUserAddress,{
+        onSuccess: res => {
+            console.log(res)
+            toast.success(res.message, {
+              theme: "colored",
+            })
+        },
+        onError: err => {
+            //console.log(err)
+            toast.error(err.response.data.message[0], {
+              theme: "colored",
+            })
+        }
+    })
+
+    const deleteAddress = (addressId) => {
+        const payload = {
+          addressId:addressId
+        }
+        deleteAddressMutation.mutate(payload)
     }
 
     return (
@@ -135,31 +160,66 @@ function UserProfile() {
                                 }
 
                                 {
-                                    userAddress.map(address => {
-                                        return (
-                                            <div className='' key={address.id}>
-                                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
-                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
-                                                    <input type='text' name='address' placeholder='' readOnly value={address.street} className='h-[46px] border w-full' />
-                                                </div>
-                                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
-                                                    <div className='flex flex-col lg:w-[50%]'>
-                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
-                                                        <input type='text' name='state' placeholder='' readOnly value={address.state} className='h-[46px] border w-full' />
-                                                    </div>
-                                                    <div className='flex flex-col lg:w-[50%]'>
-                                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                                        <input type='text' name='city' placeholder='' readOnly value={address.city} className='h-[46px] border w-full' />
-                                                    </div>
-                                                </div>
-                                                <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
-                                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
-                                                    <input type='number' name='phoneNumber' placeholder='' readOnly={address?.phone} value={address.phone && address.phone} className='h-[46px] border w-full' />
-                                                </div>
-                                                <hr/>
-                                            </div>
-                                        )
-                                    })
+                                    <ul>
+                                        {
+                                            userAddress.map(address => {
+                                                return (
+                                                    <li className='mb-4 w-full' key={address.id}>
+                                                        <div className='flex justify-between'>
+                                                            <h2 className=''>
+                                                                {address.street}, {address.city}, {address.state}
+                                                            </h2>
+                                                            <MdDeleteOutline onClick={()=>deleteAddress(address.id)} className='lg:text-xl text-red'/>
+                                                            {/* <h3 onClick={()=>deleteAddress(address.id)}>Del</h3> */}
+                                                        </div>
+                                                        <hr className='text-line mb-4' />
+                                                    </li>
+                                                )
+                                            })
+                                        }                                
+
+                                    </ul>
+                                    // userAddress.map(address => {
+                                    //     return (
+                                    //         <div className='mb-4' key={address.id}>
+                                    //             <div className=''>
+                                    //                 <div className="">
+                                    //                     <label>
+                                    //                         <input
+                                    //                             type="radio"
+                                    //                             value={address.id}
+                                    //                             onChange={onAddressChange}
+                                    //                             name='deliveryAddress'
+                                    //                             className='mr-2'
+                                    //                         />
+                                    //                         {address.street}, {address.city}, {address.state}
+                                    //                     </label>
+                                    //                 </div>
+                                    //             </div>
+                                    //         </div>
+                                    //         <div className='' key={address.id}>
+                                    //             <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                    //                 <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
+                                    //                 <input type='text' name='address' placeholder='' readOnly value={address.street} className='h-[46px] border w-full' />
+                                    //             </div>
+                                    //             <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                    //                 <div className='flex flex-col lg:w-[50%]'>
+                                    //                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
+                                    //                     <input type='text' name='state' placeholder='' readOnly value={address.state} className='h-[46px] border w-full' />
+                                    //                 </div>
+                                    //                 <div className='flex flex-col lg:w-[50%]'>
+                                    //                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
+                                    //                     <input type='text' name='city' placeholder='' readOnly value={address.city} className='h-[46px] border w-full' />
+                                    //                 </div>
+                                    //             </div>
+                                    //             <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
+                                    //                 <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
+                                    //                 <input type='number' name='phoneNumber' placeholder='' readOnly={address?.phone} value={address.phone && address.phone} className='h-[46px] border w-full' />
+                                    //             </div>
+                                    //             <hr/>
+                                    //         </div>
+                                    //     )
+                                    // })
                                 }
                                 {/* <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
@@ -185,7 +245,7 @@ function UserProfile() {
                     </div>
                 </div>
                 <div className="lg:w-[320px]">
-                    <div className='lg:fixed'>
+                    <div className=''>
                     {
                         isLoading ? 'Loading...'
                         :
@@ -193,7 +253,7 @@ function UserProfile() {
                             <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
                             <hr className='text-line mb-7' />
                             {/* <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p> */}
-                            <div className='flex flex-col lg:gap-5 lg:mb-9 max-h-[500px] overflow-auto hover:overflow-y-scroll container-snap pr-2'>
+                            <div className='flex flex-col lg:gap-5 lg:mb-9'>
                                 {
                                     // orderHistory.length > 0 ?
                                     orderHistoryRef.current.length > 0 ?
@@ -254,7 +314,11 @@ function UserProfile() {
                                                     </div>
                                                     <div className='flex justify-between font-normal text-base'>
                                                         <h3 className=''>Expected time of arrival: </h3>
-                                                        {/* <h3 className=''></h3> */}
+                                                        <h3 className='font-semibold'>11th-18th April, 2023</h3>
+                                                    </div>
+                                                    <div className='flex justify-between font-normal text-base'>
+                                                        <h3 className=''>Order date: </h3>
+                                                        <h3 className='font-semibold text-right'><Moment date={order.created_at}/></h3>
                                                     </div>
                                                     {/* <div className='flex justify-between'>
                                                         <h3 className='font-medium'>Order ref: </h3><h3 className=''>{order.order_ref}</h3>
@@ -265,30 +329,6 @@ function UserProfile() {
                                                     <div className='flex justify-between text-base font-normal'>
                                                         <h3 className='' >Order ref:</h3><h3 className='font-semibold'>{order.order_ref}</h3>
                                                     </div>
-                                                    {/* <div className='flex justify-between font-normal'>
-                                                        <h3 className='font-medium'>Subtotal: </h3>
-                                                        <h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                                    </div>
-                                                    <div className='flex justify-between font-normal'>
-                                                        <h3 className='font-medium'>Payment reference: </h3>
-                                                        <h3 className=''>{order.payment?.reference}</h3>
-                                                    </div>
-                                                    <div className='flex justify-between'>
-                                                        <h3 className='font-medium'>Provider: </h3>
-                                                        <h3 className=''>{order.payment?.provider}</h3>
-                                                    </div>
-                                                    <div className='flex justify-between'>
-                                                        <h3 className='font-medium'>Payment: </h3>
-                                                        {
-                                                            order.payment.status === 'successful' ?
-                                                                <div className='flex items-center text-green-700 gap-1'>
-                                                                    <h3 className='text-green-700'>Paid</h3>
-                                                                    <IoCheckmarkCircleOutline />
-                                                                </div>
-                                                                :
-                                                                <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>{order.payment.status}</h3>
-                                                        }
-                                                    </div> */}
                                                     {
                                                         order.address &&
                                                         <div className='flex justify-between text-base font-normal'>
@@ -301,6 +341,9 @@ function UserProfile() {
                                                 </div>
                                             )
                                         })
+                                        :
+                                        error ?
+                                        'Error fetching data'
                                         :
                                         'You currently have no order history'
                                 }
@@ -323,19 +366,6 @@ function UserProfile() {
 
                     }
                     
-                    {/* <div className='flex flex-col font-normal text-base mt-7'>
-                        <div className='flex justify-between'>
-                            <h3>Subtotal</h3><h3 className=''>{helperFunction.nairaFormat(totalSumRef.current)}</h3>
-                        </div>
-                        <div className='flex justify-between mt-3'>
-                            <h3 className='font-normal text-xl' >Bikee delivery</h3><h3 className=''>Free</h3>
-                        </div>
-                    </div>
-                    <hr className='text-line mb-7' />
-                    <div className='flex justify-between'>
-                        <h2 className='font-medium text-xl'>Total</h2> <span className='font-bold text-xl'>{helperFunction.nairaFormat(totalSumRef.current)}</span>
-                    </div>
-                    <hr className='text-line mb-7' /> */}
                     </div>
                     
                 </div>

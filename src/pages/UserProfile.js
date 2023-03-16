@@ -11,15 +11,28 @@ import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import Moment from 'react-moment';
 import { toast } from 'react-toastify';
 import { MdDeleteOutline } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
+import Modal from '@mui/material/Modal';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 
 
 function UserProfile() {
     const { state: user, dispatch: authDispatch } = useContext(AuthContext)
-    user && console.log(user)
+    // user && console.log(user)
     const { state: cart } = useContext(CartContext)
-    const [selectedAddress,setSelectedAddress] = useState('')
+    const [addressId, setAddressId] = useState({})
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = (address) => { setOpen(true); setAddressId(address.id) };
+    const handleClose = () => setOpen(false);
+    const [formData, setFormData] = useState({
+        street:'',
+        state:'',
+        city:''
+    })
 
     // const [orderHistory, setOrderHistory] = useState([])
+    const [street,setStreet] = useState('')
 
     let orderHistory = []
     let userAddress = []
@@ -45,14 +58,14 @@ function UserProfile() {
 
     if (orders) {
         orderHistoryRef.current = orders.data.data
-        console.log(orderHistoryRef.current)
+        // console.log(orderHistoryRef.current)
     }
 
     const { data: address } = useQuery(['address', { userId }], orderService.getUserAddress)
     if (address) {
         userAddress = address.data.data
     }
-    address && console.log(address.data.data)
+    // address && console.log(address.data.data)
 
 
     const getOrderHistory = () => {
@@ -62,12 +75,6 @@ function UserProfile() {
     }
 
 
-    useEffect(() => {
-        //getOrderHistory()
-        // orders && setOrderHistory(orders.data.data)
-    }, [])
-
-
     // user && console.log(user)
     // cart && console.log(cart)
 
@@ -75,30 +82,110 @@ function UserProfile() {
         authDispatch({ type: 'LOGOUT' })
     }
 
-    const deleteAddressMutation = useMutation(orderService.deleteUserAddress,{
+    const deleteAddressMutation = useMutation(orderService.deleteUserAddress, {
         onSuccess: res => {
-            console.log(res)
             toast.success(res.message, {
-              theme: "colored",
+                theme: "colored",
             })
         },
         onError: err => {
-            //console.log(err)
             toast.error(err.response.data.message[0], {
-              theme: "colored",
+                theme: "colored",
+            })
+        }
+    })
+
+    const updateAddressMutation = useMutation(orderService.updateAddress, {
+        onSuccess: res => {
+            toast.success(res.message, {
+                theme: "colored",
+            })
+            handleClose()
+        },
+        onError: err => {
+            toast.error(err.response.data.message[0], {
+                theme: "colored",
             })
         }
     })
 
     const deleteAddress = (addressId) => {
         const payload = {
-          addressId:addressId
+            addressId: addressId
         }
         deleteAddressMutation.mutate(payload)
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const payloadData = {
+            payload:{
+                street: data.get('street'),
+                state: data.get('state'),
+                city: data.get('city'),
+            },
+            addressId:addressId
+        }
+        updateAddressMutation.mutate(payloadData)
+        // console.log(payloadData)
+
+    };
+
+    const handleAddress=(address)=>{
+        setFormData({
+            ...formData,
+            state:address.state,
+            city:address.city,
+            street:address.street
+        })
+    }
+
+    const handleChange = e => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value
+        });
+      };
+
     return (
         <Container className='pt-[100px]'>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}
+            >
+                <div className='w- bg-white text-black lg:h-[500px] rounded-xl flex flex-col items-center px-5 py-6'>
+                    <form onSubmit={handleSubmit} autoComplete="off">
+                        <h2 className='font-semibold text-lg mb-6'>Edit Address</h2>
+                        <div className='bg-red px-3 py-5 text-black rounded-3xl w-full h-[300px] mb-6'>
+                            <div className=''>
+                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
+                                    <input type='text' onChange={handleChange} name='street' placeholder='' value={formData.street} className='h-[46px] px-3 border w-full' />
+                                </div>
+                                <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
+                                    <div className='flex flex-col lg:w-[50%]'>
+                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
+                                        <input type='text' name='state' onChange={handleChange} placeholder='' value={formData.state} className='h-[46px] px-3 border w-full' />
+                                    </div>
+                                    <div className='flex flex-col lg:w-[50%]'>
+                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
+                                        <input type='text' name='city' onChange={handleChange} placeholder='' value={formData.city} className='h-[46px] px-3 border w-full' />
+                                    </div>
+                                </div>
+                                {/* <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
+                                <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Phone number</h2>
+                                <input type='number' name='phoneNumber' placeholder='' value={selectedAddress.phone && selectedAddress.phone} className='h-[46px] px-3 border w-full' />
+                            </div> */}
+                            </div>
+                        </div>
+                        <button className='bg-red text-white w-full py-3 text-semibold rounded-xl'>Update Address</button>
+                    </form>
+                </div>
+            </Modal>
             <div className='flex lg:px-[100px] lg:mb-5'>
                 <h3 className='cursor-pointer text-[#1071FF] font-medium text-base' onClick={logout}>Logout</h3>
                 <div className='lg:px-[200px] font-bold text-[22px]'>
@@ -154,7 +241,7 @@ function UserProfile() {
                                                     </div> */}
                                                 </div>
                                             }
-                                            
+
                                         </div>
                                     </div>
                                 }
@@ -169,14 +256,24 @@ function UserProfile() {
                                                             <h2 className=''>
                                                                 {address.street}, {address.city}, {address.state}
                                                             </h2>
-                                                            <MdDeleteOutline onClick={()=>deleteAddress(address.id)} className='lg:text-xl text-red'/>
-                                                            {/* <h3 onClick={()=>deleteAddress(address.id)}>Del</h3> */}
+                                                            <div className='flex gap-4'>
+                                                                <Tooltip title="Edit">
+                                                                    <IconButton>
+                                                                        <BiEdit onClick={() => { handleOpen(address); handleAddress(address) }} className='lg:text-xl cursor-pointer' />
+                                                                    </IconButton>
+                                                                </Tooltip>
+                                                                <Tooltip title="Delete">
+                                                                    <IconButton>
+                                                                        <MdDeleteOutline onClick={() => deleteAddress(address.id)} className='lg:text-xl text-red cursor-pointer' />
+                                                                    </IconButton>
+                                                                </Tooltip>
+                                                            </div>
                                                         </div>
                                                         <hr className='text-line mb-4' />
                                                     </li>
                                                 )
                                             })
-                                        }                                
+                                        }
 
                                     </ul>
                                     // userAddress.map(address => {
@@ -246,108 +343,108 @@ function UserProfile() {
                 </div>
                 <div className="lg:w-[320px]">
                     <div className=''>
-                    {
-                        isLoading ? 'Loading...'
-                        :
-                        <>
-                            <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
-                            <hr className='text-line mb-7' />
-                            {/* <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p> */}
-                            <div className='flex flex-col lg:gap-5 lg:mb-9'>
-                                {
-                                    // orderHistory.length > 0 ?
-                                    orderHistoryRef.current.length > 0 ?
-                                    orderHistoryRef.current.map((order) => {
-                                            return (
-                                                <div className='' key={order.id}>
-                                                    <div className='flex justify-between text-base'>
-                                                        <h3 className='font-normal'>Number of items: </h3>
-                                                        {/* <h3 className=''>{order.order_product.length}</h3> */}
-                                                        {
-                                                            order.order_product.reduce((acc, item) => acc + item.quantity, 0)
-                                                        }
-                                                    </div>
-                                                    <div className="flex flex-col mb-4">
-                                                        {
-                                                            order.order_product?.map(item => {
-                                                                return (
-                                                                    <div className='flex mb-1 h-[42px] items-center' key={item.product?.id}>
-                                                                        <div className='w-9 h-8 lg:mr-5'>
-                                                                            <img src={item.product?.image_url} alt={item.product?.name} />
-                                                                        </div>
-                                                                        <div className='flex justify-between lg:w-[50%]'>
-                                                                            <div className='flex flex-col'>
-                                                                                <h3 className='font-medium text-[9px] text-[#19191D]'>{item.product?.name}</h3>
-                                                                                <h3 className='text-[6px] font-medium text-black'>X {item.quantity}</h3>
+                        {
+                            isLoading ? 'Loading...'
+                                :
+                                <>
+                                    <h3 className='lg:font-bold text-xl text-[#25252D] mb-[7px]'>Order Summary</h3>
+                                    <hr className='text-line mb-7' />
+                                    {/* <p className='font-semibold text-base text-[#000000] lg:mb-6'>Order number : {orderHistoryRef.current.length}</p> */}
+                                    <div className='flex flex-col lg:gap-5 lg:mb-9'>
+                                        {
+                                            // orderHistory.length > 0 ?
+                                            orderHistoryRef.current.length > 0 ?
+                                                orderHistoryRef.current.map((order) => {
+                                                    return (
+                                                        <div className='' key={order.id}>
+                                                            <div className='flex justify-between text-base'>
+                                                                <h3 className='font-normal'>Number of items: </h3>
+                                                                {/* <h3 className=''>{order.order_product.length}</h3> */}
+                                                                {
+                                                                    order.order_product.reduce((acc, item) => acc + item.quantity, 0)
+                                                                }
+                                                            </div>
+                                                            <div className="flex flex-col mb-4">
+                                                                {
+                                                                    order.order_product?.map(item => {
+                                                                        return (
+                                                                            <div className='flex mb-1 h-[42px] items-center' key={item.product?.id}>
+                                                                                <div className='w-9 h-8 lg:mr-5'>
+                                                                                    <img src={item.product?.image_url} alt={item.product?.name} />
+                                                                                </div>
+                                                                                <div className='flex justify-between lg:w-[50%]'>
+                                                                                    <div className='flex flex-col'>
+                                                                                        <h3 className='font-medium text-[9px] text-[#19191D]'>{item.product?.name}</h3>
+                                                                                        <h3 className='text-[6px] font-medium text-black'>X {item.quantity}</h3>
+                                                                                    </div>
+                                                                                    <div className='text-[11px] font-normal text-black'>{item.product?.amount}</div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div className='text-[11px] font-normal text-black'>{item.product?.amount}</div>
-                                                                        </div>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                    <div className='flex justify-between text-base font-normal text-black'>
-                                                        <h3 className='font-normal'>Subtotal: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                                    </div>
-                                                    <div className='flex justify-between text-base font-normal text-black'>
-                                                        <h3 className=''>Bikee delivery: </h3><h3 className=''>Free</h3>
-                                                    </div>
-                                                    <hr className='text-[#EBEBEB] my-3'/>
-                                                    <div className='flex justify-between text-black'>
-                                                        <h3 className='font-normal text-[19px]'>Total </h3><h3 className='text-xl font-bold'>{helperFunction.nairaFormat(order.total_amount)}</h3>
-                                                    </div>
-                                                    <div className='flex justify-between font-normal text-base'>
-                                                        <h3 className=''>Payment options: </h3>
-                                                        <div className='flex'>
-                                                            <h3 className='font-semibold'>{order.payment?.provider}</h3>
-                                                            {
-                                                                order.payment.status === 'successful' ?
-                                                                    <div className='flex items-center text-green-700 gap-1'>
-                                                                        <h3 className='text-green-700'>(Paid)</h3>
-                                                                        <IoCheckmarkCircleOutline />
-                                                                    </div>
-                                                                    :
-                                                                    <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>({order.payment.status})</h3>
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                    <div className='flex justify-between font-normal text-base'>
-                                                        <h3 className=''>Expected time of arrival: </h3>
-                                                        <h3 className='font-semibold'>11th-18th April, 2023</h3>
-                                                    </div>
-                                                    <div className='flex justify-between font-normal text-base'>
-                                                        <h3 className=''>Order date: </h3>
-                                                        <h3 className='font-semibold text-right'><Moment date={order.created_at}/></h3>
-                                                    </div>
-                                                    {/* <div className='flex justify-between'>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+                                                            <div className='flex justify-between text-base font-normal text-black'>
+                                                                <h3 className='font-normal'>Subtotal: </h3><h3 className=''>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                            </div>
+                                                            <div className='flex justify-between text-base font-normal text-black'>
+                                                                <h3 className=''>Bikee delivery: </h3><h3 className=''>Free</h3>
+                                                            </div>
+                                                            <hr className='text-[#EBEBEB] my-3' />
+                                                            <div className='flex justify-between text-black'>
+                                                                <h3 className='font-normal text-[19px]'>Total </h3><h3 className='text-xl font-bold'>{helperFunction.nairaFormat(order.total_amount)}</h3>
+                                                            </div>
+                                                            <div className='flex justify-between font-normal text-base'>
+                                                                <h3 className=''>Payment options: </h3>
+                                                                <div className='flex'>
+                                                                    <h3 className='font-semibold'>{order.payment?.provider}</h3>
+                                                                    {
+                                                                        order.payment.status === 'successful' ?
+                                                                            <div className='flex items-center text-green-700 gap-1'>
+                                                                                <h3 className='text-green-700'>(Paid)</h3>
+                                                                                <IoCheckmarkCircleOutline />
+                                                                            </div>
+                                                                            :
+                                                                            <h3 className={`${order.payment.status === 'pending' ? 'text-yellow-500' : 'text-red'} `}>({order.payment.status})</h3>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div className='flex justify-between font-normal text-base'>
+                                                                <h3 className=''>Expected time of arrival: </h3>
+                                                                <h3 className='font-semibold'>11th-18th April, 2023</h3>
+                                                            </div>
+                                                            <div className='flex justify-between font-normal text-base'>
+                                                                <h3 className=''>Order date: </h3>
+                                                                <h3 className='font-semibold text-right'><Moment date={order.created_at} /></h3>
+                                                            </div>
+                                                            {/* <div className='flex justify-between'>
                                                         <h3 className='font-medium'>Order ref: </h3><h3 className=''>{order.order_ref}</h3>
                                                     </div> */}
-                                                    <div className='flex justify-between text-base font-normal'>
-                                                        <h3 className='' >Delivery option:</h3><h3 className='font-semibold'>Free delivery</h3>
-                                                    </div>
-                                                    <div className='flex justify-between text-base font-normal'>
-                                                        <h3 className='' >Order ref:</h3><h3 className='font-semibold'>{order.order_ref}</h3>
-                                                    </div>
-                                                    {
-                                                        order.address &&
-                                                        <div className='flex justify-between text-base font-normal'>
-                                                            <h3 className=''>Shipping address: </h3>
-                                                            <h3 className='text-end font-semibold'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
+                                                            <div className='flex justify-between text-base font-normal'>
+                                                                <h3 className='' >Delivery option:</h3><h3 className='font-semibold'>Free delivery</h3>
+                                                            </div>
+                                                            <div className='flex justify-between text-base font-normal'>
+                                                                <h3 className='' >Order ref:</h3><h3 className='font-semibold'>{order.order_ref}</h3>
+                                                            </div>
+                                                            {
+                                                                order.address &&
+                                                                <div className='flex justify-between text-base font-normal'>
+                                                                    <h3 className=''>Shipping address: </h3>
+                                                                    <h3 className='text-end font-semibold'>{order.address?.street}, {order.address?.city}, {order.address?.state}</h3>
+                                                                </div>
+                                                            }
+
+                                                            <hr className='text-[#EBEBEB] my-5' />
                                                         </div>
-                                                    }
-                                                    
-                                                    <hr className='text-[#EBEBEB] my-5'/>
-                                                </div>
-                                            )
-                                        })
-                                        :
-                                        error ?
-                                        'Error fetching data'
-                                        :
-                                        'You currently have no order history'
-                                }
-                                {/* {
+                                                    )
+                                                })
+                                                :
+                                                error ?
+                                                    'Error fetching data'
+                                                    :
+                                                    'You currently have no order history'
+                                        }
+                                        {/* {
                                     cart.map(({ id, image_url, total, quantity, name, total_amount }) => {
                                         return (
                                             <OrderCard
@@ -361,13 +458,13 @@ function UserProfile() {
                                         )
                                     })
                                 } */}
-                            </div>
-                        </>
+                                    </div>
+                                </>
 
-                    }
-                    
+                        }
+
                     </div>
-                    
+
                 </div>
             </div>
         </Container>

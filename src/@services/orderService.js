@@ -39,14 +39,35 @@ async function getWebUsers(){
     return data
 }
 
+async function allPayments(){
+    const {data} = await httpService.secureInstance.get(`/payments`)
+    return data
+}
+
+async function getAllOrders(){
+    const {data} = await httpService.secureInstance.get(`/orders`)
+    return data
+}
+
 async function saveShippingAddress(payload){
     const {data} = await httpService.secureInstance.post('/address', payload);
+    return data
+}
+
+async function approvePayment(payload){
+    const {data} = await httpService.secureInstance.post('/approve-payment', payload);
     return data
 }
 
 async function deleteUserAddress(payload){
     const {addressId} = payload
     const {data} = await httpService.secureInstance.delete(`/address/${addressId}`)
+    return data
+}
+
+async function updateAddress({payload,addressId}){
+    //const {addressId} = payload
+    const {data} = await httpService.secureInstance.put(`/address/${addressId}`,payload)
     return data
 }
 
@@ -60,7 +81,11 @@ const orderService = {
     getWebUsers,
     saveShippingAddress,
     getUserAddress,
-    deleteUserAddress
+    deleteUserAddress,
+    allPayments,
+    getAllOrders,
+    approvePayment,
+    updateAddress
 }
 
 export default orderService

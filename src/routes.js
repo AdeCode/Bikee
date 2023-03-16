@@ -40,6 +40,7 @@ import Users from './pages/admin/Users';
 import OrderConfirmation from './pages/OrderConfirmation';
 import PreOrderPolicy from './pages/PreOrderPolicy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Payments from './pages/admin/Payments';
 
 function Routers() {
   return (
@@ -104,6 +105,7 @@ function Routers() {
               <Route path="product/:productId" element={<Product />} />
               <Route path="product/:productId/edit" element={<EditProduct />} />
               <Route path="users" element={<Users />} />
+              <Route path="payments" element={<Payments />} />
             </Route>
         </Routes>
         </ThemeProvider>

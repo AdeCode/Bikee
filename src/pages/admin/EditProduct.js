@@ -98,25 +98,26 @@ function EditProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const payload = {
-          name: data.get('name'),
-          type: data.get('type'),
-          image_url: imageURL !== null ? imageURL : product.data.image_url,
-          amount: data.get('amount'),
-          property:[
-            {
-              weight: data.get('weight'),
-              charging: data.get('charging'),
-              battery: data.get('battery'),
-              speed: data.get('speed'),
-            }
-          ],
+        const payloadData = {
+          payload : {
+            name: data.get('name'),
+            type: data.get('type'),
+            image_url: imageURL !== null ? imageURL : product.data.image_url,
+            amount: data.get('amount'),
+            property:[
+              {
+                weight: data.get('weight'),
+                charging: data.get('charging'),
+                battery: data.get('battery'),
+                speed: data.get('speed'),
+              }
+            ],
+          },
           productId:productId
         }
-        updateProductMutation.mutate(payload)
-        console.log(payload)
-        
-      };
+        //console.log(payload)
+        updateProductMutation.mutate(payloadData)
+    };
 
     useEffect(()=>{
 

@@ -30,9 +30,8 @@ async function deleteProduct(payload){
     return data
 }
 
-async function updateProduct(payload){
-    const {productId} = payload
-    console.log(productId)
+async function updateProduct({productId,payload}){
+    // const {productId} = payload
     const {data} = await httpService.secureInstance.put(`/products/${productId}`,payload)
     return data
 }

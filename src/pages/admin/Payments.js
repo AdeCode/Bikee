@@ -3,23 +3,23 @@ import { useQuery } from 'react-query'
 import EnhancedTable from '../../components/ProductTable'
 import LinearLoader from '../../components/@shared/LinearLoader'
 import orderService from '../../@services/orderService'
-import OrderTable from '../../components/tables/OrderTable'
+import PaymentsTable from '../../components/tables/PaymentsTable'
 
-function Orders() {
-    const {data:orders, isLoading, error} = useQuery('orders', orderService.getAllOrders)
+function Payments() {
+    const {data:payments, isLoading, error} = useQuery('payments', orderService.allPayments)
 
-    orders && console.log(orders.data.data)
+    payments && console.log(payments.data.data)
 
 
     if(error) return "An error occured, could not load payments: "+error.message;
   return (
     <div className='w-full'>
-        <h3 className='font-bold text-[18px]'>Orders List</h3>
+        <h3 className='font-bold text-[18px]'>Payment Lists</h3>
         {
             isLoading ? <LinearLoader/> 
             : 
-            <OrderTable
-                rowData={orders.data.data}
+            <PaymentsTable
+                rowData={payments.data.data}
             />
         }
         
@@ -27,4 +27,4 @@ function Orders() {
   )
 }
 
-export default Orders
+export default Payments

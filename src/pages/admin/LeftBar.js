@@ -119,6 +119,15 @@ export default function Leftbar() {
                 </Link>
             </div>
             <div>
+                <Link to='/dashboard/payments' className={classes.item}>
+
+                <List className={classes.icon}/>
+                <Typography className={classes.text}>
+                    Payments
+                </Typography>
+                </Link>
+            </div>
+            <div>
                 <Link to='/dashboard/users' className={classes.item}>
                     <List className={classes.icon}/>
                     <Typography className={classes.text}>

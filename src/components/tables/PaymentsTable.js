@@ -22,9 +22,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import {useNavigate} from 'react-router-dom'
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import orderService from '../../@services/orderService';
+import { toast } from 'react-toastify';
+import { useMutation } from 'react-query';
+import { MdApproval } from "react-icons/md";
+import helperFunction from '../../@helpers/helperFunction';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -58,33 +60,39 @@ function stableSort(array, comparator) {
 
 const headCells = [
     {
-        id: 'image',
+        id: 'email',
         numeric: false,
         disablePadding: true,
-        label: 'Image',
+        label: 'Email',
     },
     {
-    id: 'name',
-    numeric: false,
-    disablePadding: true,
-    label: 'Name',
-  },
-  {
-    id: 'type',
-    numeric: false,
-    disablePadding: true,
-    label: 'Type',
-  },
-  {
     id: 'amount',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Amount',
   },
   {
+    id: 'type',
+    numeric: true,
+    disablePadding: false,
+    label: 'Type',
+  },
+  {
+    id: 'status',
+    numeric: true,
+    disablePadding: false,
+    label: 'status',
+  },
+  {
+    id: 'orderRef',
+    numeric: true,
+    disablePadding: false,
+    label: 'Order Ref',
+  },
+  {
     id: 'actions',
-    numeric: false,
-    disablePadding: true,
+    numeric: true,
+    disablePadding: false,
     label: 'Actions',
   },
 
@@ -201,7 +209,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable({rowData}) {
+export default function PaymentsTable({rowData}) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -277,6 +285,21 @@ export default function EnhancedTable({rowData}) {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+  const approvePaymentMutation = useMutation(orderService.approvePayment, {
+    onSuccess: res => {
+        console.log(res)
+        toast.success(res.message, {
+          theme: "colored",
+        })            
+    },
+    onError: err => {
+        toast.error(err.response.data.message[0], {
+          theme: "colored",
+        })
+    }
+})
+
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -311,7 +334,7 @@ export default function EnhancedTable({rowData}) {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -323,37 +346,34 @@ export default function EnhancedTable({rowData}) {
                           }}
                         />
                       </TableCell>
-                      <TableCell align="left">
+                      {/* <TableCell align="right">
                           <Box sx={{width:'40px', height:'40px'}}>
                             <img src={row.image_url} alt='product'/>
                           </Box>
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.user.email}
                       </TableCell>
-                      <TableCell align="left">{row.type}</TableCell>
-                      <TableCell align="left">{row.amount}</TableCell>
+                      <TableCell align="left">{helperFunction.nairaFormat(row.amount)}</TableCell>
+                      <TableCell align="left">{row.provider}</TableCell>
+                      <TableCell align="left" sx={{color:`${row.status === 'successful' ? 'green' : row.status === 'pending' ? '#CCCC00' : 'red'}`}}>{row.status}</TableCell>
+                      <TableCell align="left">{row.order_ref}</TableCell>
                       <TableCell align="left" sx={{display:'flex',gap:'20px'}}>
-                          {/* <Tooltip title="Delete">
-                            <IconButton onClick={deleteProduct(row.id)}>
-                              <DeleteForeverIcon/>
-                            </IconButton>
-                          </Tooltip> */}
-                          <Tooltip title="Edit">
-                            <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}/edit`)}>
-                              <EditIcon/>
+                          <Tooltip title="Approve">
+                            <IconButton onClick={()=>approvePaymentMutation.mutate({order_ref:row.order_ref})}>
+                              <MdApproval/>
                             </IconButton>
                           </Tooltip>
-                          <Tooltip title="View">
+                          {/* <Tooltip title="View">
                             <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}`)}>
                               <VisibilityIcon/>
                             </IconButton>
-                          </Tooltip>
+                          </Tooltip> */}
                         {/* <button type="button" onClick={()=>navigate(`/dashboard/product/${row.id}`)}><VisibilityIcon/></button> */}
                       </TableCell>
                     </TableRow>

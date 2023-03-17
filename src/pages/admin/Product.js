@@ -2,19 +2,19 @@ import React, {useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import productService from '../../@services/productService'
+import {useNavigate} from 'react-router-dom'
 
 
 
 function Product() {
     const {productId} = useParams()
 
-    useEffect(()=>{
+    const navigate = useNavigate()
 
-    })
 
     const {data:product, isLoading, error, isError} = useQuery(['product',{productId}], productService.getProduct)
 
-    product && console.log(product.data)
+    // product && console.log(product.data)
 
     if (isLoading) return 'Loading...'
 
@@ -24,19 +24,29 @@ function Product() {
 
    
   return (
-    <div className='flex flex-col'>
-        <h2>Product Details</h2>
-        <div className='flex flex-col lg:flex-row'>
-            {/* <div className=''>
+    <div className='flex flex-col w-[500px] mt-8'>
+        <h3 className='cursor-pointer text-blue mb-4' onClick={()=>navigate(-1)}>Go back</h3>
+        <h2 className='font-semibold text-base mb-5'>Product Details</h2>
+        <div className='flex flex-col w-[300px]'>
+            <div className='flex justify-center mb-4'>
                 {
                     product.data.image_url &&
-                    <img src={product.data.image_url} alt={product.data.name} width='200px' height='200px'/>
+                    <img src={product.data.image_url} alt={product.data.name} width='150px' height='150px'/>
                 }
-            </div> */}
+            </div>
             <div className=''>
-                <h3>Product Name: {product.data.name}</h3>
-                <h3>Product Type: {product.data.type}</h3>
-                <h3>Amount: {product.data.amount}</h3>
+                <div className='flex justify-between'>
+                    <h3>Product Name:</h3>
+                    <h3 className='font-medium'>{product.data.name}</h3>
+                </div>
+                <div className='flex justify-between'>
+                    <h3>Product Type:</h3>
+                    <h3 className='font-medium'>{product.data.type}</h3>
+                </div>
+                <div className='flex justify-between'>
+                    <h3>Amount:</h3>
+                    <h3 className='font-medium'>{product.data.amount}</h3>
+                </div>
                 {
                     product.data.property.length > 0 && 
                     product.data.property.map(productProperty => {
@@ -44,19 +54,31 @@ function Product() {
                             <>
                                 {
                                     productProperty.weight &&
-                                    <h3>Weight: {productProperty.weight}</h3>
+                                    <div className='flex justify-between'>
+                                        <h3>Weight:</h3>
+                                        <h3 className='font-medium'>{productProperty.weight}</h3>
+                                    </div>
                                 }
                                 {
                                     productProperty.charging &&
-                                    <h3>Charging: {productProperty.charging}</h3>
+                                    <div className='flex justify-between'>
+                                        <h3>Charging:</h3>
+                                        <h3 className='font-medium'>{productProperty.charging}</h3>
+                                    </div>
                                 }
                                 {
                                     productProperty.speed &&
-                                    <h3>Speed: {productProperty.speed}</h3>
+                                    <div className='flex justify-between'>
+                                        <h3>Speed:</h3>
+                                        <h3 className='font-medium'>{productProperty.speed}</h3>
+                                    </div>
                                 }
                                 {
                                     productProperty.battery &&
-                                    <h3>Battery: {productProperty.battery}</h3>
+                                    <div className='flex justify-between'>
+                                        <h3>Battery:</h3>
+                                        <h3 className='font-medium'>{productProperty.battery}</h3>
+                                    </div>
                                 }
                             </>
                         )

@@ -176,7 +176,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Products
+          Users List
         </Typography>
       )}
 
@@ -311,7 +311,7 @@ export default function UsersTable({rowData}) {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">

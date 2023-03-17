@@ -179,7 +179,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Products
+          Orders
         </Typography>
       )}
 

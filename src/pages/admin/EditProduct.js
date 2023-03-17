@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query'
 import productService from '../../@services/productService'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
-import {useMutation} from 'react-query'
+import {useMutation, useQueryClient, useQuery} from 'react-query'
 import { toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
 import FormControl from '@mui/material/FormControl';
@@ -36,6 +35,8 @@ function EditProduct() {
     const [image, setImage] = useState(null)
 
     const [imageURL, setImageURL] = useState(null)
+
+    const queryClient = useQueryClient()
 
     const selectFile = (e) => {
       const data = e.target.files[0]
@@ -68,7 +69,7 @@ function EditProduct() {
             toast.success(res.message, {
               theme: "colored",
             })
-            
+            queryClient.invalidateQueries('product')
             navigate('/dashboard/products')
         },
         onError: err => {
@@ -176,7 +177,7 @@ function EditProduct() {
             label="Product Type"
             defaultValue={product.data.type}
             //value={product.data.type}
-            helperText="Please select product type"
+            // helperText="Please select product type"
             name='type'
           >
             {productTypes.map((product) => (
@@ -185,14 +186,6 @@ function EditProduct() {
               </MenuItem>
             ))}
           </TextField>
-          {/* <TextField
-            id="outlined-error-helper-text"
-            label="Product Type"
-            required
-            type='text'
-            name='type'
-            value={product.data.type}
-          /> */}
         </div>
         <div>
         <FormControl fullWidth sx={{ m: 1 }}>
@@ -257,7 +250,7 @@ function EditProduct() {
         <div>
           {
             product.data.image_url &&
-            <img src={product.data.image_url} alt={product.data.name} width='200px' height='200px'/>
+            <img src={product.data.image_url} alt={product.data.name} width='150px' height='150px'/>
           }
         </div>
         <ImageUpload
@@ -268,7 +261,7 @@ function EditProduct() {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 2 }}
         >
           Update Product
         </Button>

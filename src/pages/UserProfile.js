@@ -5,7 +5,7 @@ import helperFunction from '../@helpers/helperFunction'
 import OrderCard from '../components/@shared/OrderCard'
 import { AuthContext } from '../contexts/AuthContext'
 import { CartContext } from '../contexts/CartContext'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import orderService from '../@services/orderService'
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import Moment from 'react-moment';
@@ -30,11 +30,10 @@ function UserProfile() {
         state:'',
         city:''
     })
+    const queryClient = useQueryClient()
 
     // const [orderHistory, setOrderHistory] = useState([])
-    const [street,setStreet] = useState('')
 
-    let orderHistory = []
     let userAddress = []
     const orderHistoryRef = useRef([])
 
@@ -67,14 +66,6 @@ function UserProfile() {
     }
     // address && console.log(address.data.data)
 
-
-    const getOrderHistory = () => {
-        // orders && setOrderHistory(orders.data.data)
-        orderHistory = orders.data.data
-        orderHistoryRef.current = orders.data.data
-    }
-
-
     // user && console.log(user)
     // cart && console.log(cart)
 
@@ -100,6 +91,7 @@ function UserProfile() {
             toast.success(res.message, {
                 theme: "colored",
             })
+            queryClient.invalidateQueries('address')
             handleClose()
         },
         onError: err => {
@@ -160,20 +152,20 @@ function UserProfile() {
                 <div className='w- bg-white text-black lg:h-[500px] rounded-xl flex flex-col items-center px-5 py-6'>
                     <form onSubmit={handleSubmit} autoComplete="off">
                         <h2 className='font-semibold text-lg mb-6'>Edit Address</h2>
-                        <div className='bg-red px-3 py-5 text-black rounded-3xl w-full h-[300px] mb-6'>
+                        <div className='bg-red px-3 py-5 text-black rounded-3xl w-full h-[250px] mb-6'>
                             <div className=''>
                                 <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
-                                    <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Street address</h2>
-                                    <input type='text' onChange={handleChange} name='street' placeholder='' value={formData.street} className='h-[46px] px-3 border w-full' />
+                                    <h2 className='font-semibold lg:text-[15px] text-sm text-white lg:leading-[19px] mb-2'>Street address</h2>
+                                    <input type='text' onChange={handleChange} name='street' placeholder='' value={formData.street} className='h-[46px] px-3 border w-full rounded-lg' />
                                 </div>
                                 <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px]'>
                                     <div className='flex flex-col lg:w-[50%]'>
-                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>State</h2>
-                                        <input type='text' name='state' onChange={handleChange} placeholder='' value={formData.state} className='h-[46px] px-3 border w-full' />
+                                        <h2 className='font-semibold lg:text-[15px] text-sm text-white lg:leading-[19px] mb-2'>State</h2>
+                                        <input type='text' name='state' onChange={handleChange} placeholder='' value={formData.state} className='h-[46px] px-3 border w-full rounded-lg' />
                                     </div>
                                     <div className='flex flex-col lg:w-[50%]'>
-                                        <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>City</h2>
-                                        <input type='text' name='city' onChange={handleChange} placeholder='' value={formData.city} className='h-[46px] px-3 border w-full' />
+                                        <h2 className='font-semibold lg:text-[15px] text-sm text-white lg:leading-[19px] mb-2'>City</h2>
+                                        <input type='text' name='city' onChange={handleChange} placeholder='' value={formData.city} className='h-[46px] px-3 border w-full rounded-lg' />
                                     </div>
                                 </div>
                                 {/* <div className='form-group lg:w-[465px] lg:mb-[50px] mb-8'>
@@ -182,7 +174,7 @@ function UserProfile() {
                             </div> */}
                             </div>
                         </div>
-                        <button className='bg-red text-white w-full py-3 text-semibold rounded-xl'>Update Address</button>
+                        <button className='bg-red text-white w-full py-3 font-semibold rounded-xl'>Update Address</button>
                     </form>
                 </div>
             </Modal>

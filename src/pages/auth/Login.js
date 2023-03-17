@@ -49,9 +49,9 @@ export default function Login() {
     const {dispatch} = React.useContext(AuthContext)
 
 
-    const handleClick = () => {
-      setOpen(true);
-    };
+    // const handleClick = () => {
+    //   setOpen(true);
+    // };
 
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
@@ -63,13 +63,8 @@ export default function Login() {
     
     const loginMutation = useMutation(authService.login, {
         onSuccess: res => {
-            console.log(res)
-            //const accessToken = res.token
-
+            // console.log(res)
             dispatch({ type: 'LOGIN', payload: res })
-
-            //persist to local storage
-            //localStorage.setItem('token', accessToken)
             navigate('/dashboard')
         },
         onError: err => {
@@ -77,8 +72,6 @@ export default function Login() {
             toast.error(err.response.data.message, {
               theme: "colored",
             })
-            //alert("invalid credentials")
-            handleClick()
         }
     }) 
 

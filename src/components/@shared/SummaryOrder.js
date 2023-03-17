@@ -168,34 +168,7 @@ function SummaryOrder({ addressId }) {
     return (
 
         <Section className=''>
-            {modal &&
-                <Modal
-                    title='Thank you for your order!'
-                    subTitle=''
-                    closeModal={() => closeModal()}
-                >
-                    <div className='text-white'>
-                        <h3 className='font-normal text-base'>Order No. #809320, #249320, and #809320.</h3>
-                        <h4 className='font-normal text-sm'>We’ll email you an order confirmation with details of your order. Please not that bikee will not send any rider to request for an extra delivery fee.</h4>
-                        <p className='font-normal text-sm mt-9'>Thanks for patronizing...</p>
-                        <p className='font-normal text-sm'>Motion Mobility.</p>
-                    </div>
-                </Modal>
-            }
-            {paymentModal &&
-                <PaymentModal
-                    closeModal={() => closePaymentModal()}
-                >
-                    <Iframe url={paymentURL}
-                        width="640px"
-                        height="420px"
-                        id=""
-                        className=""
-                        display="block"
-                        position="relative"
-                    />
-                </PaymentModal>
-            }
+            
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -286,7 +259,19 @@ function SummaryOrder({ addressId }) {
                     </div> */}
                 </div>
                 <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
-                    {
+                    <div className="">
+                        <label>
+                            <input
+                                type="radio"
+                                value="BANK_TRANSFER"
+                                onChange={onChange}
+                                name='payment_type'
+                                className='mr-2'
+                            />
+                            Make transfer to Bank Account
+                        </label>
+                    </div>
+                    {/* {
                         bikeeBanks.length > 0 &&
                         <div className="">
                             <label>
@@ -308,11 +293,10 @@ function SummaryOrder({ addressId }) {
                                         )
                                     })
                                 }
-                                {/* <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p> */}
                             </label>
                         </div>
 
-                    }
+                    } */}
 
                     {/* <div className="">
                         <label>

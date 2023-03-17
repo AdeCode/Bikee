@@ -24,7 +24,7 @@ import { visuallyHidden } from '@mui/utils';
 import {useNavigate} from 'react-router-dom'
 import orderService from '../../@services/orderService';
 import { toast } from 'react-toastify';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { MdApproval } from "react-icons/md";
 import helperFunction from '../../@helpers/helperFunction';
 
@@ -184,7 +184,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Products
+          Payments
         </Typography>
       )}
 
@@ -216,7 +216,7 @@ export default function PaymentsTable({rowData}) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const queryClient = useQueryClient()
   const navigate = useNavigate()
 
   const view = (id) => {
@@ -273,12 +273,6 @@ export default function PaymentsTable({rowData}) {
     setDense(event.target.checked);
   };
 
-  // const deleteProductMutation = useMutation()
-
-  const deleteProduct = (id) => {
-    console.log(id)
-  }
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -287,10 +281,12 @@ export default function PaymentsTable({rowData}) {
 
   const approvePaymentMutation = useMutation(orderService.approvePayment, {
     onSuccess: res => {
-        console.log(res)
+        //console.log(res)
         toast.success(res.message, {
           theme: "colored",
-        })            
+        })  
+        //reload data  
+        queryClient.invalidateQueries('payments')        
     },
     onError: err => {
         toast.error(err.response.data.message[0], {
@@ -346,11 +342,6 @@ export default function PaymentsTable({rowData}) {
                           }}
                         />
                       </TableCell>
-                      {/* <TableCell align="right">
-                          <Box sx={{width:'40px', height:'40px'}}>
-                            <img src={row.image_url} alt='product'/>
-                          </Box>
-                      </TableCell> */}
                       <TableCell
                         component="th"
                         id={labelId}
@@ -369,12 +360,6 @@ export default function PaymentsTable({rowData}) {
                               <MdApproval/>
                             </IconButton>
                           </Tooltip>
-                          {/* <Tooltip title="View">
-                            <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}`)}>
-                              <VisibilityIcon/>
-                            </IconButton>
-                          </Tooltip> */}
-                        {/* <button type="button" onClick={()=>navigate(`/dashboard/product/${row.id}`)}><VisibilityIcon/></button> */}
                       </TableCell>
                     </TableRow>
                   );

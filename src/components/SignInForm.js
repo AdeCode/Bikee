@@ -33,8 +33,6 @@ function SigInForm() {
             toast.error(err.response.data.message, {
                 theme: "colored",
               })
-            // alert("Could not sign in")
-            //handleClick()
         }
     }) 
 

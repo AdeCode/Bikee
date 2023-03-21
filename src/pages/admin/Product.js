@@ -43,15 +43,33 @@ function Product() {
                     <h3>Product Type:</h3>
                     <h3 className='font-medium'>{product.data.type}</h3>
                 </div>
-                <div className='flex justify-between'>
-                    <h3>Amount:</h3>
-                    <h3 className='font-medium'>{product.data.amount}</h3>
-                </div>
                 {
-                    product.data.property.length > 0 && 
+                    (product.data.type === 'BIKE' || product.data.type === 'ACCESSORY') &&
+                    <div className='flex justify-between'>
+                        <h3>Amount:</h3>
+                        <h3 className='font-medium'>{product.data.amount}</h3>
+                    </div>
+                }
+                {
+                    (product.data.type === 'INSURANCE' || product.data.type === 'MAINTENANCE') &&
+                    <>
+                        <div className='flex justify-between'>
+                            <h3>Amount monthly:</h3>
+                            <h3 className='font-medium'>{product.data.amount_monthly}</h3>
+                        </div>
+                        <div className='flex justify-between'>
+                            <h3>Amount yearly:</h3>
+                            <h3 className='font-medium'>{product.data.amount_yearly}</h3>
+                        </div>
+                    </>
+                    
+                }
+                
+                {
+                    (product.data.property.length > 0 && product.data.type === 'BIKE') && 
                     product.data.property.map(productProperty => {
                         return (
-                            <>
+                            <div key={productProperty.id}>
                                 {
                                     productProperty.weight &&
                                     <div className='flex justify-between'>
@@ -62,7 +80,7 @@ function Product() {
                                 {
                                     productProperty.charging &&
                                     <div className='flex justify-between'>
-                                        <h3>Charging:</h3>
+                                        <h3>Charging time:</h3>
                                         <h3 className='font-medium'>{productProperty.charging}</h3>
                                     </div>
                                 }
@@ -76,11 +94,11 @@ function Product() {
                                 {
                                     productProperty.battery &&
                                     <div className='flex justify-between'>
-                                        <h3>Battery:</h3>
+                                        <h3>Battery range:</h3>
                                         <h3 className='font-medium'>{productProperty.battery}</h3>
                                     </div>
                                 }
-                            </>
+                            </div>
                         )
                     })
                 }

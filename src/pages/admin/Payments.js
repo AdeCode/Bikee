@@ -19,7 +19,7 @@ function Payments() {
             isLoading ? <LinearLoader/> 
             : 
             <PaymentsTable
-                rowData={payments.data.data}
+                data={payments.data.data}
             />
         }
         

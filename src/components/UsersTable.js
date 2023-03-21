@@ -213,7 +213,7 @@ export default function UsersTable({rowData}) {
 
   const view = (id) => {
     console.log('clicked view '+id)
-    navigate(`/dashboard/product/${id}`)
+    //navigate(`/dashboard/product/${id}`)
   }
   const rows = rowData
 
@@ -301,20 +301,20 @@ export default function UsersTable({rowData}) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  // const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
+                      // onClick={(event) => handleClick(event, row.name)}
+                      // role="checkbox"
+                      // aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.id}
-                      selected={isItemSelected}
+                      // selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -322,26 +322,27 @@ export default function UsersTable({rowData}) {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
-                      <TableCell
+                      </TableCell> */}
+                      {/* <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
                         padding="none"
                       >
                         {row.first_name}
-                      </TableCell>
+                      </TableCell> */}
+                      <TableCell align="left">{row.first_name}</TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>
                       <TableCell align="left">{row.email}</TableCell>
                       <TableCell align="left">{row.phone}</TableCell>
                       <TableCell align="left" sx={{display:'flex',gap:'20px'}}>
-                          <Tooltip title="Edit">
+                          {/* <Tooltip title="Edit">
                             <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}/edit`)}>
                               <EditIcon/>
                             </IconButton>
-                          </Tooltip>
+                          </Tooltip> */}
                           <Tooltip title="View">
-                            <IconButton onClick={()=>navigate(`/dashboard/product/${row.id}`)}>
+                            <IconButton onClick={()=>view(row.id)}>
                               <VisibilityIcon/>
                             </IconButton>
                           </Tooltip>

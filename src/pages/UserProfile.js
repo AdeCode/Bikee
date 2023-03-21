@@ -52,7 +52,7 @@ function UserProfile() {
 
     const { data: orders, isLoading, error, isError } = useQuery(['order', { userId }], orderService.getOrders)
 
-    // orders && console.log(orders.data.data)
+    orders && console.log(orders.data.data)
     //error&&console.log(error.response.data.message)
 
     if (orders) {
@@ -369,7 +369,12 @@ function UserProfile() {
                                                                                         <h3 className='font-medium text-[9px] text-[#19191D]'>{item.product?.name}</h3>
                                                                                         <h3 className='text-[6px] font-medium text-black'>X {item.quantity}</h3>
                                                                                     </div>
-                                                                                    <div className='text-[11px] font-normal text-black'>{item.product?.amount}</div>
+                                                                                    {
+                                                                                        item.product?.amount === '0' ? 
+                                                                                        <div className='text-[11px] font-normal text-black'>{item.product?.amount_yearly}</div>
+                                                                                        :
+                                                                                        <div className='text-[11px] font-normal text-black'>{item.product?.amount}</div>
+                                                                                    }
                                                                                 </div>
                                                                             </div>
                                                                         )

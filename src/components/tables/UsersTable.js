@@ -1,40 +1,43 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import {
+    Box,
+    Button,
     ListItemIcon,
     MenuItem,
-    Box,
+    Typography,
+    TextField,
 } from '@mui/material';
 import { AccountCircle, Send } from '@mui/icons-material';
-import IconButton from '@mui/material/IconButton';
+import { useNavigate } from 'react-router-dom'
 import Tooltip from '@mui/material/Tooltip';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from 'react-router-dom'
-import helperFunction from '../../@helpers/helperFunction';
-import Moment from 'react-moment';
+import IconButton from '@mui/material/IconButton';
 
 
-function OrderTable({ data }) {
+function UsersTable({ data }) {
     const navigate = useNavigate()
+
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'order_ref',
-                header: 'Order Ref',
+                accessorKey: 'first_name', //access nested data with dot notation
+                header: 'First Name',
             },
             {
-                accessorKey: 'total_amount', //helperFunction.nairaFormat(row.total_amount)
-                header: 'Total Amount',
-                Cell: ({ renderedCellValue }) => helperFunction.nairaFormat(renderedCellValue),
+                accessorKey: 'last_name',
+                header: 'Last Name',
             },
             {
-                accessorKey: 'created_at', //<Moment date={row.created_at}/>
-                header: 'Order date',
-                Cell: ({ renderedCellValue }) => <Moment date={renderedCellValue}/>,
+                accessorKey: 'email', //normal accessorKey
+                header: 'Email',
             },
             {
-                accessorKey: 'actions', 
+                accessorKey: 'phone',
+                header: 'Phone',
+            },
+            {
+                accessorKey: 'actions',
                 header: 'Action',
                 Cell: ({ row }) => (
                     <Box
@@ -45,18 +48,17 @@ function OrderTable({ data }) {
                         }}
                     >
                         <Tooltip title="View">
-                            <IconButton onClick={() => 
-                                {
-                                    //console.log(row.original.id);
-                                    navigate(`/dashboard/order/${row.original.id}`)
-                                }
+                            <IconButton onClick={() => {
+                                navigate(`/dashboard/user/${row.original.id}`)
+                            }
                             }>
                                 <VisibilityIcon />
                             </IconButton>
                         </Tooltip>
                     </Box>
                 ),
-            }
+
+            },
         ],
         [],
     );
@@ -66,4 +68,4 @@ function OrderTable({ data }) {
     />;
 }
 
-export default OrderTable
+export default UsersTable

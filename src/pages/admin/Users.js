@@ -1,13 +1,14 @@
 import React from 'react'
 import orderService from '../../@services/orderService'
 import { useQuery } from 'react-query'
-import UsersTable from '../../components/UsersTable'
+// import UsersTable from '../../components/UsersTable'
 import LinearLoader from '../../components/@shared/LinearLoader'
+import UsersTable from '../../components/tables/UsersTable'
 
 
 function Users() {
     const {data:users, isLoading, error, isError} = useQuery('users',orderService.getWebUsers)
-    users && console.log(users.data.data)
+    // users && console.log(users.data.data)
 
   return (
     <div className='w-full'>
@@ -16,7 +17,7 @@ function Users() {
             isLoading ? <LinearLoader/> 
             : 
             <UsersTable
-                rowData={users.data.data}
+                data={users.data.data}
             />
         }
     </div>

@@ -34,7 +34,7 @@ function OrderSummary() {
     const { state: cartState, dispatch } = useContext(CartContext)
 
     const onSave = (values) => {
-        console.log(values)
+        //console.log(values)
         saveAddressMutation.mutate(values)
     }
 
@@ -42,11 +42,11 @@ function OrderSummary() {
     if (address) {
         userAddress = address.data.data
     }
-    address && console.log(address.data.data)
+    // address && console.log(address.data.data)
 
     const saveAddressMutation = useMutation(orderService.saveShippingAddress, {
         onSuccess: res => {
-            console.log(res)
+            //console.log(res)
             setSelectedAddress(res.data.id)
             toast.success(res.message, {
                 theme: "colored",
@@ -62,7 +62,7 @@ function OrderSummary() {
 
     const onAddressChange = (e) => {
         setSelectedAddress(e.target.value)
-        console.log(selectedAddress)
+        //console.log(selectedAddress)
     }
 
 

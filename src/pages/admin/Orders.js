@@ -19,7 +19,7 @@ function Orders() {
             isLoading ? <LinearLoader/> 
             : 
             <OrderTable
-                rowData={orders.data.data}
+                data={orders.data.data}
             />
         }
         

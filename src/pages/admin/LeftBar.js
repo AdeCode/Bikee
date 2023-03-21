@@ -165,12 +165,6 @@ export default function Leftbar() {
                     Market Place
                 </Typography>
             </div> */}
-            <div className={classes.item}>
-                <Settings className={classes.icon}/>
-                <Typography className={classes.text}>
-                    Settings
-                </Typography>
-            </div>
             <div className={classes.item} onClick={logout}>
                 <ExitToApp className={classes.icon}/>
                 <Typography className={classes.text}>

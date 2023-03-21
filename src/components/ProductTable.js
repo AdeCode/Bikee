@@ -337,7 +337,7 @@ export default function EnhancedTable({rowData}) {
                         {row.name}
                       </TableCell>
                       <TableCell align="left">{row.type}</TableCell>
-                      <TableCell align="left">{row.amount}</TableCell>
+                      <TableCell align="left">{row.amount === '0' ? row.amount_yearly : row.amount}</TableCell>
                       <TableCell align="left" sx={{display:'flex',gap:'20px'}}>
                           {/* <Tooltip title="Delete">
                             <IconButton onClick={deleteProduct(row.id)}>

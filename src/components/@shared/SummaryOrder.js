@@ -38,10 +38,9 @@ const style = {
 
 function SummaryOrder({ addressId }) {
     const [paymentType, setPaymentType] = useState('')
-    const [paymentURL, setPaymentURL] = useState('')
     const [bikeeBanks, setBikeeBanks] = useState([])
     const navigate = useNavigate()
-    const { state: cartState, dispatch } = useContext(CartContext)
+    const { state: cartState } = useContext(CartContext)
     const totalSumRef = useRef(0)
     const orderRef = uuid().slice(0, 13)
 
@@ -62,7 +61,7 @@ function SummaryOrder({ addressId }) {
 
     const addOrderMutation = useMutation(orderService.addOrder, {
         onSuccess: res => {
-            console.log(res)
+            //console.log(res)
             //openModal()
         },
         onError: err => {
@@ -74,12 +73,12 @@ function SummaryOrder({ addressId }) {
         onSuccess: res => {
             console.log('submitting order...')
             submitOrder()
-            if (paymentType === 'PAYSTACK') {
-                window.open(res.data, '_self')
-            } else {
-                //show modal for bank transfers
-                handleOpen()
-            }
+            window.open(res.data, '_self')
+            // if (paymentType === 'PAYSTACK') {
+            //     window.open(res.data, '_self')
+            // } else {
+            //     handleOpen()
+            // }
         },
         onError: err => {
             console.log(err.message)
@@ -106,45 +105,28 @@ function SummaryOrder({ addressId }) {
         payload.order_ref = orderRef
         payload.payment_method = paymentType
         payload.delivery_address_id = addressId
-        console.log('submit order')
-        console.log(payload)
+        // console.log('submit order')
+        // console.log(payload)
         addOrderMutation.mutate(payload)
     }
 
     const processPayment = () => {
-        let payload = {
-            amount: helperFunction.getTotalOrderAmount(cartState),
-            provider: 'PAYSTACK',
-            order_ref: orderRef
-        }
-        console.log('process payment')
-        console.log(payload)
-        generatePaymentLinkMutation.mutate(payload)
+        if(paymentType === 'BANK_TRANSFER'){
+            //show modal for bank transfers
+            handleOpen()
+            submitOrder()
+        }else{
+            let payload = {
+                amount: helperFunction.getTotalOrderAmount(cartState),
+                provider: 'PAYSTACK',
+                order_ref: orderRef
+            }
+            // console.log('process payment')
+            // console.log(payload)
+            generatePaymentLinkMutation.mutate(payload)
+        }  
     }
 
-    const [modal, setModal] = useState(false)
-
-    const [paymentModal, setPaymentModal] = useState(false)
-
-    const closeModal = () => {
-        setModal(false)
-        console.log(modal)
-    }
-
-    const openModal = () => {
-        setModal(true)
-        console.log(modal)
-    }
-
-    const closePaymentModal = () => {
-        setPaymentModal(false)
-        console.log(paymentModal)
-    }
-
-    const openPaymentModal = () => {
-        setPaymentModal(true)
-        console.log(modal)
-    }
 
     if (cartState) {
         let total = cartState.map(item => item.total)
@@ -161,9 +143,6 @@ function SummaryOrder({ addressId }) {
         console.log(paymentType)
     }
 
-    const checkOut = () => {
-        navigate("/order-summary");
-    }
 
     return (
 
@@ -181,6 +160,7 @@ function SummaryOrder({ addressId }) {
                     <p className='mb-4 text-medium'>Make transfer to any of the account below</p>
                     <div className='bg-red px-3 py-5 text-white rounded-3xl w-full h-[300px] mb-6'>
                         {
+                            bikeeBanks.length > 0 ? 
                             bikeeBanks.map(bank => {
                                 return (
                                     <div className='flex justify-center' key={bank.id}>
@@ -189,6 +169,8 @@ function SummaryOrder({ addressId }) {
                                     </div>
                                 )
                             })
+                            :
+                            <>Error loading bank details</>
                         }
                     </div>
                     <button className='bg-red text-white w-full py-3 text-semibold rounded-xl' onClick={()=>navigate('/profile')}>Done</button>

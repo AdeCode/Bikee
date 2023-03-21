@@ -71,6 +71,24 @@ async function updateAddress({payload,addressId}){
     return data
 }
 
+async function getOrder({queryKey}){
+    const [_key, {orderId}] = queryKey
+    const {data} = await httpService.secureInstance.get(`/orders/${orderId}`)
+    return data
+}
+
+async function getUser({queryKey}){
+    const [_key, {userId}] = queryKey
+    const {data} = await httpService.secureInstance.get(`/users/${userId}`)
+    return data
+}
+
+async function getPayment({queryKey}){
+    const [_key, {paymentId}] = queryKey
+    const {data} = await httpService.secureInstance.get(`/payments/${paymentId}`)
+    return data
+}
+
 
 const orderService = {
     addOrder,
@@ -85,7 +103,10 @@ const orderService = {
     allPayments,
     getAllOrders,
     approvePayment,
-    updateAddress
+    updateAddress,
+    getOrder,
+    getUser,
+    getPayment
 }
 
 export default orderService

@@ -10,7 +10,6 @@ import Checkout from "./pages/Checkout";
 import OrderSummary from "./pages/OrderSummary";
 import OrderCheckout from "./pages/OrderCheckout";
 import ShippingAddress from "./pages/ShippingAddress";
-import Payment from "./pages/Payment";
 import OrderLayout from "./components/@shared/OrderLayout";
 import HomeLayout from "./common/HomeLayout";
 import BlackLayout from "./common/BlackLayout";
@@ -41,6 +40,9 @@ import OrderConfirmation from './pages/OrderConfirmation';
 import PreOrderPolicy from './pages/PreOrderPolicy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Payments from './pages/admin/Payments';
+import Order from './pages/admin/Order';
+import User from './pages/admin/User';
+import Payment from './pages/admin/Payment';
 
 function Routers() {
   return (
@@ -103,6 +105,9 @@ function Routers() {
               <Route path="orders" element={<Orders />} />
               <Route path="products" element={<Products />} />
               <Route path="product/:productId" element={<Product />} />
+              <Route path="order/:orderId" element={<Order/>} />
+              <Route path="user/:userId" element={<User/>} />
+              <Route path="payment/:paymentId" element={<Payment/>} />
               <Route path="product/:productId/edit" element={<EditProduct />} />
               <Route path="users" element={<Users />} />
               <Route path="payments" element={<Payments />} />

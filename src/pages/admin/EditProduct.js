@@ -181,7 +181,7 @@ function EditProduct() {
               name='type'
             >
               {productTypes.map((product) => (
-                <MenuItem key={product.value} value={product.value}>
+                <MenuItem key={product.value} value={product.value} defaultValue={product.value}>
                   {product.label}
                 </MenuItem>
               ))}
@@ -240,10 +240,9 @@ function EditProduct() {
                   <TextField
                     id="filled-error"
                     label="Weight"
-                    defaultValue="Weight"
                     variant="filled"
                     name='weight'
-                    value={product.data.property[0].weight}
+                    defaultValue={product.data.property[0].weight}
                   />
                   <TextField
                     id="filled-error-helper-text"
@@ -252,7 +251,7 @@ function EditProduct() {
                     // helperText="Incorrect entry."
                     variant="filled"
                     name="battery"
-                    value={product.data.property[0].battery}
+                    defaultValue={product.data.property[0].battery}
                   />
                 </div>
                 <div>
@@ -262,16 +261,15 @@ function EditProduct() {
                     // defaultValue="1 hr"
                     variant="filled"
                     name='charging'
-                    value={product.data.property[0].charging}
+                    defaultValue={product.data.property[0].charging}
                   />
                   <TextField
                     id="filled-error-helper-text"
                     label="Speed"
-                    defaultValue="100km/hr"
                     // helperText="Incorrect entry."
                     variant="filled"
                     name="speed"
-                    value={product.data.property[0].speed}
+                    defaultValue={product.data.property[0].speed}
                   />
                 </div>
               </>

@@ -4,6 +4,7 @@ import { useQuery } from 'react-query'
 import {useNavigate} from 'react-router-dom'
 import orderService from '../../@services/orderService';
 import Moment from 'react-moment';
+import helperFunction from '../../@helpers/helperFunction';
 
 
 
@@ -40,20 +41,24 @@ function Order() {
                     <h3 className='font-medium'><Moment date={order.data.created_at}/></h3>
                 </div>
                 <div className='flex justify-between'>
+                    <h3>Order Amount:</h3>
+                    <h3 className='font-medium'>{helperFunction.nairaFormat(order.data.total_amount)}</h3>
+                </div>
+                <div className='flex justify-between'>
+                    <h3>Delivery Address:</h3>
+                    <h3 className='font-medium text-end'>{order.data.address?.street+" "+order.data.address?.city+" "+order.data.address?.state}</h3>
+                </div>
+                <div className='flex justify-between'>
                     <h3>Customer name:</h3>
-                    <h3 className='font-medium'>{order.data.customer.first_name+' '+order.data.customer.last_name} </h3>
+                    <h3 className='font-medium'>{order.data.user?.first_name+' '+order.data.user?.last_name} </h3>
                 </div>
                 <div className='flex justify-between'>
                     <h3>Customer email:</h3>
-                    <h3 className='font-medium'>{order.data.customer?.email}</h3>
+                    <h3 className='font-medium'>{order.data.user?.email}</h3>
                 </div>
                 <div className='flex justify-between'>
                     <h3>Customer Phone:</h3>
-                    <h3 className='font-medium'>{order.data.customer?.phone}</h3>
-                </div>
-                <div className='flex justify-between'>
-                    <h3>Customer address:</h3>
-                    <h3 className='font-medium text-end'>{order.data.customer.address.formatted_address}</h3>
+                    <h3 className='font-medium'>{order.data.user?.phone}</h3>
                 </div>
                 {/* <div className='flex justify-between'>
                     <h3>Product Type:</h3>

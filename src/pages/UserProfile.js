@@ -147,14 +147,14 @@ function UserProfile() {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', padding:'0 10px' }}
             >
-                <div className='w- bg-white text-black lg:h-[500px] rounded-xl flex flex-col items-center px-5 py-6'>
-                    <form onSubmit={handleSubmit} autoComplete="off">
+                <div className='w-full lg:w-[600px] bg-white text-black lg:h-[500px] rounded-xl flex flex-col items-center lg:px-5 py-6 px-2'>
+                    <form onSubmit={handleSubmit} autoComplete="off" className='w-full'>
                         <h2 className='font-semibold text-lg mb-6'>Edit Address</h2>
-                        <div className='bg-red px-3 py-5 text-black rounded-3xl w-full h-[250px] mb-6'>
+                        <div className='bg-red px-3 py-5 text-black rounded-3xl w-full lg:h-[250px] h-auto mb-6'>
                             <div className=''>
-                                <div className='form-group lg:w-[465px] lg:mb-[21px] mb-[18px]'>
+                                <div className='form-group lg:w-full lg:mb-[21px] mb-[18px]'>
                                     <h2 className='font-semibold lg:text-[15px] text-sm text-white lg:leading-[19px] mb-2'>Street address</h2>
                                     <input type='text' onChange={handleChange} name='street' placeholder='' value={formData.street} className='h-[46px] px-3 border w-full rounded-lg' />
                                 </div>
@@ -178,7 +178,7 @@ function UserProfile() {
                     </form>
                 </div>
             </Modal>
-            <div className='flex lg:px-[100px] lg:mb-5'>
+            <div className='flex flex-col lg:flex-row lg:px-[100px] px-4 lg:mb-5'>
                 <h3 className='cursor-pointer text-[#1071FF] font-medium text-base' onClick={logout}>Logout</h3>
                 <div className='lg:px-[200px] font-bold text-[22px]'>
                     {
@@ -195,7 +195,7 @@ function UserProfile() {
 
 
             <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
-                <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
+                <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-1 lg:px-0'>
                     <div className='flex flex-col font-mulish'>
                         {/* <h2 className='font-bold text-[#030919] text-[28px] lg:leading-[35px] mb-[29px]'>My Profile</h2> */}
                         <p className='font-bold text-base mb-[39px]'>Shipping address</p>
@@ -206,18 +206,18 @@ function UserProfile() {
                                     <div className=''>
                                         <div className='form-group lg:w-[465px] lg:mb-[39px] mb-[18px]'>
                                             <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Email address</h2>
-                                            <input type='text' name='address' placeholder='' value={user.user.email} readOnly className='h-[46px] border w-full' />
+                                            <input type='text' name='address' placeholder='' value={user.user.email} readOnly className='h-[46px] border w-full px-1' />
                                         </div>
                                         <div className='form-group lg:w-[465px] lg:mb-[39px]'>
                                             <h2 className='lg:font-normal font-bold text-base text-[#030919] lg:leading-[19px] mb-2'>Contact information</h2>
                                             <div className='flex flex-col lg:flex-row lg:gap-[22px] gap-[18px] lg:mb-[21px] mb-[18px] w-full'>
                                                 <div className='flex flex-col lg:w-[50%] w-full'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>First name</h2>
-                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.first_name} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.first_name} className='h-[46px] border w-full px-1' />
                                                 </div>
                                                 <div className='flex flex-col lg:w-[50%] w-full'>
                                                     <h2 className='font-semibold lg:text-[15px] text-sm text-[#030919] lg:leading-[19px] mb-2'>Last name</h2>
-                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.last_name} className='h-[46px] border w-full' />
+                                                    <input type='text' name='address' placeholder='' readOnly value={user.user.last_name} className='h-[46px] border w-full px-1' />
                                                 </div>
                                             </div>
                                             {
@@ -360,11 +360,11 @@ function UserProfile() {
                                                                 {
                                                                     order.order_product?.map(item => {
                                                                         return (
-                                                                            <div className='flex mb-1 h-[42px] items-center' key={item.product?.id}>
-                                                                                <div className='w-9 h-8 lg:mr-5'>
+                                                                            <div className='flex justify-between mb-1 h-[42px] items-center w-full' key={item.product?.id}>
+                                                                                <div className='w-9 h-8 lg:mr-5 mr-2'>
                                                                                     <img src={item.product?.image_url} alt={item.product?.name} />
                                                                                 </div>
-                                                                                <div className='flex justify-between lg:w-[50%]'>
+                                                                                <div className='flex justify-between w-[60%] lg:w-[50%]'>
                                                                                     <div className='flex flex-col'>
                                                                                         <h3 className='font-medium text-[9px] text-[#19191D]'>{item.product?.name}</h3>
                                                                                         <h3 className='text-[6px] font-medium text-black'>X {item.quantity}</h3>

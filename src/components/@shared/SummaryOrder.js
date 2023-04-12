@@ -210,8 +210,8 @@ function SummaryOrder({ addressId }) {
             </div>
             <hr className='text-line mb-7' />
             <div className='text-[#000000]'>
-                <h3 className='font-semibold text-lg lg:mb-3'>Payment options</h3>
-                <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
+                <h3 className='font-semibold text-lg mb-3'>Payment options</h3>
+                <div className='lg:mb-[39px] mb-3 flex flex-col lg:gap-[18px] gap-3'>
                     <div className="">
                         <label>
                             <input
@@ -222,25 +222,9 @@ function SummaryOrder({ addressId }) {
                                 className='mr-2'
                             />
                             Pay with paystack
-                            <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p>
+                            {/* <p className='text-[#828282] font-normal text-sm'>Pay online with paystack</p> */}
                         </label>
                     </div>
-                    {/* <div className="">
-                        <label>
-                            <input
-                                type="radio"
-                                value="pay_later"
-                                checked={paymentType === "pay_later"}
-                                onChange={onChange}
-                                name='payment_type'
-                                className='mr-2'
-                            />
-                            Buy now pay later (coming soon)
-                            <p className='text-[#828282] font-normal text-sm'>Coming soon</p>
-                        </label>
-                    </div> */}
-                </div>
-                <div className='lg:mb-[39px] flex flex-col lg:gap-[18px]'>
                     <div className="">
                         <label>
                             <input
@@ -253,49 +237,9 @@ function SummaryOrder({ addressId }) {
                             Make transfer to Bank Account
                         </label>
                     </div>
-                    {/* {
-                        bikeeBanks.length > 0 &&
-                        <div className="">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="BANK_TRANSFER"
-                                    onChange={onChange}
-                                    name='payment_type'
-                                    className='mr-2'
-                                />
-                                Make transfer to Bank Account
-                                {
-                                    bikeeBanks.map(bank => {
-                                        return (
-                                            <div className='flex' key={bank.id}>
-                                                <p className='text-[#828282] font-normal text-sm'>{bank.account_number} {bank.name}, {bank.account_name}
-                                                </p>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </label>
-                        </div>
-
-                    } */}
-
-                    {/* <div className="">
-                        <label>
-                            <input
-                                type="radio"
-                                value="pay_later"
-                                checked={paymentType === "pay_later"}
-                                onChange={onChange}
-                                name='delivery_type'
-                                className='mr-2'
-                            />
-                            Buy now pay later (coming soon)
-                            <p className='text-[#828282] font-normal text-sm'>Coming soon</p>
-                        </label>
-                    </div> */}
                 </div>
-                <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
+                
+                <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 mb-3 text-[14.8px]'>
                     <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
                     <p className='text-[#979797] font-bold'>
                         Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.

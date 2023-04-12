@@ -73,7 +73,7 @@ function Nav() {
                     <div className='flex justify-end lg:hidden my-4' onClick={() => setMobileMenu(false)}>
                         <img src={close} alt='close' />
                     </div>
-                    <li className='mb-9 lg:mb-0'>
+                    <li className='mb-9 lg:mb-0' onClick={() => setMobileMenu(false)}>
                         <Link to='/'>
                             Home
                         </Link>
@@ -84,11 +84,11 @@ function Nav() {
                             <MdOutlineKeyboardArrowRight className='lg:hidden' />
                         </span>
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
-                            <li className='lg:text-sm'><span className='hover:text-red'>
+                            <li className='lg:text-sm'><span className='hover:text-red' onClick={() => setMobileMenu(false)}>
                                 <Link to='/restaurant'>QSRs (Quality Service Restaurants)</Link>
                                 </span>
                             </li>
-                            <li className='lg:text-sm hover:text-red'>
+                            <li className='lg:text-sm hover:text-red' onClick={() => setMobileMenu(false)}>
                                 <Link to='/bike-sharing'>E-Bike Ride Sharing</Link> 
                             </li>
                             {/* <li className='lg:text-sm hover:text-red'>SMEs - <span className='text-red'> coming soon</span></li>
@@ -119,7 +119,7 @@ function Nav() {
                         <ul className='sub-menu absolute z-[1] lg:flex-col min-w-[200px] bg-white hover:text-red text-sub_menu_text py-3 px-6 h-fit top-14'>
                             {/* <li className='lg:text-sm hover:text-red'>Businesses</li>
                             <li className='lg:text-sm hover:text-red'>Gig Workers</li> */}
-                            <li className='lg:text-sm hover:text-red'>
+                            <li className='lg:text-sm hover:text-red' onClick={() => setMobileMenu(false)}>
                                 {/* <Link to='/'>Pre-Order (Coming Soon!)</Link> */}
                                 <Link to='/pre-order'>Pre-Order (Coming Soon!)</Link>
                             </li>

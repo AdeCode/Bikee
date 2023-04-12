@@ -32,7 +32,7 @@ function AccessoryCard({image, title, price, item}) {
         <div className='lg:w-full w-[200px] mb-[15px]'>
             <img src={image} alt={title}/>
         </div>
-        <div className='flex justify-between w-full'>
+        <div className='flex justify-between w-full p-1'>
             <div className='flex flex-col gap-[7px]'>
                 <h3 className='text-accessory_text font-semibold text-xs'>{title}</h3>
                 <h3 className='text-accessory_price font-semibold text-base'>

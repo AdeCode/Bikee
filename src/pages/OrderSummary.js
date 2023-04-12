@@ -77,7 +77,7 @@ function OrderSummary() {
             </ul>
         </div> */}
             <div className='lg:hidden flex pt-[100px]'>
-                <ul className='flex justify-between w-full'>
+                {/* <ul className='flex justify-between w-full'>
                     <li>
                         <Link to={`${pathname}/shipping-address`}>Shipping address</Link>
                     </li>
@@ -87,7 +87,7 @@ function OrderSummary() {
                     <li className=''>
                         <Link to={`${pathname}/summary`}>Summary</Link>
                     </li>
-                </ul>
+                </ul> */}
             </div>
             <div className='lg:flex flex-col lg:flex-row justify-center gap-[100px] px-7 lg:px-0'>
                 <div className='flex flex-col font-mulish'>

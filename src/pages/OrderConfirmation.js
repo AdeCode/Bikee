@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 function OrderConfirmation() {
     return (
-        <div className='flex flex-col items-center justify-center h-[100vh] px-4'>
-            <div className='w-[800px] px-10 py-10 text-white bg-[#FF0000] rounded-lg'>
+        <div className='flex flex-col items-center justify-center h-[100vh] px-4 w-screen'>
+            <div className='lg:w-[800px] w-[90%] px-10 py-10 text-white bg-[#FF0000] rounded-lg'>
                 <h2 className='font-bold text-2xl mt-6'>Thank you for your order!</h2>
                 <div className=''>
                     {/* <h3 className='font-normal text-base'>Order No. #809320, #249320, and #809320.</h3> */}

@@ -8,6 +8,7 @@ import close from '../../images/nav/close.png'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import '../nav.css'
 import {Link, useLocation} from 'react-router-dom'
+import { BiMenu } from "react-icons/bi";
 
 
 function NewNav() {
@@ -121,7 +122,8 @@ function NewNav() {
                     <button className='bg-red py-2 px-4 text-sm rounded-xl'>Download App</button>
                 </div> */}
                 <button className='lg:hidden flex' onClick={toggleMobileMenu}>
-                    <img src={menu} alt='menu' />
+                    <BiMenu className='text-black'/>
+                    {/* <img src={menu} alt='menu' /> */}
                 </button>
             </nav>
         </Navbar>

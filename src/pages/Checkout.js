@@ -45,8 +45,8 @@ function Checkout() {
   return (
     <Section>
         <SubMenu/>
-        <div className='lg:mt-[5px]'>
-            <h2 className='text-blue font-medium text-base ml-[140px] cursor-pointer' onClick={()=>{navigate(-1)}}>Go back</h2>
+        <div className='lg:mt-[5px] pt-16 lg:pt-0'>
+            <h2 className='text-blue font-medium text-base lg:ml-[140px] ml-5 cursor-pointer' onClick={()=>{navigate(-1)}}>Go back</h2>
             {
                 cartState.length > 0 ? 
                 <div className='flex flex-col lg:flex-row font-mulish justify-center lg:gap-[100px] px-5 lg:px-0'>
@@ -105,8 +105,8 @@ function Checkout() {
                         </div>
                         <hr className='text-line mb-4'/>
                         <div className='text-[#000000]'>
-                            <h3 className='font-semibold text-lg lg:mb-3'>Select delivery options</h3>
-                            <div className='lg:mb-[29px] mb-4 flex flex-col lg:gap-[18px]'>
+                            <h3 className='font-semibold text-lg mb-3'>Select delivery options</h3>
+                            <div className='lg:mb-[29px] mb-4 flex flex-col lg:gap-[18px] gap-3'>
                                 <div className="">
                                     <label>
                                         <input
@@ -134,7 +134,7 @@ function Checkout() {
                                     </label>
                                 </div>
                             </div>
-                            <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 text-[14.8px]'>
+                            <div className='lg:w-[400px] border-[3px] border-[#D9D9D9] py-4 px-5 rounded-2xl lg:mb-6 mb-3 text-[14.8px]'>
                                 <h2 className='text-black font-bold'>Target delivery date: 11 April - 18 April 2023</h2>
                                 <p className='text-[#979797] font-bold'>
                                     Please note that this is an estimate and can change depending on our delivery partners and order backlog. If there is a change, we'll always update it on your order page.

@@ -12,7 +12,7 @@ function SignIn() {
                     <div className='lg:w-[356px] flex flex-col items-center'>
                         <img src={Logo} alt='logo' className='mb-[46px]'/>
                         <h2 className='text-dark_text font-bold text-[30px] mb-[16px]'>Sign in to your account</h2>
-                        <p className='text-[18px] text-secondary_text leading-[28px] mb-[26px] text-center'>Connected e-bike for you daily commute or delivery business</p>
+                        <p className='text-[18px] text-secondary_text leading-[28px] mb-[26px] text-center'>Connected e-bike for your daily commute or delivery business</p>
                         <div className='form w-full'>
                             {/* <form>
                                 <div className='form-group flex flex-col mb-[24px]'>

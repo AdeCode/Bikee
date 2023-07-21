@@ -105,7 +105,7 @@ function PaymentsTable({data}) {
                       onClick={() => {
                         // View profile logic...
                         console.log(row.original.id)
-                        navigate(`/dashboard/payment/${row.original.id}`)
+                        navigate(`/dashboard/payment/${row.original.reference}`)
                         closeMenu();
                       }}
                       sx={{ m: 0 }}

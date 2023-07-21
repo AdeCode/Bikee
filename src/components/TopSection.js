@@ -17,13 +17,18 @@ import iot from '../images/home/iot.png'
 import cargo from '../images/home/cargo.png'
 import batteries from '../images/home/batteries.png'
 import speed from '../images/home/speed.png'
+import biket from '../images/home/biket.png'
+import bikeb from '../images/home/bikeb.png'
 import lock from '../images/home/lock.png'
 import payload from '../images/home/payload.png'
 import Hero from '../images/home/Hero-full.png'
+import bikeeDesk from '../images/home/bikeeDesk.png'
 import arrow from '../images/home/arrow.png'
 import meter from '../images/home/meter.png'
 import macMobile from '../images/home/mac-mobile.png'
 import mapbg from '../images/home/mapbg.png'
+import commute from '../images/home/commute.png'
+import delivery from '../images/home/delivery.png'
 import charge from '../images/home/charge.png'
 import Mockup1 from '../images/home/Mockup1.png'
 import Mockup2 from '../images/home/Mockup2.png'
@@ -31,6 +36,9 @@ import Mockup3 from '../images/home/Mockup3.png'
 import Mockup from '../images/home/Mockup.png'
 import bikee from '../images/home/bikee-vid.mp4'
 import chicken from '../images/home/chicken-republic.png'
+import chopnow from '../images/home/chopnow.png'
+import bukka from '../images/home/bukka.png'
+import simply from '../images/home/simply.png'
 import jise from '../images/home/jise.png'
 import Accordion from './@shared/Accordion'
 import FaqData from './@shared/FaqData'
@@ -89,6 +97,37 @@ function TopSection() {
                 </div>
             </div>
         </div>
+        <div className="flex max-w-screen box-border md:px-16 px-[30px] py-12 flex-col md:flex-row">
+            <div className="flex flex-col md:w-[50%] w-full mb-4 lg:mb-0">
+                <h2 className='font-bold text-4xl'>E-Bikes for your daily deliveries</h2>
+                <p className='lg:w-[500px] text-xl font-semibold mb-5'>Having experienced how daily delivery works over the years, this gave us the insights to build the perfect E-Bike for various delivery models.</p>
+                <ul className='list-decimal lg:list-disc ml-4'>
+                    <li>Vehicle fleet financing</li>
+                    <li>Fleet management software and mobile App</li>
+                    <li>Regular service schedule</li>
+                    <li>Battery Charging/Swap with recharged battery</li>
+                    <li>IoT device</li>
+                    <li>Smart locks</li>
+                    <li>Geo fencing</li>
+                </ul>
+            </div>
+            <div className="flex md:w-[50%] w-full">
+                <div className='relative'>
+                    <img src={commute} alt='order' className='w-[350px]'/>
+                    <span 
+                        className='text-white absolute lg:top-[30%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
+                    >Daily Commute &amp; Other Deliveries
+                    </span>
+                </div>
+                <div className='relative'>
+                    <img src={delivery} alt='order' className='w-[350px]'/>
+                    <span 
+                        className='text-white absolute lg:top-[40%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
+                    >Food Delivery
+                    </span>
+                </div>
+            </div>
+        </div>
         <div className='w-full flex lg:justify-center lg:pt-[113px] py-6 lg:pb-[113px] order'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row lg:gap-[123px]'>
                 <div className=''>
@@ -109,18 +148,27 @@ function TopSection() {
         </div>
         <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[40px] lg:pb-[23px] px-[50px] lg:px-0'>
             <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by great businesses...</h4>
-            <div className='lg:flex hidden flex-wrap lg:gap-[61.5px]'>
+            <div className='lg:flex items-center hidden pl-10 flex-wrap lg:gap-[61.5px]'>
                 {/* <img src={jiggle} alt='jiggle'/>
                 <img src={symtric} alt='symtric'/>
                 <img src={wishelp} alt='wishelp'/>
                 <img src={resecurb} alt='resecurb'/>
                 <img src={welytics} alt='welytics'/> */}
                 <div className='w-[100px]'>
+                    <img src={bukka} alt='bukka'/>
+                </div>
+                <div className='w-[100px]'>
+                    <img src={chopnow} alt='chopnownow'/>
+                </div>
+                <div className='w-[100px]'>
+                    <img src={simply} alt='simply'/>
+                </div>
+                {/* <div className='w-[100px]'>
                     <img src={chicken} alt='chicken-republic'/>
                 </div>
                 <div className='w-[100px] flex items-center'>
                     <img src={jise} alt='jise'/>
-                </div>
+                </div> */}
             </div>
             <div className='flex lg:hidden  justify-center items-center flex-wrap gap-6 lg:gap-[61.5px]'>
                 {/* <img src={mjiggle} alt='jiggle'/>
@@ -191,21 +239,21 @@ function TopSection() {
                                 <div className='flex flex-col gap-[54px]'>
                                     <div className='flex flex-col gap-1'>
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>SPEED</h5>
-                                        <p className='text-white'>40KM/h</p>
+                                        <p className='text-white'>40KM/h and 45Km/h</p>
                                     </div>
                                     <div className='flex flex-col gap-1'>
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>TYPE</h5>
-                                        <p className='text-white'>100% Electric</p>
+                                        <p className='text-white'>100% Electric and Pedal Assist</p>
                                     </div>
                                     <div className='flex flex-col gap-1'>
-                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY HOURS</h5>
-                                        <p className='text-white'>8Hrs</p>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY CHARGING TIME</h5>
+                                        <p className='text-white'>4Hrs</p>
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-[54px]'>
                                     <div className='flex flex-col gap-1 items-end'>
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE RANGE</h5>
-                                        <p className='text-white'>90KM</p>
+                                        <p className='text-white'>90KM and 120KM</p>
                                     </div>
                                     <div className='flex flex-col gap-1 items-end'>
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY RANGE</h5>
@@ -213,7 +261,7 @@ function TopSection() {
                                     </div>
                                     <div className='flex flex-col gap-1 items-end'>
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE PAYLOAD</h5>
-                                        <p className='text-white'>120KG</p>
+                                        <p className='text-white'>120KG and 300KG</p>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +288,11 @@ function TopSection() {
         </div>
         <div className='flex save flex-col lg:flex-row lg:gap-[100px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
             <div className='flex justify-center lg:justify-start px-[42px] lg:px-0'>
-                <img src={charge} alt='charge bike' className='hidden lg:flex lg:h-[395px]'/>
+                <div className='hidden lg:flex flex-col gap-9'>
+                    <img src={biket} alt='charge bike' className=''/>
+                    <img src={bikeb} alt='charge bike' className=''/>
+                </div>
+                {/* <img src={charge} alt='charge bike' className='hidden lg:flex lg:h-[395px]'/> */}
                 <img src={charge} alt='laptop' className='lg:hidden'/>
             </div>
             <div className='flex flex-col px-[42px]'>
@@ -323,7 +375,7 @@ function TopSection() {
                     <div className='lg:mb-7'>
                         <img src={speed} alt='speed'/>
                     </div>
-                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Max speed 40 km/h</h2>
+                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Max speed 45 km/h</h2>
                     <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>Maximum Speed of 40Km/h</p>
                 </div>
             </div>
@@ -339,7 +391,7 @@ function TopSection() {
                     <div className='lg:mb-7'>
                         <img src={payload} alt='payload'/>
                     </div>
-                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Payload (standard) 120 kg</h2>
+                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Payload (standard) 300 kg</h2>
                     <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>It’ll carry loads of upto 120kg with a smooth ride.</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>
@@ -351,7 +403,27 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] lg:px-0 px-[26px]'>
+        <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] lg:px-[100px] px-[26px]'>
+            <div className='flex flex-col justify-center lg:w-[50%]'>
+                <h1 className='lg:font-bold font-semibold text-white text-2xl lg:text-[35px] mt-[51.3px] lg:mt-0 lg:leading-[45px] mb-[14px] lg:mb-[22px] w-[296px] lg:w-full'>EFFORTLESSLY MANAGE YOUR FLEET OF DELIVERY E-BIKES.</h1>
+                <p className='mb-[23px] font-medium lg:text-lg text-sm text-secondary_text lg:w-[486px]'>Get our all-in-one platform for your commercial electric delivery vehicles and manage your fleet seamlessly.</p>
+                <ul className='list-decimal lg:list-disc ml-4 mb-5 text-white'>
+                    <li>Unlock your e-bike from the BIKEE dashboard or app</li>
+                    <li>Locate all your e-bikes </li>
+                    <li>Lock remotely from anywhere</li>
+                    <li>View battery percentage</li>
+                    <li>Talk to support daily</li>
+                </ul>
+                <button className='bg-red text-lg font-medium text-btn_text py-[13px] px-[27px] lg:w-fit rounded-md'>
+                    <a href='https://calendly.com/bikee' target='blank'> Book a Demo</a>
+                </button>
+            </div>
+            <div className='relative flex flex-col justify-center lg:w-[50%]'>
+                <img src={bikeeDesk} alt='hero' className='hidden lg:flex'/>
+                <img src={macMobile} alt='hero' className='lg:hidden'/>
+            </div>
+        </div>
+        {/* <div className='bg-dark_text flex flex-col-reverse lg:flex-row justify-center pt-[29px] pb-[60px] lg:pt-[65px] lg:pb-[80px] lg:px-0 px-[26px]'>
             <div className='flex flex-col justify-center'>
                 <h1 className='lg:font-bold font-semibold text-white text-2xl lg:text-[56px] mt-[51.3px] lg:mt-0 lg:leading-[68px] mb-[14px] lg:mb-[22px] w-[296px] lg:w-[486px]'>Manage Delivery Effortlessly.</h1>
                 <p className='mb-[23px] font-medium lg:text-lg text-sm text-secondary_text lg:w-[486px]'>Time to review, own your present, past, and predict the future orders & delivery data.</p>
@@ -362,10 +434,8 @@ function TopSection() {
             <div className='relative flex flex-col justify-center'>
                 <img src={Hero} alt='hero' className='hidden lg:flex'/>
                 <img src={macMobile} alt='hero' className='lg:hidden'/>
-                {/* <button className='btn lg:absolute lg:right-[40%] lg:bottom-[-5%] bg-dark_gray flex w-fit items-center gap-3 lg:py-[11.5px] px-[9.3px] py-[10px] lg:px-[15.2px]'>SIgn-up now<img src={arrow} alt="arrow"/></button> */}
             </div>
-
-        </div>
+        </div> */}
         <div className='flex flex-col lg:flex-row lg:gap-[123px] lg:justify-center lg:py-[90px] px-[26px] lg:px-0 py-6'>
             <div className=''>
                 <span className='font-medium text-red text-xs faq rounded-[34px] lg:py-[1.5px] px-2 mb-6'>FAQ</span>

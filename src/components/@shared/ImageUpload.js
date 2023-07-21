@@ -41,7 +41,7 @@ function ImageUpload({selectFile, image}) {
     <div>
         <div className="form-group">
             <label htmlFor="upload">Upload Image</label>
-            <input type="file" name='file' onChange={selectFile}/>
+            <input type="file" multiple="multiple" name='file' onChange={selectFile}/>
             {
                 image &&
                 <div>

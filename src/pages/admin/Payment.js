@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import {useNavigate} from 'react-router-dom'
 import orderService from '../../@services/orderService';
+import Moment from 'react-moment';
+
 
 
 
@@ -31,12 +33,24 @@ function Payment() {
             
             <div className=''>
                 <div className='flex justify-between'>
+                    <h3>Customer Name:</h3>
+                    <h3 className='font-medium'>{payment.data.user.first_name+' '+payment.data.user.last_name}</h3>
+                </div>
+                <div className='flex justify-between'>
+                    <h3>Customer Email:</h3>
+                    <h3 className='font-medium'>{payment.data.user.email}</h3>
+                </div>
+                <div className='flex justify-between'>
                     <h3>Order Ref:</h3>
                     <h3 className='font-medium'>{payment.data.order_ref}</h3>
                 </div>
                 <div className='flex justify-between'>
                     <h3>Amount:</h3>
                     <h3 className='font-medium'>{payment.data.amount}</h3>
+                </div>
+                <div className='flex justify-between'>
+                    <h3>Payment Date:</h3>
+                    <h3 className='font-medium text-end'><Moment date={payment.data.created_at} /></h3>
                 </div>
             </div>
         </div>

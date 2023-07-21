@@ -30,7 +30,7 @@ function AccessoryCard({image, title, price, item}) {
   return (
     <Card className='flex flex-col font-inter lg:gap-5 lg:p-2 rounded-xl lg:w-auto w-full'>
         <div className='lg:w-full w-[200px] mb-[15px]'>
-            <img src={image} alt={title}/>
+            <img src={image} alt={title} className="object-contain w-[200px] h-[200px]"/>
         </div>
         <div className='flex justify-between w-full p-1'>
             <div className='flex flex-col gap-[7px]'>

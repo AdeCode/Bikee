@@ -85,7 +85,7 @@ async function getUser({queryKey}){
 
 async function getPayment({queryKey}){
     const [_key, {paymentId}] = queryKey
-    const {data} = await httpService.secureInstance.get(`/payments/${paymentId}`)
+    const {data} = await httpService.secureInstance.get(`/fetch-payment/${paymentId}`)
     return data
 }
 

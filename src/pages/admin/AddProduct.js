@@ -31,15 +31,19 @@ function AddProduct() {
   const [productType, setProductType] = useState('BIKE')
   const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
+  const [imageData, setImageData] = useState([]);
 
   const selectFile = (e) => {
-    const data = e.target.files[0]
-    if (data !== null) {
-      setImage(data);
-      const formData = new FormData();
-      formData.append('file', data)
-      uploadImageMutation.mutate(formData)
-    }
+    console.log(e.target.files)
+    // const data = e.target.files[0]
+    setImageData(imageData => [...imageData, e.target.files[0]])
+    console.log(imageData)
+    // if (data !== null) {
+    //   setImage(data);
+    //   const formData = new FormData();
+    //   formData.append('file', data)
+    //   uploadImageMutation.mutate(formData)
+    // }
   }
 
   const uploadImageMutation = useMutation(productService.uploadImage, {
@@ -145,21 +149,21 @@ function AddProduct() {
         </div>
         {
           (productType === 'BIKE' || productType === 'ACCESSORY') ?
-          <div>
-            <FormControl sx={{ m: 1, width: '97%' }}>
-              <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-amount"
-                startAdornment={<InputAdornment position="start">N</InputAdornment>}
-                label="Amount"
-                name='amount'
-              />
-            </FormControl>
-          </div>
-        :
-        null
+            <div>
+              <FormControl sx={{ m: 1, width: '97%' }}>
+                <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-amount"
+                  startAdornment={<InputAdornment position="start">N</InputAdornment>}
+                  label="Amount"
+                  name='amount'
+                />
+              </FormControl>
+            </div>
+            :
+            null
         }
-        
+
         {
           (productType === 'INSURANCE' || productType === 'MAINTENANCE') ?
             <div className='flex'>
@@ -182,8 +186,8 @@ function AddProduct() {
                 />
               </FormControl>
             </div>
-              :
-              null
+            :
+            null
         }
         {
           productType === 'BIKE' ?
@@ -232,7 +236,19 @@ function AddProduct() {
             :
             null
         }
-
+        {
+          productType === 'BIKE' &&
+          <div className='w-full'>
+            <TextField
+              id="outlined-multiline-static"
+              label="Bike Descriptiion"
+              name='description'
+              multiline
+              rows={4}
+              sx={{ minWidth: '97%', m:0 }}
+            />
+          </div>
+        }
 
         {/* <div>
           <TextField

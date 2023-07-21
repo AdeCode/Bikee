@@ -100,7 +100,7 @@ function PreOrder() {
         insurance = products.data.data.filter(product => product.type === "INSURANCE")
         maintanance = products.data.data.filter(product => product.type === "MAINTENANCE")
         // console.log(bikes)
-        bikes[0].name = bikeColor + ' Bike'
+        // bikes[0].name = bikeColor + ' Bike'
 
     }
     // console.log(accessoriesRef.current)

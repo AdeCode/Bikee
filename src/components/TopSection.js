@@ -97,38 +97,45 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className="flex max-w-screen box-border md:px-16 px-[30px] py-12 flex-col md:flex-row">
-            <div className="flex flex-col md:w-[50%] w-full mb-4 lg:mb-0">
-                <h2 className='font-bold text-4xl'>E-Bikes for your daily deliveries</h2>
-                <p className='lg:w-[500px] text-xl font-semibold mb-5'>Having experienced how daily delivery works over the years, this gave us the insights to build the perfect E-Bike for various delivery models.</p>
-                <ul className='list-decimal lg:list-disc ml-4'>
-                    <li>Vehicle fleet financing</li>
-                    <li>Fleet management software and mobile App</li>
-                    <li>Regular service schedule</li>
-                    <li>Battery Charging/Swap with recharged battery</li>
-                    <li>IoT device</li>
-                    <li>Smart locks</li>
-                    <li>Geo fencing</li>
-                </ul>
-            </div>
-            <div className="flex md:w-[50%] w-full">
-                <div className='relative'>
-                    <img src={commute} alt='order' className='w-[350px]'/>
-                    <span 
-                        className='text-white absolute lg:top-[30%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
-                    >Daily Commute &amp; Other Deliveries
-                    </span>
+        <div className='w-full flex lg:justify-center lg:pt-[113px] pt-7 lg:pb-[113px] pb-6 order mt-8 lg:mt-0'>
+            <div className='flex px-[10px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[80px]'>
+                <div className='hidden md:flex'>
+                    <div className='relative'>
+                        <img src={commute} alt='order' className='w-[370px]'/>
+                        <span 
+                            className='text-white absolute hidden md:flex lg:top-[30%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
+                        >Daily Commute &amp; Daily Deliveries
+                        </span>
+                    </div>
+                    <div className='relative'>
+                        <img src={delivery} alt='order' className='w-[370px]'/>
+                        <span 
+                            className='text-white hidden md:flex absolute lg:top-[40%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
+                        >Food Delivery
+                        </span>
+                    </div>
                 </div>
-                <div className='relative'>
-                    <img src={delivery} alt='order' className='w-[350px]'/>
-                    <span 
-                        className='text-white absolute lg:top-[40%] lg:left-[15%] w-[250px] text-center font-bold text-3xl'
-                    >Food Delivery
-                    </span>
+                <div className='flex items-center mt-[41px] lg:mt-0'>
+                    <div className='flex flex-col'>
+                        {/* <span className='odm text-red font-medium text-xs py-[1.4px] px-[7.6px] w-fit mb-[15px]'>eMaaS</span> */}
+                        <h1 className='text-dark_text font-bold text-2xl lg:text-[45px] leading-[36px] lg:leading-[57px] 
+                        w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>E-Bikes for your daily deliveries</h1>
+                        <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
+                        Having experienced how daily delivery works over the years, this gave us the insights to build the perfect E-Bike for various delivery models.</p>
+                        <ul className='list-decimal lg:list-disc ml-4 text-dark_text'>
+                            <li>Vehicle fleet financing</li>
+                            <li>Fleet management software and mobile App</li>
+                            <li>Regular service schedule</li>
+                            <li>Battery Charging/Swap with recharged battery</li>
+                            <li>IoT device</li>
+                            <li>Smart locks</li>
+                            <li>Geo fencing</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div className='w-full flex lg:justify-center lg:pt-[113px] py-6 lg:pb-[113px] order'>
+        {/* <div className='w-full flex lg:justify-center lg:pt-[113px] py-6 lg:pb-[113px] order'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row lg:gap-[123px]'>
                 <div className=''>
                     <img src={mapbg} alt='order' className='hidden lg:block'/>
@@ -138,14 +145,13 @@ function TopSection() {
                     <div className='flex flex-col'>
                         <span className='odm text-red font-medium text-xs py-[1.4px] px-[7.6px] w-fit mb-[15px]'>ODM</span>
                         <h1 className='text-dark_text font-bold text-2xl lg:text-[45px] leading-[36px] lg:leading-[57px] 
-                        w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Order Delivery Mangement System & Delivery App.</h1>
+                        w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Order Delivery Mangement System &amp; Delivery App.</h1>
                         <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
                         We currently fulfil last mile deliveries for quality service restaurants from stores to customer’s homes or offices through our fully automated IoT delivery e-bikes.</p>
-                        {/* <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button> */}
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         <div className='flex flex-col items-center bg-white pt-5 pb-9 lg:pt-[40px] lg:pb-[23px] px-[50px] lg:px-0'>
             <h4 className='text-gray font-medium text-xs lg:text-base mb-[30px]'> Trusted by great businesses...</h4>
             <div className='lg:flex items-center hidden pl-10 flex-wrap lg:gap-[61.5px]'>
@@ -170,17 +176,15 @@ function TopSection() {
                     <img src={jise} alt='jise'/>
                 </div> */}
             </div>
-            <div className='flex lg:hidden  justify-center items-center flex-wrap gap-6 lg:gap-[61.5px]'>
-                {/* <img src={mjiggle} alt='jiggle'/>
-                <img src={Msymtric} alt='symtric'/>
-                <img src={Mwishelp} alt='wishelp'/>
-                <img src={mresecurb} alt='resecurb'/>
-                <img src={Mwelytics} alt='welytics'/> */}
-                <div className='w-[100px]'>
-                    <img src={chicken} alt='chicken-republic'/>
+            <div className='flex lg:hidden  justify-center items-center flex-wrap gap-3 lg:gap-[61.5px]'>
+                <div className='w-[80px]'>
+                    <img src={bukka} alt='bukka'/>
                 </div>
-                <div className='w-[100px] flex items-center'>
-                    <img src={jise} alt='jise'/>
+                <div className='w-[80px] flex items-center'>
+                    <img src={chopnow} alt='chopnownow'/>
+                </div>
+                <div className='w-[80px] flex items-center'>
+                    <img src={simply} alt='simply'/>
                 </div>
             </div>
 
@@ -207,7 +211,7 @@ function TopSection() {
                 </div>
             </div>
         </div>
-        <div className='w-full flex lg:justify-center lg:pt-[113px] pt-7 lg:pb-[113px] pb-6 order mt-8 lg:mt-0'>
+        {/* <div className='w-full flex lg:justify-center lg:pt-[113px] pt-7 lg:pb-[113px] pb-6 order mt-8 lg:mt-0'>
             <div className='flex px-[30px] lg:px-0 flex-col lg:flex-row-reverse lg:gap-[123px]'>
                 <div className=''>
                     <img src={meter} alt='order' className='hidden lg:block'/>
@@ -220,11 +224,10 @@ function TopSection() {
                         w-[271px] lg:w-[464px] mb-[14px] lg:mb-[30px]'>Nigeria’s First Tech Enabled eMaas Service Platform.</h1>
                         <p className='font-medium text-sm  lg:text-lg text-light_blue w-full lg:w-[433px] mb-[24px]'>
                         We are building a full stack asset light, tech enabled Electric Mobility as a service (eMaaS), which makes last mile logistics sustainable and emission free.   </p>
-                        {/* <button className='bg-red text-btn_text text-base lg:w-fit lg:py-[10px] py-[11px] lg:px-[17px] rounded-md'>Sign up</button> */}
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         <div className='bg-bikeBg bg-no-repeat bg-cover'>
             <div className='bike pb-[173px] lg:pt-[112px] '>
                 <h1 className='text-milk font-normal lg:text-[35px] leading-[53px] lg:tracking-[0.9em] flex justify-center lg:mb-3'>Say Hello</h1>
@@ -245,9 +248,9 @@ function TopSection() {
                                         <h5 className='speed font-bold lg:text-sm text-[11px]'>TYPE</h5>
                                         <p className='text-white'>100% Electric and Pedal Assist</p>
                                     </div>
-                                    <div className='flex flex-col gap-1'>
-                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY CHARGING TIME</h5>
-                                        <p className='text-white'>4Hrs</p>
+                                    <div className='flex flex-col gap-1 items-end'>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE PAYLOAD</h5>
+                                        <p className='text-white'>120KG and 300KG</p>
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-[54px]'>
@@ -256,12 +259,8 @@ function TopSection() {
                                         <p className='text-white'>90KM and 120KM</p>
                                     </div>
                                     <div className='flex flex-col gap-1 items-end'>
-                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY RANGE</h5>
-                                        <p className='text-white'>70/80km</p>
-                                    </div>
-                                    <div className='flex flex-col gap-1 items-end'>
-                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BIKE PAYLOAD</h5>
-                                        <p className='text-white'>120KG and 300KG</p>
+                                        <h5 className='speed font-bold lg:text-sm text-[11px]'>BATTERY CHARGING TIME</h5>
+                                        <p className='text-white'>4hrs</p>
                                     </div>
                                 </div>
                             </div>
@@ -286,11 +285,11 @@ function TopSection() {
         <div className='flex justify-center'>
 
         </div>
-        <div className='flex save flex-col lg:flex-row lg:gap-[100px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
+        <div className='flex save flex-col lg:flex-row lg:gap-[70px] justify-center mt-6 lg:mt-0 py-6 lg:py-[120px]'>
             <div className='flex justify-center lg:justify-start px-[42px] lg:px-0'>
                 <div className='hidden lg:flex flex-col gap-9'>
-                    <img src={biket} alt='charge bike' className=''/>
-                    <img src={bikeb} alt='charge bike' className=''/>
+                    <img src={biket} alt='charge bike' className='lg:w-[500px]'/>
+                    <img src={bikeb} alt='charge bike' className='lg:w-[500px]'/>
                 </div>
                 {/* <img src={charge} alt='charge bike' className='hidden lg:flex lg:h-[395px]'/> */}
                 <img src={charge} alt='laptop' className='lg:hidden'/>
@@ -326,7 +325,7 @@ function TopSection() {
                         <div className=''>
                             <img src={Checkbox} alt='checkbox'/> 
                         </div> 
-                        <span className='font-medium lg:text-lg text-light_blue text-base'>90 - 100km Range</span>
+                        <span className='font-medium lg:text-lg text-light_blue text-base'>100km - 120km Range</span>
                     </li>
                     <li className='flex items-center gap-3 lg:mb-[14.6px]'>
                         <div className=''>
@@ -375,8 +374,8 @@ function TopSection() {
                     <div className='lg:mb-7'>
                         <img src={speed} alt='speed'/>
                     </div>
-                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Max speed 45 km/h</h2>
-                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>Maximum Speed of 40Km/h</p>
+                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Max speed 40/45 km/h</h2>
+                    <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>Maximum Speed of 40/40Km/h</p>
                 </div>
             </div>
             <div className='flex flex-col lg:flex-row gap-[82px] justify-center'>
@@ -391,7 +390,7 @@ function TopSection() {
                     <div className='lg:mb-7'>
                         <img src={payload} alt='payload'/>
                     </div>
-                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Payload (standard) 300 kg</h2>
+                    <h2 className='text-[22px] font-semibold text-dark_text lg:leading-[30px] lg:mb-4'>Payload (standard) 160 kg / 300 kg</h2>
                     <p className='font-medium text-base text-center text-light_blue lg:w-[279px]'>It’ll carry loads of upto 120kg with a smooth ride.</p>
                 </div>
                 <div className='flex flex-col items-center lg:w-[390px]'>

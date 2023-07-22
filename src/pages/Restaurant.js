@@ -8,6 +8,7 @@ import milemob from '../images/restaurants/milemob.png'
 import control from '../images/restaurants/control.png'
 import lastmile from '../images/restaurants/lastmile.png'
 import bikeedelivery from '../images/restaurants/bikeedelivery.png'
+import redbikeedelivery from '../images/restaurants/redbikeedelivery.png'
 
 function Restaurant() {
   return (
@@ -35,8 +36,8 @@ function Restaurant() {
                 <button className='lg:w-fit font-medium text-btn_text text-base py-3 lg:py-[10.3px] lg:px-[17.8px] bg-red rounded-md'>Get Started</button>
             </div>
             <div className='mb-[10px] lg:mb-0'>
-                <img src={bikeedelivery} alt='deliveries' className='hidden lg:flex'/>
-                <img src={control} alt='deliveries' className='lg:hidden'/>
+                <img src={redbikeedelivery} alt='deliveries' className='hidden lg:flex'/>
+                <img src={redbikeedelivery} alt='deliveries' className='lg:hidden'/>
             </div>
         </div>
         <div className='flex mile lg:flex-row flex-col lg:gap-[94px] lg:justify-center lg:pt-[125px] lg:pb-[174px] px-7 lg:px-0'>
